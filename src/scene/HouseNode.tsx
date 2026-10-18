@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, type ReactNode } from 'react'
 import { useFrame, type ThreeEvent } from '@react-three/fiber'
 import * as THREE from 'three'
 import { STAGE, STEP_FIRST_HOUSE, stepAt, type HouseConfig, type Palette } from '../config/presentation'
+import { houseSlots } from '../data/derive'
 import { useStore } from '../store/useStore'
 import { DEG, damp } from '../utils/math'
 import { UNIT_BOX, UNIT_CYLINDER, UNIT_DOME, UNIT_PYRAMID, UNIT_PYRAMID_ROUND, UNIT_SPHERE, getGableRoof } from './geometry'
@@ -28,7 +29,8 @@ interface Mats {
 function makeMaterials(house: HouseConfig, pal: Palette): Mats {
   const accent = new THREE.Color(house.accent)
   const roofColor = accent.clone().lerp(new THREE.Color('#3f3a45'), 0.42)
-  const platformColor = new THREE.Color(house.accentSoft).lerp(new THREE.Color(pal.platform), 0.45)
+  // halaman berumput, sedikit diwarnai aksen ruang
+  const platformColor = new THREE.Color(pal.grass).lerp(new THREE.Color(house.accent), 0.08)
   const mk = (color: THREE.Color | string, extra: Partial<THREE.MeshStandardMaterialParameters> = {}) =>
     new THREE.MeshStandardMaterial({ color, roughness: 0.9, metalness: 0, ...extra })
   const mats = {
@@ -38,7 +40,7 @@ function makeMaterials(house: HouseConfig, pal: Palette): Mats {
     trim: mk(pal.door),
     window: mk(pal.window, { emissive: new THREE.Color(pal.window), emissiveIntensity: 0.35, roughness: 0.6 }),
     platform: mk(platformColor),
-    earth: mk(new THREE.Color(pal.platform).lerp(new THREE.Color('#4a3f36'), 0.55), { flatShading: true }),
+    earth: mk(pal.soil, { flatShading: true }),
     ring: new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0, depthWrite: false }),
   }
   const bases = new Map<THREE.MeshStandardMaterial, THREE.Color>()
@@ -209,6 +211,7 @@ export function HouseNode({ house, index }: Props) {
     return Math.atan2(-Math.cos(a), -Math.sin(a))
   }, [house])
   const labelPos = useMemo(() => position.clone().add(new THREE.Vector3(0, LABEL_Y, 0)), [position])
+  const slotsMine = useMemo(() => houseSlots(house.id), [house.id])
 
   useFrame((_, dt) => {
     const g = groupRef.current
@@ -219,15 +222,16 @@ export function HouseNode({ house, index }: Props) {
     const step = stepAt(st.step)
     const kind = st.explore ? 'intro' : step.kind
     const isActive = kind === 'house' && step.houseIndex === index
-    const hlRuang = st.highlight?.ruang ?? null
+    const sel = st.selectedProblem
     let targetE = 1
     if (kind === 'house') targetE = isActive ? 1 : 0.3
-    else if (hlRuang && hlRuang.length) targetE = hlRuang.includes(house.id) ? 1 : 0.45
-    const targetA = isActive || (hlRuang?.includes(house.id) ?? false) ? 1 : 0
-
-    // label: sembunyikan saat kamera fokus ke inti
-    const labelOpacity =
-      kind === 'confidence' || kind === 'relations' || kind === 'load' ? 0 : kind === 'house' ? (isActive ? 1 : 0.45) : kind === 'move' ? 0.55 : targetE
+    else if (sel) {
+      // saat sebuah masalah dipilih, rumah yang terkait masalah itu tetap terang
+      const involved = slotsMine.some((s) => s.problem.id === sel)
+      targetE = involved ? 1 : 0.5
+    }
+    const targetA = isActive ? 1 : 0
+    const labelOpacity = kind === 'house' ? (isActive ? 1 : 0.45) : targetE
     labelAnchors.set(`house:${house.id}`, { position: labelPos, opacity: labelOpacity })
 
     if (a.emph === targetE && a.active === targetA) return
@@ -259,9 +263,10 @@ export function HouseNode({ house, index }: Props) {
       onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer' }}
       onPointerOut={() => { document.body.style.cursor = 'auto' }}
     >
-      {/* pulau melayang: alas + tanah berbentuk kerucut di bawahnya */}
-      <mesh geometry={UNIT_CYLINDER} material={m.platform} scale={[STAGE.housePlatformRadius, 0.5, STAGE.housePlatformRadius]} position-y={0} receiveShadow castShadow />
-      <mesh geometry={UNIT_PYRAMID_ROUND} material={m.earth} scale={[STAGE.housePlatformRadius - 0.15, 2.6, STAGE.housePlatformRadius - 0.15]} rotation-x={Math.PI} position-y={-1.55} castShadow />
+      {/* pulau melayang: lapisan tanah + hamparan rumput di atasnya + kerucut tanah di bawah */}
+      <mesh geometry={UNIT_CYLINDER} material={m.earth} scale={[STAGE.housePlatformRadius, 0.5, STAGE.housePlatformRadius]} position-y={-0.05} receiveShadow castShadow />
+      <mesh geometry={UNIT_CYLINDER} material={m.platform} scale={[STAGE.housePlatformRadius + 0.04, 0.16, STAGE.housePlatformRadius + 0.04]} position-y={0.17} receiveShadow castShadow />
+      <mesh geometry={UNIT_PYRAMID_ROUND} material={m.earth} scale={[STAGE.housePlatformRadius - 0.15, 2.6, STAGE.housePlatformRadius - 0.15]} rotation-x={Math.PI} position-y={-1.6} castShadow />
       <mesh rotation-x={-Math.PI / 2} position-y={0.02} material={m.ring}>
         <ringGeometry args={[STAGE.housePlatformRadius + 0.12, STAGE.housePlatformRadius + 0.42, 48]} />
       </mesh>

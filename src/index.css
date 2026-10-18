@@ -216,6 +216,10 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 .pairs { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .pair { appearance: none; width: 100%; text-align: left; background: none; border: 1px solid transparent; border-radius: 10px; padding: 7px 10px; font: inherit; color: var(--ink); cursor: pointer; display: grid; gap: 2px; }
 .pair:hover { background: var(--track); }
+.pair--static { cursor: default; }
+.pair--static:hover { background: none; }
+.lvl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-left: 6px; padding: 1px 6px; border-radius: 999px; background: var(--track); color: var(--muted); }
+.lvl--kuat { color: var(--ink); background: color-mix(in srgb, var(--accent) 30%, var(--track)); } .lvl--sedang { color: var(--ink-soft); }
 .pairs li.is-active .pair { border-color: var(--accent); background: var(--track); }
 .pair b { font-size: 14px; } .pair span { font-size: 12.5px; color: var(--muted); }
 
@@ -244,7 +248,7 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 
 /* ---------- label 3D (overlay DOM) ---------- */
 .labels { position: absolute; inset: 0; z-index: 40; pointer-events: none; overflow: hidden; }
-.house-label, .prob-label, .load-label {
+.house-label, .prob-label, .load-label, .fairy-bubble {
   position: absolute; left: 0; top: 0; will-change: transform; pointer-events: none; user-select: none;
   visibility: hidden; white-space: nowrap;
 }
@@ -268,6 +272,14 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 .load-label b { font-size: 18px; letter-spacing: -0.02em; }
 .load-label.is-up b { color: var(--up); } .load-label.is-down b { color: var(--down); }
 .load-label span { font-size: 10.5px; font-family: ui-monospace, Menlo, monospace; color: var(--muted); background: var(--card); padding: 1px 6px; border-radius: 4px; }
+
+/* gelembung semangat peri */
+.fairy-bubble {
+  font-size: 11.5px; font-weight: 700; color: var(--ink);
+  background: var(--card-solid); border: 1px solid var(--accent); border-radius: 12px 12px 12px 3px;
+  padding: 3px 9px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  transition: opacity 0.35s var(--ease);
+}
 
 /* ---------- sambutan, petunjuk, modal ---------- */
 .welcome { position: absolute; inset: 0; z-index: 70; display: grid; place-items: center; padding: 20px; background: radial-gradient(ellipse at center, color-mix(in srgb, var(--bg) 40%, transparent), color-mix(in srgb, var(--bg) 75%, transparent)); }

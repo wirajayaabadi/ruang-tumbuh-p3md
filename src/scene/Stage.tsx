@@ -27,11 +27,11 @@ export function Stage() {
   return (
     <group position-y={STAGE.coreY}>
       <mesh ref={nucleus}>
-        <icosahedronGeometry args={[2.7, 1]} />
+        <icosahedronGeometry args={[3.15, 1]} />
         <meshBasicMaterial color={pal.coreRing} wireframe transparent opacity={0.16} depthWrite={false} />
       </mesh>
       <mesh>
-        <sphereGeometry args={[2.6, 32, 20]} />
+        <sphereGeometry args={[3.05, 32, 20]} />
         <meshStandardMaterial color={pal.glass} transparent opacity={0.07} roughness={0.3} depthWrite={false} />
       </mesh>
       <mesh ref={ringA} rotation-x={Math.PI / 2 + 0.28}>

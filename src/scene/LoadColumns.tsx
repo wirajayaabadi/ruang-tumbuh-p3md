@@ -58,7 +58,7 @@ export function LoadColumns() {
     const a = anim.current
     const step = stepAt(st.step)
     const dtc = Math.min(dt, 0.05)
-    const on = !st.explore && (step.kind === 'load' || (step.kind === 'house' && st.tab === 'beban'))
+    const on = !st.explore && step.kind === 'house' && st.tab === 'beban'
     const activeHouse = step.kind === 'house' ? step.houseIndex! : -1
     if (on && !a.wasOn) a.since = performance.now()
     a.wasOn = on

@@ -39,14 +39,13 @@ export function computeView(stepIndex: number, aspect: number, layout: Layout, f
   const right = layout.panelRight
   const bottom = layout.bottomBar + layout.panelBottom
   const top = layout.top
-  const coreFocus = step.kind === 'confidence' || step.kind === 'relations'
 
   // Mundur untuk viewport sempit, dan bila area bebas berkurang karena panel.
   // Total faktor dibatasi supaya dunia tidak menjadi terlalu kecil di layar ponsel.
   let f = clamp(1.45 / aspect, 1, 2.0)
   if (step.kind !== 'house') {
-    f *= 1 / Math.max(0.35, 1 - right * (coreFocus ? 0.6 : 1))
-    f *= Math.pow(1 / Math.max(0.35, 1 - top - bottom), layout.panelSide === 'bottom' ? 0.45 : 1) * (coreFocus ? 0.85 : 0.92)
+    f *= 1 / Math.max(0.35, 1 - right)
+    f *= Math.pow(1 / Math.max(0.35, 1 - top - bottom), layout.panelSide === 'bottom' ? 0.45 : 1) * 0.92
   }
   f = clamp(f, 0.9, layout.panelSide === 'bottom' ? 2.7 : 3.2)
   pos.sub(target).multiplyScalar(f).add(target)

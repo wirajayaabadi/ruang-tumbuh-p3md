@@ -14,19 +14,18 @@ npm run preview
 node scripts/gen-network.mjs   # regenerasi tata letak jaringan dari data
 ```
 
-## Alur presentasi (12 langkah + lampiran)
+## Alur presentasi (7 langkah + lampiran)
 
 | # | Langkah | Mode situs sumber | Yang terjadi di dunia 3D |
 | --- | --- | --- | --- |
 | 1 | Peta isu | 02 | Overview; 50 kata teratas (instanced) terbentuk bertahap di sekitar inti; stat tile 751 / 24 / 128 / 9 / 5 |
-| 2 | Sembilan masalah & alirannya | 01 | Garis aliran tiap masalah dari inti ke rumah ruang terdekat (solid) dan pendukung (putus-putus); pilih masalah untuk menyorot |
-| 3–7 | Ruang Aman, Bersama, Belajar, Inovasi, Masa Depan | 04 | Kamera mendekat ke rumah; panel bertab: Ringkasan · Masalah · Kata · Beban & keyakinan (`↑`/`↓`) |
-| 8 | Rencana vs aspirasi | 05 | Token masalah berdiri di rumah rencana lalu berpindah ke rumah menurut data; tombol putar ulang |
-| 9 | Beban ruang | 06 | Kolom balok di samping tiap rumah (utama / pendukung / data kurang / hanya rencana) + selisih |
-| 10 | Keyakinan | 07 | Token membentuk cincin; busur stabilitas (ruang tetap sama) dan definisi kata solusi yang sepakat |
-| 11 | Saling terkait | 08 | Garis antar sembilan masalah (kuat / sedang / lemah) + matriks di panel |
-| 12 | Kesimpulan | 09 | Enam takeaway (klik = sorot rumah/masalah) + langkah berikutnya |
+| 2 | Sembilan masalah & alirannya | 01 + 07 + 08 | Garis aliran tiap masalah dari inti ke rumah ruang terdekat (solid) dan pendukung (putus-putus); pilih masalah untuk menyorot aliran, cincin keyakinan, dan keterkaitannya |
+| 3–7 | Ruang Aman, Bersama, Belajar, Inovasi, Masa Depan | 04 + 06 | Kamera mendekat ke rumah; panel bertab: Ringkasan · Masalah · Kata · Beban & keyakinan (`↑`/`↓`); tab Beban menampilkan kolom balok di samping rumah |
 | — | Metodologi | 03 | Lampiran modal: tahap A–I, referensi, cara menghitung, batasan |
+
+Hiasan dunia: matahari hias dengan halo berdenyut dan cahaya tepi hangat (arah di `SUN_DIRECTION`), rumput dan bunga prosedural di tepi tiap pulau (instanced), serta satu peri per rumah yang terbang mengitari rumah dengan jejak kilau dan gelembung penyemangat (`FAIRY_PHRASES` di narrative.ts).
+
+Inti selalu menampilkan dua animasi sejak awal: **cincin keyakinan** pada tiap berlian masalah (cincin luar = ruang terdekat tetap sama saat aspirasi diacak ulang; cincin dalam = definisi kata solusi yang sepakat) dan **garis keterkaitan** antar berlian (tebal = kuat, tipis = sedang, putus-putus = lemah), keduanya mengikuti berlian yang mengorbit.
 
 ## Navigasi
 
@@ -36,7 +35,7 @@ node scripts/gen-network.mjs   # regenerasi tata letak jaringan dari data
 | Tab di langkah rumah | `↑` / `↓` |
 | Kembali ke peta | **Peta**, `Home`; `Escape` melepas sorotan lalu kembali ke peta |
 | Lompat langkah | chip langkah di bar bawah, atau klik rumah 3D |
-| Pilih masalah | chip masalah di panel, atau klik berlian masalah di 3D |
+| Pilih masalah | chip masalah di panel, atau klik berlian masalah di 3D; `Escape` melepas pilihan |
 | Tema gelap (default) / terang | tombol matahari/bulan (tersimpan di `localStorage`) |
 | Orbit manual | **Eksplorasi** (otomatis nonaktif saat presentasi dilanjutkan) |
 | Layar penuh | **Fullscreen** |
@@ -44,7 +43,7 @@ node scripts/gen-network.mjs   # regenerasi tata letak jaringan dari data
 ## Mengganti data dan teks
 
 - `src/data/ruang-tumbuh-p3md.json` — data analisis (objek `P` dari situs sumber). Setelah mengganti, jalankan `node scripts/gen-network.mjs`.
-- `src/data/narrative.ts` — semua teks naratif: definisi & pesan tiap ruang, teks tiap langkah, takeaway, langkah berikutnya, metodologi, referensi.
+- `src/data/narrative.ts` — semua teks naratif: definisi & pesan tiap ruang, teks tiap langkah, metodologi, referensi.
 - `src/data/derive.ts` — fungsi turunan (beban ruang, slot masalah per rumah, ringkasan verdict, nama pendek masalah).
 - `src/config/presentation.ts` — rumah (urutan, sudut, varian, warna aksen situs), jarak pulau dari inti (`STAGE.houseRadius`), langkah presentasi, target kamera, palet tema. Sudut rumah harus sama dengan `ANGLE` di `scripts/gen-network.mjs`.
 
@@ -56,7 +55,7 @@ src/
   config/      presentation.ts (konfigurasi terpusat) · network.ts (dihasilkan)
   store/       useStore.ts — state presentasi (zustand)
   scene/       Scene, Lighting, Stage, CentralNetwork, ProblemTokens, ConnectionPaths,
-               LoadColumns, HouseNode, Universe, CameraController, Labels, theme, geometry
+               LoadColumns, HouseNode, Universe, Sun, Decorations, Fairies, CameraController, Labels, theme, geometry
   ui/          StepContent, PresentationPanel, NavigationControls, Appendix, Overlay, FallbackView, Icons
   hooks/ utils/  layout viewport, matematika kamera, deteksi WebGL
 scripts/       gen-network.mjs — tata letak jaringan dari data

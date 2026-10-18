@@ -10,6 +10,7 @@ export function LabelsOverlay() {
   const selected = useStore((s) => s.selectedProblem)
   const kind = explore ? 'intro' : stepAt(step).kind
   const activeHouse = kind === 'house' ? stepAt(step).houseIndex : -1
+  void kind
 
   return (
     <div className="labels" aria-hidden>
@@ -33,10 +34,12 @@ export function LabelsOverlay() {
         >
           <span className="prob-label__diamond" />
           <span>{shortName(p.id)}</span>
-          {kind === 'confidence' && <span className="prob-label__sub">{pct(p.p_main)}</span>}
-          {kind === 'move' && (p.verdict === 'kurang' || !p.plan.includes(p.main)) && (
-            <span className="prob-label__sub">{p.verdict === 'kurang' ? '?' : '⇄'}</span>
-          )}
+          <span className="prob-label__sub">{pct(p.p_main)}{p.verdict === 'kurang' ? ' · ?' : ''}</span>
+        </div>
+      ))}
+      {HOUSES.map((h) => (
+        <div key={`fairy-${h.id}`} ref={registerLabelElement(`fairy:${h.id}`)} className="fairy-bubble" style={{ ['--accent' as string]: h.accent }}>
+          Semangat!
         </div>
       ))}
       {HOUSES.map((h) => {

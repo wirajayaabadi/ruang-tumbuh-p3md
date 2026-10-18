@@ -1,7 +1,6 @@
 import { HOUSES, HOUSE_INDEX, HOUSE_TABS, RUANG_ACCENT, STEPS, stepAt, type HouseTab, type Step } from '../config/presentation'
 import {
   DATA,
-  MOVE_SUMMARY,
   PROBLEMS,
   PROBLEMS_BY_STABILITY,
   PROBLEM_ORDER,
@@ -9,17 +8,15 @@ import {
   RELATIONS_SORTED,
   RUANG_KEYS,
   RUANG_SHORT,
-  VERDICT_COUNT,
   VERDICT_LABEL,
   WORD_COUNT,
   houseSlots,
   pct,
-  relationBetween,
   ruangLoad,
   shortName,
   topWords,
 } from '../data/derive'
-import { BRAND, NEXT_STEPS, RUANG_NARRATIVE, STEP_TEXT, TAKEAWAYS } from '../data/narrative'
+import { BRAND, RUANG_NARRATIVE, STEP_TEXT } from '../data/narrative'
 import type { Problem, RuangKey } from '../data/types'
 import { useStore } from '../store/useStore'
 import { Icon, type IconName } from './Icons'
@@ -145,6 +142,26 @@ function IntroContent() {
   )
 }
 
+function RelationList({ id }: { id: string }) {
+  const rels = RELATIONS_SORTED.filter((r) => (r.a === id || r.b === id) && r.level !== 'tidak')
+  if (!rels.length) return <p className="muted small">Hampir selalu dibahas sendiri, tanpa terkait masalah lain.</p>
+  return (
+    <ul className="pairs">
+      {rels.map((r) => {
+        const other = r.a === id ? r.b : r.a
+        return (
+          <li key={other}>
+            <span className="pair pair--static">
+              <b>{shortName(other)} <span className={`lvl lvl--${r.level}`}>{r.level}</span></b>
+              <span>{r.lines ? `${r.lines} aspirasi dari ${r.people} agent` : 'lewat kata jembatan'}{r.shared.length ? ` · kata bersama: ${r.shared.join(', ')}` : ''} · lift {r.lift}×</span>
+            </span>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
 function FlowContent() {
   const selected = useStore((s) => s.selectedProblem)
   const p = selected ? PROBLEMS.find((q) => q.id === selected) : null
@@ -154,8 +171,30 @@ function FlowContent() {
       {STEP_TEXT.flow.body.map((t) => (
         <p key={t} className="panel__text">{t}</p>
       ))}
+      <div className="stats stats--4">
+        <Stat value={RELATION_LEVEL_COUNT.kuat} label="kuat" />
+        <Stat value={RELATION_LEVEL_COUNT.sedang} label="sedang" />
+        <Stat value={RELATION_LEVEL_COUNT.lemah} label="lemah" />
+        <Stat value={RELATION_LEVEL_COUNT.tidak} label="tidak" />
+      </div>
       <ProblemChips />
-      {p ? <ProblemDetail p={p} /> : <p className="muted small">Pilih masalah di atas, atau klik berlian di inti.</p>}
+      {p ? (
+        <>
+          <ProblemDetail p={p} />
+          <h3 className="section__title">Keterkaitan dengan masalah lain</h3>
+          <RelationList id={p.id} />
+        </>
+      ) : (
+        <>
+          <h3 className="section__title">Keyakinan tiap masalah</h3>
+          <div className="bars">
+            {PROBLEMS_BY_STABILITY.map((q) => (
+              <Bar key={q.id} value={q.p_main} color={RUANG_ACCENT[q.main]} label={shortName(q.id)} right={`${pct(q.p_main)} · ${q.var_same}/${q.n_var}`} />
+            ))}
+          </div>
+          <p className="muted small">Pilih masalah di atas, atau klik berlian di inti, untuk melihat alirannya dan keterkaitannya.</p>
+        </>
+      )}
     </>
   )
 }
@@ -255,193 +294,6 @@ function HouseContent({ step }: { step: Step }) {
   )
 }
 
-function MoveContent() {
-  const replay = useStore((s) => s.replayMove)
-  return (
-    <>
-      <Head eyebrow={STEP_TEXT.move.eyebrow} title={STEP_TEXT.move.heading} icon="move" accent="#5b6475" />
-      {STEP_TEXT.move.body.map((t) => (
-        <p key={t} className="panel__text">{t}</p>
-      ))}
-      <div className="stats stats--3">
-        <Stat value={MOVE_SUMMARY.sesuai} label="sesuai rencana" />
-        <Stat value={MOVE_SUMMARY.pindah} label="pindah ruang" />
-        <Stat value={MOVE_SUMMARY.kurang} label="data belum cukup" />
-      </div>
-      <button type="button" className="btn" onClick={replay}>Putar ulang perpindahan</button>
-      <ul className="moves">
-        {PROBLEMS.map((p) => {
-          const moved = !p.plan.includes(p.main)
-          return (
-            <li key={p.id} className="move">
-              <b>{shortName(p.id)}</b>
-              <span>
-                {p.plan.map((r) => RUANG_SHORT[r]).join('/')} → <span style={{ color: RUANG_ACCENT[p.main] }}>{RUANG_SHORT[p.main]}</span>
-                {p.verdict === 'kurang' ? <span className="tag tag--thin">?</span> : moved ? <span className="tag tag--move">⇄</span> : null}
-              </span>
-            </li>
-          )
-        })}
-      </ul>
-      <p className="muted small">⇄ = pindah ruang · ? = data belum cukup</p>
-    </>
-  )
-}
-
-function LoadContent() {
-  return (
-    <>
-      <Head eyebrow={STEP_TEXT.load.eyebrow} title={STEP_TEXT.load.heading} icon="load" accent="#5b6475" />
-      {STEP_TEXT.load.body.map((t) => (
-        <p key={t} className="panel__text">{t}</p>
-      ))}
-      <table className="table">
-        <thead>
-          <tr><th>Ruang</th><th>Rencana → data</th><th title="utama">◆</th><th title="pendukung">◈</th><th title="data kurang">?</th><th title="hanya rencana">○</th></tr>
-        </thead>
-        <tbody>
-          {RUANG_KEYS.map((r) => {
-            const l = ruangLoad(r)
-            return (
-              <tr key={r}>
-                <td><span className="dot" style={{ background: RUANG_ACCENT[r] }} />{RUANG_SHORT[r]}</td>
-                <td className={l.delta > 0 ? 'up' : l.delta < 0 ? 'down' : ''}>{l.plan} → {l.data} ({l.delta > 0 ? `+${l.delta}` : l.delta < 0 ? `−${-l.delta}` : '±0'})</td>
-                <td>{l.data}</td><td>{l.support}</td><td>{l.thin}</td><td>{l.planOnly}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-      <p className="muted small">◆ utama · ◈ pendukung · ? data belum cukup · ○ hanya rencana</p>
-    </>
-  )
-}
-
-function ConfidenceContent() {
-  return (
-    <>
-      <Head eyebrow={STEP_TEXT.confidence.eyebrow} title={STEP_TEXT.confidence.heading} icon="confidence" accent="#5b6475" />
-      {STEP_TEXT.confidence.body.map((t) => (
-        <p key={t} className="panel__text">{t}</p>
-      ))}
-      <ProblemChips ids={PROBLEMS_BY_STABILITY.map((p) => p.id)} />
-      <div className="bars">
-        {PROBLEMS_BY_STABILITY.map((p) => (
-          <Bar key={p.id} value={p.p_main} color={RUANG_ACCENT[p.main]} label={shortName(p.id)} right={`${pct(p.p_main)} · ${p.var_same}/${p.n_var}${p.one_person ? ' · 1 agent' : ''}`} />
-        ))}
-      </div>
-      <p className="muted small">Cincin luar = ruang tetap sama; cincin dalam = definisi kata solusi yang sepakat. "1 agent" = hasil berubah bila aspirasi satu agent dikeluarkan.</p>
-    </>
-  )
-}
-
-function RelationsContent() {
-  const selected = useStore((s) => s.selectedProblem)
-  const selectProblem = useStore((s) => s.selectProblem)
-  const strong = RELATIONS_SORTED.filter((r) => r.level === 'kuat')
-  const medium = RELATIONS_SORTED.filter((r) => r.level === 'sedang')
-  return (
-    <>
-      <Head eyebrow={STEP_TEXT.relations.eyebrow} title={STEP_TEXT.relations.heading} icon="relations" accent="#5b6475" />
-      {STEP_TEXT.relations.body.map((t) => (
-        <p key={t} className="panel__text">{t}</p>
-      ))}
-      <div className="stats stats--4">
-        <Stat value={RELATION_LEVEL_COUNT.kuat} label="kuat" />
-        <Stat value={RELATION_LEVEL_COUNT.sedang} label="sedang" />
-        <Stat value={RELATION_LEVEL_COUNT.lemah} label="lemah" />
-        <Stat value={RELATION_LEVEL_COUNT.tidak} label="tidak" />
-      </div>
-      <ProblemChips />
-      {[['Kuat', strong], ['Sedang', medium]].map(([label, list]) => (
-        <section key={label as string}>
-          <h3 className="section__title">{label as string}</h3>
-          <ul className="pairs">
-            {(list as typeof strong).map((r) => (
-              <li key={`${r.a}-${r.b}`} className={selected && (r.a === selected || r.b === selected) ? 'is-active' : ''}>
-                <button type="button" className="pair" onClick={() => selectProblem(r.a === selected ? r.b : r.a)}>
-                  <b>{shortName(r.a)} – {shortName(r.b)}</b>
-                  <span>{r.lines ? `${r.lines} aspirasi dari ${r.people} agent` : 'lewat kata jembatan'}{r.shared.length ? ` · kata bersama: ${r.shared.join(', ')}` : ''} · lift {r.lift}×</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
-      <Matrix />
-    </>
-  )
-}
-
-function Matrix() {
-  const selected = useStore((s) => s.selectedProblem)
-  const ids = PROBLEM_ORDER
-  return (
-    <div className="matrix" aria-label="Matriks hubungan">
-      <div className="matrix__row matrix__row--head">
-        <span />
-        {ids.map((id) => (
-          <span key={id} className="matrix__col" title={shortName(id)}>{shortName(id).split(/[ /]/)[0].slice(0, 5)}</span>
-        ))}
-      </div>
-      {ids.map((a) => (
-        <div key={a} className={`matrix__row${selected === a ? ' is-active' : ''}`}>
-          <span className="matrix__label">{shortName(a)}</span>
-          {ids.map((b) => {
-            const rel = a === b ? null : relationBetween(a, b)
-            const lvl = rel?.level ?? 'tidak'
-            return <span key={b} className={`cell cell--${a === b ? 'self' : lvl}`} title={rel ? `${shortName(a)} – ${shortName(b)}: ${lvl}` : ''} />
-          })}
-        </div>
-      ))}
-      <p className="muted small">Makin terang = makin erat. Kosong = tidak pernah dibahas bersama.</p>
-    </div>
-  )
-}
-
-/** Sorotan takeaway yang sudah dinormalisasi (referensi stabil untuk perbandingan). */
-const TAKEAWAY_HL = TAKEAWAYS.map((t) => ({ problems: t.highlight.problems ?? [], ruang: t.highlight.ruang ?? [] }))
-
-function ClosingContent() {
-  const highlight = useStore((s) => s.highlight)
-  const setHighlight = useStore((s) => s.setHighlight)
-  const active = highlight ? TAKEAWAY_HL.indexOf(highlight) : -1
-  return (
-    <>
-      <Head eyebrow={STEP_TEXT.closing.eyebrow} title={STEP_TEXT.closing.heading} icon="closing" accent="#5b6475" />
-      <div className="stats stats--3">
-        <Stat value={MOVE_SUMMARY.sesuai} label="sesuai rencana" />
-        <Stat value={MOVE_SUMMARY.pindah} label="pindah ruang" />
-        <Stat value={MOVE_SUMMARY.kurang} label="data kurang" />
-      </div>
-      <ol className="takeaways">
-        {TAKEAWAYS.map((t, i) => (
-          <li key={t.title} className={`takeaway${active === i ? ' is-active' : ''}`}>
-            <button type="button" className="takeaway__btn" onClick={() => setHighlight(active === i ? null : TAKEAWAY_HL[i])} aria-pressed={active === i}>
-              <span className="takeaway__num">{String(i + 1).padStart(2, '0')}</span>
-              <span className="takeaway__title">{t.title}</span>
-            </button>
-            {active === i && (
-              <div className="takeaway__body">
-                <p>{t.body}</p>
-                <p className="muted small">{t.evidence}</p>
-                <p className="takeaway__action">→ {t.action}</p>
-              </div>
-            )}
-          </li>
-        ))}
-      </ol>
-      <h3 className="section__title">Langkah berikutnya</h3>
-      <ol className="plain plain--num">
-        {NEXT_STEPS.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ol>
-      <p className="muted small">Validasi: {VERDICT_COUNT.didukung} didukung, {VERDICT_COUNT.sebagian} sebagian, {VERDICT_COUNT.tidak} tidak didukung, {VERDICT_COUNT.kurang} data kurang. Klik takeaway untuk menyorot rumah atau masalahnya.</p>
-    </>
-  )
-}
-
 /** Isi panel untuk sebuah langkah (dipakai panel 3D dan tampilan cadangan). */
 export function StepContent({ stepIndex }: { stepIndex: number }) {
   const step = stepAt(stepIndex)
@@ -451,18 +303,8 @@ export function StepContent({ stepIndex }: { stepIndex: number }) {
     case 'flow':
       return <FlowContent />
     case 'house':
-      return <HouseContent step={step} />
-    case 'move':
-      return <MoveContent />
-    case 'load':
-      return <LoadContent />
-    case 'confidence':
-      return <ConfidenceContent />
-    case 'relations':
-      return <RelationsContent />
-    case 'closing':
     default:
-      return <ClosingContent />
+      return <HouseContent step={step} />
   }
 }
 

@@ -2,27 +2,11 @@ import { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useStore } from '../store/useStore'
+import { getSoftDotTexture } from './textures'
 
 const STAR_COUNT = 1600
 const BRIGHT_COUNT = 140
 const SHELL_R = 150
-
-/** Tekstur bintang bundar lembut (dibuat sekali dari canvas, tanpa aset eksternal). */
-function makeStarTexture() {
-  const size = 64
-  const cv = document.createElement('canvas')
-  cv.width = cv.height = size
-  const ctx = cv.getContext('2d')!
-  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2)
-  g.addColorStop(0, 'rgba(255,255,255,1)')
-  g.addColorStop(0.35, 'rgba(255,255,255,0.65)')
-  g.addColorStop(1, 'rgba(255,255,255,0)')
-  ctx.fillStyle = g
-  ctx.fillRect(0, 0, size, size)
-  const tex = new THREE.CanvasTexture(cv)
-  tex.colorSpace = THREE.SRGBColorSpace
-  return tex
-}
 
 function makeStars(count: number, seed: number, minR: number, maxR: number) {
   let s = seed
@@ -88,7 +72,7 @@ export function Universe() {
   const dark = useStore((s) => s.theme === 'dark')
   const group = useRef<THREE.Group>(null)
   const brightMat = useRef<THREE.PointsMaterial>(null)
-  const texture = useMemo(() => makeStarTexture(), [])
+  const texture = useMemo(() => getSoftDotTexture(), [])
   const faint = useMemo(() => makeStars(STAR_COUNT, 20261018, SHELL_R * 0.9, SHELL_R * 1.1), [])
   const bright = useMemo(() => makeStars(BRIGHT_COUNT, 777, SHELL_R * 0.85, SHELL_R), [])
   const skyMat = useMemo(
@@ -104,7 +88,7 @@ export function Universe() {
     [],
   )
 
-  useEffect(() => () => { texture.dispose(); skyMat.dispose() }, [texture, skyMat])
+  useEffect(() => () => skyMat.dispose(), [skyMat])
 
   useFrame((state, dt) => {
     const st = useStore.getState()

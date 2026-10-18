@@ -1,3 +1,4 @@
+import { SUN_DIRECTION } from '../config/presentation'
 import { useStore } from '../store/useStore'
 
 /** Satu lampu directional dengan shadow + ambient + hemisphere. Jumlah lampu sengaja dibatasi. */
@@ -25,6 +26,8 @@ export function Lighting() {
         shadow-bias={-0.0004}
         shadow-normalBias={0.03}
       />
+      {/* cahaya tepi hangat dari arah matahari hias (tanpa shadow) */}
+      <directionalLight position={[SUN_DIRECTION[0] * 50, SUN_DIRECTION[1] * 50, SUN_DIRECTION[2] * 50]} intensity={dark ? 0.55 : 0.4} color="#ffd9a0" />
     </>
   )
 }

@@ -13,7 +13,10 @@ import { LabelProjector } from './Labels'
 import { Lighting } from './Lighting'
 import { LoadColumns } from './LoadColumns'
 import { ProblemTokens } from './ProblemTokens'
+import { Decorations } from './Decorations'
+import { Fairies } from './Fairies'
 import { Stage } from './Stage'
+import { Sun } from './Sun'
 import { Universe } from './Universe'
 import { usePalette } from './theme'
 
@@ -60,6 +63,7 @@ export function Scene() {
       <fog attach="fog" args={[pal.background, 70, 190]} />
       <Suspense fallback={null}>
         <Universe />
+        <Sun />
         <Lighting />
         <Stage />
         <CentralNetwork />
@@ -69,6 +73,8 @@ export function Scene() {
         {HOUSES.map((house, i) => (
           <HouseNode key={house.id} house={house} index={i} />
         ))}
+        <Decorations />
+        <Fairies />
         <LabelProjector />
         <CameraController />
         <ExploreControls />

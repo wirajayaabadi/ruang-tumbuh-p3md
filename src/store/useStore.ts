@@ -1,14 +1,8 @@
 import { create } from 'zustand'
 import { STEPS, STEP_LAST, stepAt, type HouseTab, type Theme } from '../config/presentation'
-import type { RuangKey } from '../data/types'
 import { computeLayout, type Layout } from '../utils/layout'
 
 export type Phase = 'idle' | 'traveling' | 'arrived'
-
-export interface Highlight {
-  problems: string[]
-  ruang: RuangKey[]
-}
 
 interface State {
   started: boolean
@@ -22,14 +16,11 @@ interface State {
   layout: Layout
   theme: Theme
   tab: HouseTab
-  /** masalah yang disorot (langkah aliran/keyakinan/terkait/penutup) */
+  /** masalah yang disorot di inti */
   selectedProblem: string | null
-  /** sorotan dari takeaway di penutup */
-  highlight: Highlight | null
   appendixOpen: boolean
   travelId: number
   pulseId: number
-  moveReplayId: number
 
   start: () => void
   goTo: (step: number) => void
@@ -43,11 +34,9 @@ interface State {
   setReducedMotion: (v: boolean) => void
   setTab: (tab: HouseTab) => void
   selectProblem: (id: string | null) => void
-  setHighlight: (h: Highlight | null) => void
   setTheme: (t: Theme) => void
   toggleTheme: () => void
   setAppendix: (open: boolean) => void
-  replayMove: () => void
 }
 
 export const isHouseStep = (s: number) => stepAt(s).kind === 'house'
@@ -93,11 +82,9 @@ export const useStore = create<State>((set, get) => ({
   theme: initialTheme,
   tab: 'ringkasan',
   selectedProblem: null,
-  highlight: null,
   appendixOpen: false,
   travelId: 0,
   pulseId: 0,
-  moveReplayId: 0,
 
   start: () => {
     const s = get()
@@ -117,11 +104,9 @@ export const useStore = create<State>((set, get) => ({
       explore: false,
       tab: 'ringkasan',
       selectedProblem: null,
-      highlight: null,
       appendixOpen: false,
       travelId: s.travelId + 1,
       pulseId: s.pulseId + 1,
-      moveReplayId: stepAt(clamped).kind === 'move' ? s.moveReplayId + 1 : s.moveReplayId,
     })
   },
 
@@ -151,13 +136,11 @@ export const useStore = create<State>((set, get) => ({
   setIntroDone: () => set({ introDone: true }),
   setReducedMotion: (reducedMotion) => set({ reducedMotion }),
   setTab: (tab) => set({ tab }),
-  selectProblem: (id) => set((s) => ({ selectedProblem: s.selectedProblem === id ? null : id, highlight: null })),
-  setHighlight: (highlight) => set({ highlight, selectedProblem: null }),
+  selectProblem: (id) => set((s) => ({ selectedProblem: s.selectedProblem === id ? null : id })),
   setTheme: (theme) => {
     applyTheme(theme)
     set({ theme })
   },
   toggleTheme: () => get().setTheme(get().theme === 'light' ? 'dark' : 'light'),
   setAppendix: (appendixOpen) => set({ appendixOpen }),
-  replayMove: () => set((s) => ({ moveReplayId: s.moveReplayId + 1 })),
 }))

@@ -22,14 +22,9 @@ const E_TOTAL = E_WORD + PROBLEM_WORD_EDGES.length
 
 /** Opacity jaringan kata per jenis langkah (inti masalah mendapat panggung pada keyakinan/terkait). */
 const WORD_ALPHA: Record<StepKind, number> = {
-  intro: 1,
+  intro: 0.9,
   flow: 0.45,
-  house: 0.75,
-  move: 0.3,
-  load: 0.4,
-  confidence: 0.1,
-  relations: 0.1,
-  closing: 0.85,
+  house: 0.7,
 }
 
 /**
@@ -112,25 +107,18 @@ export function CentralNetwork() {
       mat.needsUpdate = true
     }
     mat.depthWrite = a.alpha > 0.5
-    // garis memakai opacity material (bukan lerp ke warna latar) agar tetap benar di atas panggung
-    const coreFocus = kind === 'confidence' || kind === 'relations'
-    lineMat.opacity = a.alpha * (coreFocus ? 0.45 : 0.9)
+    // garis memakai opacity material (bukan lerp ke warna latar) agar tetap benar di atas objek lain
+    lineMat.opacity = a.alpha * 0.9
 
     // penekanan per kata: rumah aktif / masalah terpilih / sorotan takeaway
     const activeRuang = kind === 'house' && !st.explore ? HOUSES[step.houseIndex!].id : null
     const selected = st.selectedProblem
-    const hl = st.highlight
     let emphChanging = false
     for (let i = 0; i < N; i++) {
       const w = WORD_NODES[i]
       let target = 1
       if (activeRuang) target = w.r === activeRuang ? 1 : 0.35
       else if (selected) target = data.wordProblems[i].includes(selected) ? 1.25 : 0.4
-      else if (hl) {
-        const inRuang = hl.ruang.includes(w.r)
-        const inProb = data.wordProblems[i].some((p) => hl.problems.includes(p))
-        target = inRuang || inProb ? 1.15 : 0.45
-      }
       const cur = a.emph[i]
       if (cur !== target) {
         let next = cur + (target - cur) * damp(dtc, 5)
@@ -147,7 +135,6 @@ export function CentralNetwork() {
       let target = 0
       if (selected === pid) target = 0.9
       else if (activeRuang && (prob.main === activeRuang || prob.support.includes(activeRuang))) target = 0.55
-      else if (hl && hl.problems.includes(pid)) target = 0.7
       else if (kind === 'flow' && !selected) target = 0.18
       const cur = a.pwAlpha[e]
       if (cur !== target) {

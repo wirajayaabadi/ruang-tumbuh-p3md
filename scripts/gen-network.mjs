@@ -20,7 +20,7 @@ for (const r of RUANG) {
     let tries = 0, p
     while (tries++ < 400) {
       const ang = base + (rnd() * 2 - 1) * 30 * DEG
-      const rad = 2.7 + rnd() * 1.5
+      const rad = 3.3 + rnd() * 1.4
       const y = 2.7 + rnd() * 3.6
       p = [Math.cos(ang) * rad, y, Math.sin(ang) * rad]
       if (words.every(w => Math.hypot(w.p[0] - p[0], w.p[1] - p[1], w.p[2] - p[2]) > 0.75)) break
@@ -51,7 +51,7 @@ words.forEach((w, i) => {
 const ORDER = P.clusters.flat()
 const core = ORDER.map((id, k) => {
   const inner = k < 3
-  const R = inner ? 0.95 : 1.95
+  const R = inner ? 1.25 : 2.35
   const ang = inner ? -Math.PI / 2 + k * 2 * Math.PI / 3 : -Math.PI / 2 + Math.PI / 6 + (k - 3) * 2 * Math.PI / 6
   const y = CORE_Y + (inner ? 0.35 : -0.15) + Math.sin(k * 2.1) * 0.25
   return { id, p: [Math.cos(ang) * R, y, Math.sin(ang) * R] }

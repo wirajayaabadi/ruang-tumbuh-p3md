@@ -1,6 +1,6 @@
 # Rencana Pengembangan Konten: "Lima Rumah" × Ruang Tumbuh P3MD
 
-> **Status (18 Okt 2026): diimplementasikan.** Revisi komposisi: lantai lingkaran dihapus, tiap rumah di pulau melayang sendiri (metafora planet), inti sembilan masalah mengorbit dengan cincin orbit, aliran mengikuti inti. Keputusan: tema ivory + toggle gelap; semua 9 mode diadopsi (12 langkah); Metodologi sebagai lampiran modal; data dari JSON statis (`src/data/ruang-tumbuh-p3md.json`); tanpa glosarium (internal). Lihat README untuk alur akhir.
+> **Status (18 Okt 2026): diimplementasikan, lalu dipangkas atas permintaan user menjadi 7 langkah (Peta isu, Aliran, 5 rumah). Langkah 05–09 dihapus; animasi cincin keyakinan (07) dan garis keterkaitan (08) dipindahkan ke inti dan tampil sejak awal.** Revisi komposisi: lantai lingkaran dihapus, tiap rumah di pulau melayang sendiri (metafora planet), inti sembilan masalah mengorbit dengan cincin orbit, aliran mengikuti inti. Keputusan: tema ivory + toggle gelap; semua 9 mode diadopsi (12 langkah); Metodologi sebagai lampiran modal; data dari JSON statis (`src/data/ruang-tumbuh-p3md.json`); tanpa glosarium (internal). Lihat README untuk alur akhir.
 
 Sumber: https://ruang-tumbuh-p3md.vercel.app/ (Peta Masalah Angkatan · Analisis Aspirasi Kelompok).
 Data mentah situs sudah disalin ke `src/data/ruang-tumbuh-p3md.json` (objek `P` yang tertanam di HTML situs).

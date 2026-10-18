@@ -95,6 +95,10 @@ export interface Palette {
   glass: string
   coreRing: string
   relation: string
+  /** rumput halaman pulau */
+  grass: string
+  /** tanah sisi/bawah pulau */
+  soil: string
 }
 
 export const PALETTES: Record<Theme, Palette> = {
@@ -112,6 +116,8 @@ export const PALETTES: Record<Theme, Palette> = {
     glass: '#ffffff',
     coreRing: '#b7b0a4',
     relation: '#6b7280',
+    grass: '#79b86a',
+    soil: '#8a6a52',
   },
   dark: {
     background: '#070b14',
@@ -127,12 +133,14 @@ export const PALETTES: Record<Theme, Palette> = {
     glass: '#9fb6cc',
     coreRing: '#4a607a',
     relation: '#b9c8d8',
+    grass: '#4f9a58',
+    soil: '#5a4537',
   },
 }
 
 /* ---------- langkah presentasi ---------- */
 
-export type StepKind = 'intro' | 'flow' | 'house' | 'move' | 'load' | 'confidence' | 'relations' | 'closing'
+export type StepKind = 'intro' | 'flow' | 'house'
 
 export interface Step {
   kind: StepKind
@@ -148,11 +156,6 @@ export const STEPS: Step[] = [
   { kind: 'intro', id: 'peta', code: '02', title: 'Peta isu' },
   { kind: 'flow', id: 'aliran', code: '01', title: 'Sembilan masalah & alirannya' },
   ...HOUSES.map((h, i) => ({ kind: 'house' as const, id: h.id, code: '04', title: h.name, houseIndex: i })),
-  { kind: 'move', id: 'rencana', code: '05', title: 'Rencana vs aspirasi' },
-  { kind: 'load', id: 'beban', code: '06', title: 'Beban ruang' },
-  { kind: 'confidence', id: 'keyakinan', code: '07', title: 'Keyakinan' },
-  { kind: 'relations', id: 'terkait', code: '08', title: 'Saling terkait' },
-  { kind: 'closing', id: 'kesimpulan', code: '09', title: 'Kesimpulan' },
 ]
 
 export const STEP_FIRST_HOUSE = STEPS.findIndex((s) => s.kind === 'house')
@@ -185,11 +188,6 @@ export const CAMERA_VIEWS: Record<Exclude<StepKind, 'house'>, OverviewView> & {
 } = {
   intro: { angle: 90, radius: 29, height: 23, lookAt: [0, 2.4, 0] },
   flow: { angle: 90, radius: 29.5, height: 18, lookAt: [0, 3.0, 0] },
-  move: { angle: 90, radius: 30, height: 24, lookAt: [0, 1.8, 0] },
-  load: { angle: 90, radius: 29, height: 17, lookAt: [0, 2.4, 0] },
-  confidence: { angle: 90, radius: 12, height: 15, lookAt: [0, 3.6, 0] },
-  relations: { angle: 90, radius: 11.5, height: 14.5, lookAt: [0, 3.6, 0] },
-  closing: { angle: 112, radius: 29, height: 20, lookAt: [0, 2.4, 0] },
   fov: 40,
   durationMin: 900,
   durationMax: 1400,
@@ -230,5 +228,8 @@ export function houseLoadColumnWorld(index: number, out = new THREE.Vector3()) {
   const z = -lx * Math.sin(rot) + lz * Math.cos(rot)
   return housePosition(index, out).add(new THREE.Vector3(x, 0.25, z))
 }
+
+/** Arah matahari hias (dinormalkan saat dipakai); juga arah cahaya tepi hangat. */
+export const SUN_DIRECTION: [number, number, number] = [-0.25, -0.02, -0.97]
 
 export const APP_TITLE = 'Peta Masalah Angkatan'

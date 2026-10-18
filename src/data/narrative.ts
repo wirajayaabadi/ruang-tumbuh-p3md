@@ -70,115 +70,18 @@ export const STEP_TEXT = {
     heading: 'Jaringan kata di tiap ruang',
     body: [
       '24 agent menghimpun 751 aspirasi dari kelompoknya (12/10–17/10), termasuk catatan notulensi rapat.',
-      'Setiap bola kecil adalah satu kata yang sering dibahas, ditempatkan dekat rumah ruang yang paling dekat dengannya. Garis tipis menunjukkan kata yang dibahas bersama. Berlian di tengah adalah sembilan masalah angkatan.',
+      'Setiap bola kecil adalah satu kata yang sering dibahas, ditempatkan dekat rumah ruang yang paling dekat dengannya. Garis tipis menunjukkan kata yang dibahas bersama. Berlian yang mengorbit di tengah adalah sembilan masalah angkatan, lengkap dengan cincin keyakinan dan garis keterkaitannya.',
     ],
   },
   flow: {
     eyebrow: '01 · Masalah ke ruang',
     heading: 'Sembilan masalah, dan ke mana mereka mengalir',
     body: [
-      'Sembilan masalah angkatan membentuk inti. Lima rumah ruang mengelilinginya, masing-masing dengan jaringan katanya sendiri.',
-      'Garis menyala menunjukkan aliran tiap masalah ke ruang terdekat menurut aspirasi; garis putus-putus ke ruang pendukung. Pilih sebuah masalah untuk menyorot alirannya.',
+      'Sembilan masalah angkatan membentuk inti yang mengorbit. Lima rumah ruang mengelilinginya, masing-masing dengan jaringan katanya sendiri. Garis menyala menunjukkan aliran tiap masalah ke ruang terdekat menurut aspirasi; garis putus-putus ke ruang pendukung.',
+      'Cincin di sekeliling tiap berlian adalah keyakinan: seberapa sering ruang terdekatnya tetap sama saat 400 kali aspirasi diacak ulang (cincin luar) dan berapa dari 6 definisi kata solusi yang sepakat (cincin dalam). Garis antar berlian adalah keterkaitan: tebal = kuat, tipis = sedang, putus-putus = lemah.',
     ],
-  },
-  move: {
-    eyebrow: '05 · Rencana vs aspirasi',
-    heading: 'Titik-titik masalah pindah ruang',
-    body: [
-      'Mula-mula tiap masalah berdiri di rumah yang direncanakan tim. Lalu ia pindah ke rumah yang ditunjukkan aspirasi kelompok. Masalah yang direncanakan untuk beberapa ruang menyatu menjadi satu.',
-    ],
-  },
-  load: {
-    eyebrow: '06 · Beban ruang',
-    heading: 'Ruang mana yang paling banyak bekerja',
-    body: [
-      'Di samping tiap rumah berdiri satu kolom, satu balok untuk satu masalah: pekat = ruang utama menurut aspirasi, lebih tipis = ruang pendukung, samar = ruang utama tetapi datanya belum cukup, kaca = hanya direncanakan tim.',
-      'Ruang Belajar paling banyak bekerja: empat masalah paling dekat dengannya, padahal rencana tim memberinya dua. Ruang Aman direncanakan untuk lima masalah, tetapi aspirasi kelompok hanya menempatkan satu di sana.',
-    ],
-  },
-  confidence: {
-    eyebrow: '07 · Keyakinan',
-    heading: 'Seberapa yakin kita',
-    body: [
-      'Himpunan aspirasi diacak ulang 400 kali dan aspirasi tiap agent dikeluarkan bergantian (18 sumber). Setiap kali, ruang terdekat tiap masalah dihitung ulang.',
-      'Cincin di sekeliling tiap masalah menunjukkan seberapa sering ruang terdekatnya tetap sama. Kondisi mental paling mantap (100%); Isu akademis dan Silo / sirkel masih goyah.',
-    ],
-  },
-  relations: {
-    eyebrow: '08 · Saling terkait',
-    heading: 'Hubungan antar sembilan masalah',
-    body: [
-      'Dari 36 pasangan masalah: 2 kuat, 4 sedang, 14 lemah, dan 16 tidak pernah dibahas bersama. Garis tebal = kuat, tipis = sedang, putus-putus = lemah.',
-      'Klaster Zulu (Risiko Zulu, Zulu → Alpha, KDKMP) paling erat. Klaster kedua yang lebih longgar ada di sekitar rasa aman: Silo, Ruang gerak, dan Kondisi mental. Isu akademis, Wadah inovasi, dan Rencana karier hampir selalu dibahas sendiri.',
-    ],
-  },
-  closing: {
-    eyebrow: '09 · Kesimpulan',
-    heading: 'Apa artinya bagi Ruang Tumbuh',
   },
 }
-
-export interface Takeaway {
-  title: string
-  body: string
-  evidence: string
-  action: string
-  /** sorotan di dunia 3D saat takeaway dipilih */
-  highlight: { problems?: string[]; ruang?: RuangKey[] }
-}
-
-export const TAKEAWAYS: Takeaway[] = [
-  {
-    title: 'Rencana dan aspirasi baru sejalan untuk 4 dari 9 masalah',
-    body: 'KDKMP / Kopdes, Isu akademis, Kondisi mental, dan Wadah inovasi berada di ruang yang memang direncanakan. Risiko Zulu dan Zulu → Alpha lebih banyak dibicarakan dengan bahasa ruang lain, sedangkan 3 masalah belum cukup datanya untuk dinilai.',
-    evidence: 'Validasi: 3 didukung, 1 sebagian, 2 tidak didukung, 3 data kurang.',
-    action: 'Tinjau ulang penempatan Risiko Zulu dan Zulu → Alpha sebelum program dikunci.',
-    highlight: { problems: ['risiko_zulu', 'zulu_alpha'] },
-  },
-  {
-    title: 'Ruang Belajar menanggung beban terbesar',
-    body: '4 masalah paling dekat dengan Ruang Belajar (Risiko Zulu, KDKMP / Kopdes, Isu akademis, Zulu → Alpha), padahal rencana tim hanya menitipkan 2. Kata yang menghubungkannya: zulu, mentoring, kopdes, akademis, belajar, kelas.',
-    evidence: 'Beban: rencana 2 → aspirasi 4 (+2).',
-    action: 'Siapkan kapasitas Ruang Belajar, atau bagi sebagian programnya dengan ruang lain secara sadar.',
-    highlight: { ruang: ['belajar'] },
-  },
-  {
-    title: 'Ruang Aman perlu dirumuskan ulang',
-    body: 'Ruang Aman direncanakan untuk 5 masalah, tetapi aspirasi kelompok hanya menempatkan Kondisi mental di sana. Risiko Zulu, KDKMP / Kopdes, Silo / sirkel, dan Ruang gerak lebih dekat ke ruang lain.',
-    evidence: 'Beban: rencana 5 → aspirasi 1 (−4). Kondisi mental 100% stabil.',
-    action: 'Fokuskan Ruang Aman pada kondisi mental dan dukungan, dengan bahasa yang dipakai angkatan.',
-    highlight: { ruang: ['aman'] },
-  },
-  {
-    title: 'Isu Zulu sebaiknya ditangani dalam satu program',
-    body: 'Risiko Zulu, Zulu → Alpha, dan KDKMP / Kopdes paling erat terhubung di antara semua pasangan masalah, dan ketiganya mengarah ke Ruang Belajar.',
-    evidence: 'Risiko Zulu – Zulu → Alpha: hubungan kuat, 12 aspirasi dari 6 agent. KDKMP / Kopdes – Zulu → Alpha: kuat.',
-    action: 'Satukan dalam satu jalur program, sambil dikonfirmasi langsung ke angkatan.',
-    highlight: { problems: ['risiko_zulu', 'zulu_alpha', 'kopdes'] },
-  },
-  {
-    title: 'Ada klaster kedua di sekitar rasa aman',
-    body: 'Silo / sirkel, Ruang gerak, dan Kondisi mental beberapa kali disebut bersama. Hubungannya lebih longgar daripada klaster Zulu, tetapi mengisyaratkan bahwa rasa aman, ruang bergerak, dan sekat antarkelompok sering dirasakan saling berkaitan.',
-    evidence: 'Ruang gerak – Kondisi mental: sedang; Silo / sirkel – Kondisi mental: lemah.',
-    action: 'Ruang Bersama dan Ruang Aman perlu bekerja berdampingan untuk isu ini.',
-    highlight: { problems: ['silo', 'ruang_gerak', 'mental'], ruang: ['bersama', 'aman'] },
-  },
-  {
-    title: '3 masalah perlu didengar langsung',
-    body: 'Silo / sirkel, Ruang gerak, dan Rencana karier masih bertumpu pada satu sumber. Isu akademis, Wadah inovasi, dan Rencana karier juga hampir selalu dibahas sendiri, tanpa terkait masalah lain.',
-    evidence: '8 dari 9 hasil berubah bila aspirasi satu agent dikeluarkan. Paling mantap: Kondisi mental (100%).',
-    action: 'Jaring aspirasi tambahan, misalnya survei singkat per kelas, sebelum keputusan final.',
-    highlight: { problems: ['silo', 'ruang_gerak', 'karier'] },
-  },
-]
-
-export const NEXT_STEPS = [
-  'Tinjau ulang penempatan masalah yang pindah ruang.',
-  'Perkuat kapasitas Ruang Belajar.',
-  'Rumuskan ulang Ruang Aman.',
-  'Satukan isu Zulu dalam satu program.',
-  'Jaring aspirasi tambahan untuk data yang masih tipis.',
-]
 
 export const HOW_WE_COUNT = [
   '751 aspirasi dibersihkan; kata umum dan nama dibuang.',
@@ -300,3 +203,15 @@ export const METHOD_STAGES: MethodStage[] = [
 
 export const METHOD_NOTE =
   'Kedekatan di jaringan menunjukkan topik yang dibicarakan bersama, bukan sebab-akibat dan bukan tingkat keparahan masalah.'
+
+/** Ucapan penyemangat yang dibawa peri kecil di sekitar tiap rumah. */
+export const FAIRY_PHRASES = [
+  'Semangat!',
+  'Ayo, kamu bisa!',
+  'Terus tumbuh!',
+  'Kita bersama!',
+  'Hebat sekali!',
+  'Jangan menyerah!',
+  'Satu langkah lagi!',
+  'Bangga padamu!',
+]

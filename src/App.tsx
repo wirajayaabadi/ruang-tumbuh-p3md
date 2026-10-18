@@ -49,10 +49,8 @@ function useKeyboard() {
         case 'Escape':
           // Saat fullscreen, biarkan browser menangani Escape secara native.
           if (document.fullscreenElement) return
-          if (s.selectedProblem || s.highlight) {
-            s.selectProblem(null)
-            s.setHighlight(null)
-          } else s.toMap()
+          if (s.selectedProblem) s.selectProblem(null)
+          else s.toMap()
           break
         default:
           break

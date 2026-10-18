@@ -82,7 +82,7 @@ export function ConnectionPaths() {
     return useStore.subscribe((s, prev) => {
       if (s.pulseId !== prev.pulseId) {
         const step = stepAt(s.step)
-        if (step.kind === 'flow' || step.kind === 'closing' || step.kind === 'intro') schedulePulses(() => true)
+        if (step.kind === 'flow' || step.kind === 'intro') schedulePulses(() => true)
         else if (step.kind === 'house') {
           const r = HOUSES[step.houseIndex!].id
           schedulePulses((f) => f.ruang === r)
@@ -91,10 +91,6 @@ export function ConnectionPaths() {
       if (s.selectedProblem !== prev.selectedProblem && s.selectedProblem) {
         const id = s.selectedProblem
         schedulePulses((f) => f.problem.id === id, 0)
-      }
-      if (s.highlight !== prev.highlight && s.highlight) {
-        const h = s.highlight
-        schedulePulses((f) => h.problems.includes(f.problem.id) || h.ruang.includes(f.ruang))
       }
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -112,9 +108,8 @@ export function ConnectionPaths() {
     const activeRuang = kind === 'house' ? HOUSES[step.houseIndex!].id : null
     const pal = currentPalette()
     const sel = st.selectedProblem
-    const hl = st.highlight
 
-    if ((kind === 'flow' || kind === 'closing') && st.phase === 'arrived' && !sel && !hl && !st.reducedMotion && now - a.lastRepeat > REPEAT_MS) {
+    if (kind === 'flow' && st.phase === 'arrived' && !sel && !st.reducedMotion && now - a.lastRepeat > REPEAT_MS) {
       schedulePulses(() => true)
     }
 
@@ -124,19 +119,14 @@ export function ConnectionPaths() {
       const base = f.kind === 'main' ? 0.9 : 0.6
       switch (kind) {
         case 'intro':
-          target = st.introDone ? 0.22 : 0
+          target = st.introDone ? (sel ? (f.problem.id === sel ? 1 : 0.08) : 0.22) : 0
           break
         case 'flow':
-        case 'closing':
-          if (sel) target = f.problem.id === sel ? 1 : 0.1
-          else if (hl) target = hl.problems.includes(f.problem.id) || hl.ruang.includes(f.ruang) ? 1 : 0.1
-          else target = base
+          target = sel ? (f.problem.id === sel ? 1 : 0.1) : base
           break
         case 'house':
-          target = involved ? (sel ? (f.problem.id === sel ? 1 : 0.2) : base) : 0.06
-          break
         default:
-          target = 0
+          target = involved ? (sel ? (f.problem.id === sel ? 1 : 0.2) : base) : 0.06
       }
       const cur = a.alpha[i]
       const next = Math.abs(cur - target) < 0.003 ? target : cur + (target - cur) * damp(dtc, 5)
