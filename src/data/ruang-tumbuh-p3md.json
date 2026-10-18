@@ -1,0 +1,4397 @@
+{
+ "meta": {
+  "lines": 751,
+  "messages": 524,
+  "people": 24,
+  "first": "12/10",
+  "last": "17/10",
+  "words": 128,
+  "pairs": 329,
+  "sims": 300,
+  "boot": 400,
+  "tested": 18
+ },
+ "anchors": {
+  "aman": [
+   "aman",
+   "dukungan",
+   "dukungan fisik",
+   "kepedulian",
+   "perlindungan",
+   "privat",
+   "kerahasiaan"
+  ],
+  "bersama": [
+   "kebersamaan",
+   "merangkul",
+   "kolaborasi",
+   "lintas",
+   "apresiasi"
+  ],
+  "belajar": [
+   "belajar",
+   "mentoring",
+   "materi",
+   "pengembangan",
+   "kompetensi"
+  ],
+  "inovasi": [
+   "ide",
+   "gagasan",
+   "kreativitas",
+   "kompetisi",
+   "inventor",
+   "wadah",
+   "digital"
+  ],
+  "masa": [
+   "kedepan",
+   "arah",
+   "perencanaan",
+   "keberlanjutan"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "aspirasi",
+   "f": 21,
+   "r": "bersama",
+   "s": 0.474,
+   "kind": null
+  },
+  {
+   "id": "informasi",
+   "f": 21,
+   "r": "belajar",
+   "s": 0.325,
+   "kind": null
+  },
+  {
+   "id": "kebutuhan",
+   "f": 16,
+   "r": "belajar",
+   "s": 0.508,
+   "kind": null
+  },
+  {
+   "id": "kontribusi",
+   "f": 15,
+   "r": "belajar",
+   "s": 0.337,
+   "kind": null
+  },
+  {
+   "id": "inovasi",
+   "f": 14,
+   "r": "inovasi",
+   "s": 0.963,
+   "kind": "masalah"
+  },
+  {
+   "id": "pendidikan",
+   "f": 13,
+   "r": "belajar",
+   "s": 0.451,
+   "kind": null
+  },
+  {
+   "id": "adil",
+   "f": 13,
+   "r": "belajar",
+   "s": 0.337,
+   "kind": null
+  },
+  {
+   "id": "ide",
+   "f": 13,
+   "r": "inovasi",
+   "s": 0.668,
+   "kind": "jangkar"
+  },
+  {
+   "id": "tanggung",
+   "f": 13,
+   "r": "bersama",
+   "s": 0.41,
+   "kind": null
+  },
+  {
+   "id": "peran",
+   "f": 12,
+   "r": "bersama",
+   "s": 0.3,
+   "kind": null
+  },
+  {
+   "id": "kerja",
+   "f": 12,
+   "r": "masa",
+   "s": 0.983,
+   "kind": null
+  },
+  {
+   "id": "zulu",
+   "f": 12,
+   "r": "belajar",
+   "s": 0.697,
+   "kind": "masalah"
+  },
+  {
+   "id": "vuca",
+   "f": 12,
+   "r": "aman",
+   "s": 0.446,
+   "kind": null
+  },
+  {
+   "id": "kelas",
+   "f": 12,
+   "r": "belajar",
+   "s": 0.693,
+   "kind": "masalah"
+  },
+  {
+   "id": "kopdes",
+   "f": 11,
+   "r": "belajar",
+   "s": 0.695,
+   "kind": "masalah"
+  },
+  {
+   "id": "arah",
+   "f": 10,
+   "r": "masa",
+   "s": 0.875,
+   "kind": "jangkar"
+  },
+  {
+   "id": "kesempatan",
+   "f": 10,
+   "r": "belajar",
+   "s": 0.274,
+   "kind": null
+  },
+  {
+   "id": "pelaksanaan",
+   "f": 10,
+   "r": "bersama",
+   "s": 0.451,
+   "kind": null
+  },
+  {
+   "id": "kolaborasi",
+   "f": 10,
+   "r": "bersama",
+   "s": 0.654,
+   "kind": "jangkar"
+  },
+  {
+   "id": "ketentuan",
+   "f": 9,
+   "r": "aman",
+   "s": 0.352,
+   "kind": null
+  },
+  {
+   "id": "keputusan",
+   "f": 9,
+   "r": "bersama",
+   "s": 0.467,
+   "kind": null
+  },
+  {
+   "id": "kelompok",
+   "f": 9,
+   "r": "masa",
+   "s": 0.459,
+   "kind": "masalah"
+  },
+  {
+   "id": "individu",
+   "f": 9,
+   "r": "aman",
+   "s": 0.272,
+   "kind": null
+  },
+  {
+   "id": "belajar",
+   "f": 9,
+   "r": "belajar",
+   "s": 0.657,
+   "kind": "jangkar"
+  },
+  {
+   "id": "mendengar",
+   "f": 9,
+   "r": "bersama",
+   "s": 0.714,
+   "kind": null
+  },
+  {
+   "id": "pengasuh",
+   "f": 9,
+   "r": "bersama",
+   "s": 0.349,
+   "kind": null
+  },
+  {
+   "id": "aman",
+   "f": 9,
+   "r": "aman",
+   "s": 0.861,
+   "kind": "jangkar"
+  },
+  {
+   "id": "dukungan",
+   "f": 9,
+   "r": "aman",
+   "s": 0.715,
+   "kind": "jangkar"
+  },
+  {
+   "id": "nilai",
+   "f": 9,
+   "r": "belajar",
+   "s": 0.657,
+   "kind": null
+  },
+  {
+   "id": "pimpinan",
+   "f": 9,
+   "r": "inovasi",
+   "s": 0.31,
+   "kind": null
+  },
+  {
+   "id": "tindak lanjut",
+   "f": 9,
+   "r": "bersama",
+   "s": 0.401,
+   "kind": null
+  },
+  {
+   "id": "sosial",
+   "f": 9,
+   "r": "belajar",
+   "s": 0.692,
+   "kind": null
+  },
+  {
+   "id": "bidang",
+   "f": 9,
+   "r": "bersama",
+   "s": 0.54,
+   "kind": null
+  },
+  {
+   "id": "kebersamaan",
+   "f": 8,
+   "r": "bersama",
+   "s": 0.67,
+   "kind": "jangkar"
+  },
+  {
+   "id": "mandat",
+   "f": 8,
+   "r": "bersama",
+   "s": 0.456,
+   "kind": null
+  },
+  {
+   "id": "keberlanjutan",
+   "f": 8,
+   "r": "masa",
+   "s": 0.881,
+   "kind": "jangkar"
+  },
+  {
+   "id": "mentoring",
+   "f": 8,
+   "r": "belajar",
+   "s": 0.698,
+   "kind": "jangkar"
+  },
+  {
+   "id": "kewenangan",
+   "f": 8,
+   "r": "bersama",
+   "s": 0.278,
+   "kind": null
+  },
+  {
+   "id": "tugas",
+   "f": 8,
+   "r": "bersama",
+   "s": 0.294,
+   "kind": null
+  },
+  {
+   "id": "tujuan pendidikan",
+   "f": 8,
+   "r": "masa",
+   "s": 0.561,
+   "kind": null
+  },
+  {
+   "id": "koordinasi",
+   "f": 8,
+   "r": "bersama",
+   "s": 0.445,
+   "kind": null
+  },
+  {
+   "id": "pic",
+   "f": 8,
+   "r": "bersama",
+   "s": 0.456,
+   "kind": null
+  },
+  {
+   "id": "mewadahi",
+   "f": 7,
+   "r": "inovasi",
+   "s": 0.659,
+   "kind": "masalah"
+  },
+  {
+   "id": "mental",
+   "f": 7,
+   "r": "aman",
+   "s": 0.93,
+   "kind": "masalah"
+  },
+  {
+   "id": "mekanisme",
+   "f": 7,
+   "r": "aman",
+   "s": 0.826,
+   "kind": null
+  },
+  {
+   "id": "apresiasi",
+   "f": 7,
+   "r": "bersama",
+   "s": 0.88,
+   "kind": "jangkar"
+  },
+  {
+   "id": "kepemimpinan",
+   "f": 7,
+   "r": "masa",
+   "s": 0.94,
+   "kind": null
+  },
+  {
+   "id": "komandan",
+   "f": 6,
+   "r": "bersama",
+   "s": 0.349,
+   "kind": null
+  },
+  {
+   "id": "silo",
+   "f": 6,
+   "r": "aman",
+   "s": 0.685,
+   "kind": "masalah"
+  },
+  {
+   "id": "akses",
+   "f": 6,
+   "r": "aman",
+   "s": 0.391,
+   "kind": null
+  },
+  {
+   "id": "pengurus",
+   "f": 6,
+   "r": "belajar",
+   "s": 0.314,
+   "kind": null
+  },
+  {
+   "id": "sistem",
+   "f": 6,
+   "r": "masa",
+   "s": 0.424,
+   "kind": null
+  },
+  {
+   "id": "gagasan",
+   "f": 6,
+   "r": "inovasi",
+   "s": 0.983,
+   "kind": "jangkar"
+  },
+  {
+   "id": "didengar",
+   "f": 5,
+   "r": "bersama",
+   "s": 0.365,
+   "kind": null
+  },
+  {
+   "id": "profesional",
+   "f": 5,
+   "r": "bersama",
+   "s": 0.446,
+   "kind": null
+  },
+  {
+   "id": "kedepan",
+   "f": 5,
+   "r": "masa",
+   "s": 0.993,
+   "kind": "jangkar"
+  },
+  {
+   "id": "wadah",
+   "f": 5,
+   "r": "inovasi",
+   "s": 0.981,
+   "kind": "jangkar"
+  },
+  {
+   "id": "kegiatan",
+   "f": 5,
+   "r": "belajar",
+   "s": 0.359,
+   "kind": null
+  },
+  {
+   "id": "pribadi",
+   "f": 5,
+   "r": "belajar",
+   "s": 0.325,
+   "kind": null
+  },
+  {
+   "id": "berani",
+   "f": 5,
+   "r": "bersama",
+   "s": 0.587,
+   "kind": null
+  },
+  {
+   "id": "pembelajaran",
+   "f": 5,
+   "r": "belajar",
+   "s": 0.486,
+   "kind": null
+  },
+  {
+   "id": "kesulitan",
+   "f": 5,
+   "r": "bersama",
+   "s": 0.497,
+   "kind": "masalah"
+  },
+  {
+   "id": "akademis",
+   "f": 5,
+   "r": "belajar",
+   "s": 0.657,
+   "kind": "masalah"
+  },
+  {
+   "id": "bantuan",
+   "f": 5,
+   "r": "belajar",
+   "s": 0.51,
+   "kind": null
+  },
+  {
+   "id": "akuntabel",
+   "f": 5,
+   "r": "bersama",
+   "s": 0.446,
+   "kind": null
+  },
+  {
+   "id": "lintas",
+   "f": 5,
+   "r": "bersama",
+   "s": 0.638,
+   "kind": "jangkar"
+  },
+  {
+   "id": "prinsip",
+   "f": 5,
+   "r": "masa",
+   "s": 0.94,
+   "kind": null
+  },
+  {
+   "id": "kepengurusan",
+   "f": 5,
+   "r": "masa",
+   "s": 0.578,
+   "kind": null
+  },
+  {
+   "id": "alpha",
+   "f": 4,
+   "r": "belajar",
+   "s": 0.697,
+   "kind": "masalah"
+  },
+  {
+   "id": "keseharian",
+   "f": 4,
+   "r": "bersama",
+   "s": 0.483,
+   "kind": null
+  },
+  {
+   "id": "memfasilitasi",
+   "f": 4,
+   "r": "belajar",
+   "s": 0.52,
+   "kind": null
+  },
+  {
+   "id": "tantangan",
+   "f": 4,
+   "r": "belajar",
+   "s": 0.383,
+   "kind": null
+  },
+  {
+   "id": "inisiatif",
+   "f": 4,
+   "r": "inovasi",
+   "s": 0.981,
+   "kind": "masalah"
+  },
+  {
+   "id": "amanah",
+   "f": 4,
+   "r": "bersama",
+   "s": 0.356,
+   "kind": null
+  },
+  {
+   "id": "tertib",
+   "f": 4,
+   "r": "belajar",
+   "s": 0.356,
+   "kind": null
+  },
+  {
+   "id": "pelaporan",
+   "f": 4,
+   "r": "bersama",
+   "s": 0.348,
+   "kind": null
+  },
+  {
+   "id": "potensi",
+   "f": 4,
+   "r": "belajar",
+   "s": 0.694,
+   "kind": null
+  },
+  {
+   "id": "kemampuan",
+   "f": 4,
+   "r": "belajar",
+   "s": 0.51,
+   "kind": null
+  },
+  {
+   "id": "objektif",
+   "f": 4,
+   "r": "inovasi",
+   "s": 0.31,
+   "kind": "masalah"
+  },
+  {
+   "id": "arahan pimpinan",
+   "f": 4,
+   "r": "bersama",
+   "s": 0.355,
+   "kind": null
+  },
+  {
+   "id": "rasa aman",
+   "f": 4,
+   "r": "bersama",
+   "s": 0.46,
+   "kind": null
+  },
+  {
+   "id": "whistleblower",
+   "f": 4,
+   "r": "bersama",
+   "s": 0.799,
+   "kind": "masalah"
+  },
+  {
+   "id": "pelanggaran",
+   "f": 4,
+   "r": "bersama",
+   "s": 0.349,
+   "kind": "masalah"
+  },
+  {
+   "id": "merangkul",
+   "f": 4,
+   "r": "bersama",
+   "s": 0.898,
+   "kind": "jangkar"
+  },
+  {
+   "id": "lingkungan",
+   "f": 4,
+   "r": "masa",
+   "s": 0.459,
+   "kind": null
+  },
+  {
+   "id": "kompetisi",
+   "f": 4,
+   "r": "inovasi",
+   "s": 0.979,
+   "kind": "jangkar"
+  },
+  {
+   "id": "kejelasan",
+   "f": 3,
+   "r": "bersama",
+   "s": 0.474,
+   "kind": null
+  },
+  {
+   "id": "digital",
+   "f": 3,
+   "r": "inovasi",
+   "s": 0.712,
+   "kind": "jangkar"
+  },
+  {
+   "id": "pembagian tugas",
+   "f": 3,
+   "r": "belajar",
+   "s": 0.359,
+   "kind": null
+  },
+  {
+   "id": "mengawal aspirasi",
+   "f": 3,
+   "r": "aman",
+   "s": 0.415,
+   "kind": null
+  },
+  {
+   "id": "rekan zulu",
+   "f": 3,
+   "r": "aman",
+   "s": 0.332,
+   "kind": "masalah"
+  },
+  {
+   "id": "jadwal",
+   "f": 3,
+   "r": "belajar",
+   "s": 0.713,
+   "kind": null
+  },
+  {
+   "id": "dukungan fisik",
+   "f": 3,
+   "r": "aman",
+   "s": 0.965,
+   "kind": "jangkar"
+  },
+  {
+   "id": "kesehatan",
+   "f": 3,
+   "r": "aman",
+   "s": 0.93,
+   "kind": "masalah"
+  },
+  {
+   "id": "penanggung",
+   "f": 3,
+   "r": "bersama",
+   "s": 0.436,
+   "kind": null
+  },
+  {
+   "id": "kreativitas",
+   "f": 3,
+   "r": "inovasi",
+   "s": 0.981,
+   "kind": "jangkar"
+  },
+  {
+   "id": "penugasan",
+   "f": 3,
+   "r": "belajar",
+   "s": 0.451,
+   "kind": null
+  },
+  {
+   "id": "polisi",
+   "f": 3,
+   "r": "belajar",
+   "s": 0.345,
+   "kind": null
+  },
+  {
+   "id": "fasilitas",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.384,
+   "kind": null
+  },
+  {
+   "id": "pendampingan",
+   "f": 2,
+   "r": "aman",
+   "s": 0.331,
+   "kind": null
+  },
+  {
+   "id": "bumn",
+   "f": 2,
+   "r": "masa",
+   "s": 0.983,
+   "kind": "masalah"
+  },
+  {
+   "id": "martabat",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.337,
+   "kind": null
+  },
+  {
+   "id": "kebersihan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.384,
+   "kind": null
+  },
+  {
+   "id": "rohani",
+   "f": 2,
+   "r": "aman",
+   "s": 0.952,
+   "kind": null
+  },
+  {
+   "id": "dana",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.384,
+   "kind": null
+  },
+  {
+   "id": "kepercayaan",
+   "f": 2,
+   "r": "masa",
+   "s": 0.875,
+   "kind": null
+  },
+  {
+   "id": "terbuka",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.41,
+   "kind": null
+  },
+  {
+   "id": "buddy",
+   "f": 2,
+   "r": "aman",
+   "s": 0.952,
+   "kind": null
+  },
+  {
+   "id": "eksklusif",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.463,
+   "kind": "masalah"
+  },
+  {
+   "id": "materi",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.835,
+   "kind": "jangkar"
+  },
+  {
+   "id": "menyelaraskan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.508,
+   "kind": null
+  },
+  {
+   "id": "resmi",
+   "f": 2,
+   "r": "aman",
+   "s": 0.826,
+   "kind": null
+  },
+  {
+   "id": "kehormatan",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.482,
+   "kind": null
+  },
+  {
+   "id": "mengembangkan",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.963,
+   "kind": null
+  },
+  {
+   "id": "perlindungan",
+   "f": 2,
+   "r": "aman",
+   "s": 0.94,
+   "kind": "jangkar"
+  },
+  {
+   "id": "tenggat",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.471,
+   "kind": null
+  },
+  {
+   "id": "perlengkapan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.384,
+   "kind": null
+  },
+  {
+   "id": "berwenang",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.404,
+   "kind": null
+  },
+  {
+   "id": "kanal",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.794,
+   "kind": null
+  },
+  {
+   "id": "penyampaian",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.337,
+   "kind": null
+  },
+  {
+   "id": "terlibat",
+   "f": 2,
+   "r": "aman",
+   "s": 0.331,
+   "kind": null
+  },
+  {
+   "id": "asuhan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.69,
+   "kind": null
+  },
+  {
+   "id": "santun",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.313,
+   "kind": null
+  },
+  {
+   "id": "promosi",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.605,
+   "kind": null
+  },
+  {
+   "id": "sistemik",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.3,
+   "kind": null
+  },
+  {
+   "id": "keberhasilan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.657,
+   "kind": null
+  },
+  {
+   "id": "keterlibatan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.657,
+   "kind": null
+  },
+  {
+   "id": "sebaya",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.711,
+   "kind": null
+  },
+  {
+   "id": "accountability",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.922,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "apel",
+   "f": 3,
+   "r": "inovasi",
+   "s": 0.377,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "aturan",
+   "f": 3,
+   "r": "inovasi",
+   "s": 0.325,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "beradaptasi",
+   "f": 2,
+   "r": "masa",
+   "s": 0.73,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "berkolaborasi",
+   "f": 3,
+   "r": "bersama",
+   "s": 0.457,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "bpi",
+   "f": 6,
+   "r": "bersama",
+   "s": 0.579,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "capaian",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.576,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "controlable",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.566,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "culture",
+   "f": 3,
+   "r": "masa",
+   "s": 0.436,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "diam",
+   "f": 2,
+   "r": "aman",
+   "s": 0.529,
+   "kind": "masalah",
+   "weak": true
+  },
+  {
+   "id": "dinamika",
+   "f": 4,
+   "r": "belajar",
+   "s": 0.508,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "disiplin",
+   "f": 4,
+   "r": "aman",
+   "s": 0.357,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "eksekusi",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.589,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "evaluasi",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.325,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "forum",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.459,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "identitas",
+   "f": 3,
+   "r": "aman",
+   "s": 0.747,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "indikator",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.657,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "informal",
+   "f": 3,
+   "r": "bersama",
+   "s": 0.566,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "integritas",
+   "f": 4,
+   "r": "aman",
+   "s": 0.396,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "inti",
+   "f": 3,
+   "r": "belajar",
+   "s": 0.337,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "inventor",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.672,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kabid",
+   "f": 3,
+   "r": "belajar",
+   "s": 0.426,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "karakter",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.677,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "karier",
+   "f": 4,
+   "r": "masa",
+   "s": 0.507,
+   "kind": "masalah",
+   "weak": true
+  },
+  {
+   "id": "keberanian moral",
+   "f": 3,
+   "r": "aman",
+   "s": 0.886,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kebiasaan",
+   "f": 2,
+   "r": "masa",
+   "s": 0.426,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kehidupan",
+   "f": 3,
+   "r": "inovasi",
+   "s": 0.607,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kehilangan",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.334,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kendala",
+   "f": 3,
+   "r": "belajar",
+   "s": 0.453,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kepedulian",
+   "f": 5,
+   "r": "aman",
+   "s": 0.656,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kepentingan",
+   "f": 2,
+   "r": "masa",
+   "s": 0.275,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kesalahan",
+   "f": 3,
+   "r": "aman",
+   "s": 0.298,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kesediaan",
+   "f": 2,
+   "r": "aman",
+   "s": 0.36,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kesiapan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.451,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "keteladanan",
+   "f": 3,
+   "r": "aman",
+   "s": 0.472,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "komando",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.426,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "komunikasi",
+   "f": 3,
+   "r": "aman",
+   "s": 0.528,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kondisi",
+   "f": 9,
+   "r": "aman",
+   "s": 0.314,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kualitas",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.73,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "kuliah",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.325,
+   "kind": "masalah",
+   "weak": true
+  },
+  {
+   "id": "makan",
+   "f": 7,
+   "r": "inovasi",
+   "s": 0.722,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "masukan",
+   "f": 5,
+   "r": "belajar",
+   "s": 0.829,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "menampung",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.664,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "mengevaluasi",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.78,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "mengoordinasikan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.337,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "merata",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.527,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "nilai inti",
+   "f": 4,
+   "r": "inovasi",
+   "s": 0.371,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "nyaman",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.454,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "olahraga",
+   "f": 2,
+   "r": "aman",
+   "s": 0.93,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "organisasi",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.4,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "partisipasi",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.41,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "pekerjaan",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.332,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "pemahaman",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.66,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "pembagian",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.342,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "pembentukan",
+   "f": 2,
+   "r": "inovasi",
+   "s": 0.677,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "penanganan pelanggaran",
+   "f": 2,
+   "r": "masa",
+   "s": 0.339,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "pengajuan",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.7,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "pengembangan",
+   "f": 3,
+   "r": "belajar",
+   "s": 0.422,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "penilaian",
+   "f": 3,
+   "r": "bersama",
+   "s": 0.675,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "perbaikan",
+   "f": 3,
+   "r": "aman",
+   "s": 0.516,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "perempuan",
+   "f": 3,
+   "r": "bersama",
+   "s": 0.421,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "perilaku",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.516,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "persiapan",
+   "f": 6,
+   "r": "belajar",
+   "s": 0.652,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "perspektif",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.89,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "pertukaran",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.544,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "perubahan",
+   "f": 4,
+   "r": "masa",
+   "s": 0.443,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "politik",
+   "f": 2,
+   "r": "aman",
+   "s": 0.327,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "portal terintegrasi",
+   "f": 3,
+   "r": "bersama",
+   "s": 0.666,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "prioritas",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.652,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "proses pembelajaran",
+   "f": 4,
+   "r": "inovasi",
+   "s": 0.566,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "resah",
+   "f": 3,
+   "r": "bersama",
+   "s": 0.411,
+   "kind": "masalah",
+   "weak": true
+  },
+  {
+   "id": "risiko",
+   "f": 6,
+   "r": "aman",
+   "s": 0.496,
+   "kind": "masalah",
+   "weak": true
+  },
+  {
+   "id": "saran",
+   "f": 5,
+   "r": "masa",
+   "s": 0.281,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "senat",
+   "f": 4,
+   "r": "inovasi",
+   "s": 0.244,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "sikap",
+   "f": 3,
+   "r": "aman",
+   "s": 0.552,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "strategi",
+   "f": 5,
+   "r": "inovasi",
+   "s": 0.255,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "struktur",
+   "f": 4,
+   "r": "inovasi",
+   "s": 0.858,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "target",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.391,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "teknis",
+   "f": 2,
+   "r": "belajar",
+   "s": 0.337,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "terintegrasi",
+   "f": 2,
+   "r": "bersama",
+   "s": 0.537,
+   "kind": null,
+   "weak": true
+  },
+  {
+   "id": "trust",
+   "f": 2,
+   "r": "masa",
+   "s": 0.753,
+   "kind": null,
+   "weak": true
+  }
+ ],
+ "links": [
+  {
+   "a": "alpha",
+   "b": "zulu",
+   "w": 0.773
+  },
+  {
+   "a": "komandan",
+   "b": "pelanggaran",
+   "w": 0.677
+  },
+  {
+   "a": "komandan",
+   "b": "pengasuh",
+   "w": 0.53
+  },
+  {
+   "a": "fasilitas",
+   "b": "adil",
+   "w": 0.662
+  },
+  {
+   "a": "fasilitas",
+   "b": "dana",
+   "w": 1.0
+  },
+  {
+   "a": "fasilitas",
+   "b": "informasi",
+   "w": 0.576
+  },
+  {
+   "a": "fasilitas",
+   "b": "kebersihan",
+   "w": 1.0
+  },
+  {
+   "a": "fasilitas",
+   "b": "kebutuhan",
+   "w": 0.625
+  },
+  {
+   "a": "fasilitas",
+   "b": "kegiatan",
+   "w": 0.835
+  },
+  {
+   "a": "fasilitas",
+   "b": "pembagian tugas",
+   "w": 0.927
+  },
+  {
+   "a": "fasilitas",
+   "b": "perlengkapan",
+   "w": 1.0
+  },
+  {
+   "a": "fasilitas",
+   "b": "tertib",
+   "w": 0.875
+  },
+  {
+   "a": "kedepan",
+   "b": "kerja",
+   "w": 0.511
+  },
+  {
+   "a": "keputusan",
+   "b": "bidang",
+   "w": 0.572
+  },
+  {
+   "a": "keputusan",
+   "b": "penanggung",
+   "w": 0.786
+  },
+  {
+   "a": "keputusan",
+   "b": "tindak lanjut",
+   "w": 0.665
+  },
+  {
+   "a": "keputusan",
+   "b": "koordinasi",
+   "w": 0.478
+  },
+  {
+   "a": "keputusan",
+   "b": "pic",
+   "w": 0.478
+  },
+  {
+   "a": "keputusan",
+   "b": "tenggat",
+   "w": 0.728
+  },
+  {
+   "a": "martabat",
+   "b": "adil",
+   "w": 0.662
+  },
+  {
+   "a": "amanah",
+   "b": "aspirasi",
+   "w": 0.45
+  },
+  {
+   "a": "amanah",
+   "b": "pimpinan",
+   "w": 0.603
+  },
+  {
+   "a": "terbuka",
+   "b": "tanggung",
+   "w": 0.662
+  },
+  {
+   "a": "individu",
+   "b": "kesempatan",
+   "w": 0.438
+  },
+  {
+   "a": "individu",
+   "b": "peran",
+   "w": 0.683
+  },
+  {
+   "a": "individu",
+   "b": "akses",
+   "w": 0.53
+  },
+  {
+   "a": "individu",
+   "b": "kontribusi",
+   "w": 0.365
+  },
+  {
+   "a": "individu",
+   "b": "mengawal aspirasi",
+   "w": 0.655
+  },
+  {
+   "a": "individu",
+   "b": "kelompok",
+   "w": 0.457
+  },
+  {
+   "a": "pelaporan",
+   "b": "aspirasi",
+   "w": 0.45
+  },
+  {
+   "a": "pelaporan",
+   "b": "kebutuhan",
+   "w": 0.499
+  },
+  {
+   "a": "kesulitan",
+   "b": "kesempatan",
+   "w": 0.666
+  },
+  {
+   "a": "kesulitan",
+   "b": "peran",
+   "w": 0.511
+  },
+  {
+   "a": "kesulitan",
+   "b": "berani",
+   "w": 0.669
+  },
+  {
+   "a": "kesulitan",
+   "b": "mendengar",
+   "w": 0.563
+  },
+  {
+   "a": "akademis",
+   "b": "belajar",
+   "w": 0.563
+  },
+  {
+   "a": "akademis",
+   "b": "nilai",
+   "w": 0.563
+  },
+  {
+   "a": "mengawal aspirasi",
+   "b": "adil",
+   "w": 0.589
+  },
+  {
+   "a": "mengawal aspirasi",
+   "b": "akses",
+   "w": 0.865
+  },
+  {
+   "a": "mengawal aspirasi",
+   "b": "belajar",
+   "w": 0.655
+  },
+  {
+   "a": "mengawal aspirasi",
+   "b": "dukungan",
+   "w": 0.655
+  },
+  {
+   "a": "mengawal aspirasi",
+   "b": "kontribusi",
+   "w": 0.563
+  },
+  {
+   "a": "pengasuh",
+   "b": "aspirasi",
+   "w": 0.304
+  },
+  {
+   "a": "pengasuh",
+   "b": "pimpinan",
+   "w": 0.457
+  },
+  {
+   "a": "pengasuh",
+   "b": "pelanggaran",
+   "w": 0.603
+  },
+  {
+   "a": "aman",
+   "b": "vuca",
+   "w": 0.405
+  },
+  {
+   "a": "aman",
+   "b": "mental",
+   "w": 0.621
+  },
+  {
+   "a": "aman",
+   "b": "silo",
+   "w": 0.53
+  },
+  {
+   "a": "rekan zulu",
+   "b": "ketentuan",
+   "w": 0.655
+  },
+  {
+   "a": "rekan zulu",
+   "b": "kontribusi",
+   "w": 0.563
+  },
+  {
+   "a": "rekan zulu",
+   "b": "pendampingan",
+   "w": 0.927
+  },
+  {
+   "a": "rekan zulu",
+   "b": "terlibat",
+   "w": 0.927
+  },
+  {
+   "a": "objektif",
+   "b": "pimpinan",
+   "w": 0.603
+  },
+  {
+   "a": "arahan pimpinan",
+   "b": "pendidikan",
+   "w": 0.658
+  },
+  {
+   "a": "arahan pimpinan",
+   "b": "aspirasi",
+   "w": 0.45
+  },
+  {
+   "a": "lintas",
+   "b": "kelompok",
+   "w": 0.563
+  },
+  {
+   "a": "lintas",
+   "b": "kepengurusan",
+   "w": 0.669
+  },
+  {
+   "a": "lintas",
+   "b": "koordinasi",
+   "w": 0.584
+  },
+  {
+   "a": "lintas",
+   "b": "tanggung",
+   "w": 0.497
+  },
+  {
+   "a": "lintas",
+   "b": "bidang",
+   "w": 0.563
+  },
+  {
+   "a": "lintas",
+   "b": "kolaborasi",
+   "w": 0.544
+  },
+  {
+   "a": "lintas",
+   "b": "pelaksanaan",
+   "w": 0.544
+  },
+  {
+   "a": "perlengkapan",
+   "b": "adil",
+   "w": 0.662
+  },
+  {
+   "a": "perlengkapan",
+   "b": "dana",
+   "w": 1.0
+  },
+  {
+   "a": "perlengkapan",
+   "b": "informasi",
+   "w": 0.576
+  },
+  {
+   "a": "perlengkapan",
+   "b": "kebersihan",
+   "w": 1.0
+  },
+  {
+   "a": "perlengkapan",
+   "b": "kebutuhan",
+   "w": 0.625
+  },
+  {
+   "a": "perlengkapan",
+   "b": "kegiatan",
+   "w": 0.835
+  },
+  {
+   "a": "perlengkapan",
+   "b": "pembagian tugas",
+   "w": 0.927
+  },
+  {
+   "a": "perlengkapan",
+   "b": "tertib",
+   "w": 0.875
+  },
+  {
+   "a": "apresiasi",
+   "b": "aspirasi",
+   "w": 0.456
+  },
+  {
+   "a": "apresiasi",
+   "b": "whistleblower",
+   "w": 0.649
+  },
+  {
+   "a": "apresiasi",
+   "b": "kanal",
+   "w": 0.774
+  },
+  {
+   "a": "penanggung",
+   "b": "tindak lanjut",
+   "w": 0.786
+  },
+  {
+   "a": "kewenangan",
+   "b": "tujuan pendidikan",
+   "w": 0.499
+  },
+  {
+   "a": "kewenangan",
+   "b": "tertib",
+   "w": 0.753
+  },
+  {
+   "a": "kewenangan",
+   "b": "tugas",
+   "w": 0.618
+  },
+  {
+   "a": "kewenangan",
+   "b": "adil",
+   "w": 0.523
+  },
+  {
+   "a": "kewenangan",
+   "b": "pengurus",
+   "w": 0.551
+  },
+  {
+   "a": "kewenangan",
+   "b": "polisi",
+   "w": 0.677
+  },
+  {
+   "a": "kewenangan",
+   "b": "santun",
+   "w": 0.75
+  },
+  {
+   "a": "kewenangan",
+   "b": "aspirasi",
+   "w": 0.325
+  },
+  {
+   "a": "kewenangan",
+   "b": "berwenang",
+   "w": 0.75
+  },
+  {
+   "a": "kewenangan",
+   "b": "informasi",
+   "w": 0.325
+  },
+  {
+   "a": "kewenangan",
+   "b": "kebutuhan",
+   "w": 0.374
+  },
+  {
+   "a": "kewenangan",
+   "b": "tindak lanjut",
+   "w": 0.478
+  },
+  {
+   "a": "kanal",
+   "b": "aspirasi",
+   "w": 0.576
+  },
+  {
+   "a": "tugas",
+   "b": "tertib",
+   "w": 0.625
+  },
+  {
+   "a": "tugas",
+   "b": "pic",
+   "w": 0.499
+  },
+  {
+   "a": "tugas",
+   "b": "ketentuan",
+   "w": 0.478
+  },
+  {
+   "a": "penyampaian",
+   "b": "adil",
+   "w": 0.662
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "adil",
+   "w": 0.391
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "aspirasi",
+   "w": 0.407
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "peran",
+   "w": 0.405
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "bidang",
+   "w": 0.572
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "kegiatan",
+   "w": 0.563
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "koordinasi",
+   "w": 0.595
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "pembagian tugas",
+   "w": 0.655
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "pic",
+   "w": 0.478
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "tenggat",
+   "w": 0.728
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "informasi",
+   "w": 0.304
+  },
+  {
+   "a": "tindak lanjut",
+   "b": "kebutuhan",
+   "w": 0.353
+  },
+  {
+   "a": "penugasan",
+   "b": "pendidikan",
+   "w": 0.589
+  },
+  {
+   "a": "sistemik",
+   "b": "peran",
+   "w": 0.677
+  },
+  {
+   "a": "keterlibatan",
+   "b": "belajar",
+   "w": 0.728
+  },
+  {
+   "a": "informasi",
+   "b": "aspirasi",
+   "w": 0.151
+  },
+  {
+   "a": "informasi",
+   "b": "adil",
+   "w": 0.238
+  },
+  {
+   "a": "informasi",
+   "b": "dana",
+   "w": 0.576
+  },
+  {
+   "a": "informasi",
+   "b": "kebersihan",
+   "w": 0.576
+  },
+  {
+   "a": "informasi",
+   "b": "kebutuhan",
+   "w": 0.2
+  },
+  {
+   "a": "informasi",
+   "b": "kegiatan",
+   "w": 0.41
+  },
+  {
+   "a": "informasi",
+   "b": "pembagian tugas",
+   "w": 0.502
+  },
+  {
+   "a": "informasi",
+   "b": "tertib",
+   "w": 0.45
+  },
+  {
+   "a": "informasi",
+   "b": "kesempatan",
+   "w": 0.285
+  },
+  {
+   "a": "informasi",
+   "b": "pribadi",
+   "w": 0.41
+  },
+  {
+   "a": "pendidikan",
+   "b": "akuntabel",
+   "w": 0.711
+  },
+  {
+   "a": "pendidikan",
+   "b": "kebersamaan",
+   "w": 0.412
+  },
+  {
+   "a": "pendidikan",
+   "b": "kehormatan",
+   "w": 0.662
+  },
+  {
+   "a": "pendidikan",
+   "b": "keseharian",
+   "w": 0.537
+  },
+  {
+   "a": "pendidikan",
+   "b": "mandat",
+   "w": 0.614
+  },
+  {
+   "a": "pendidikan",
+   "b": "profesional",
+   "w": 0.711
+  },
+  {
+   "a": "pendidikan",
+   "b": "kontribusi",
+   "w": 0.401
+  },
+  {
+   "a": "pendidikan",
+   "b": "jadwal",
+   "w": 0.589
+  },
+  {
+   "a": "pendidikan",
+   "b": "kebutuhan",
+   "w": 0.388
+  },
+  {
+   "a": "pendidikan",
+   "b": "kelas",
+   "w": 0.339
+  },
+  {
+   "a": "pendidikan",
+   "b": "materi",
+   "w": 0.662
+  },
+  {
+   "a": "pendidikan",
+   "b": "mentoring",
+   "w": 0.412
+  },
+  {
+   "a": "pendidikan",
+   "b": "sebaya",
+   "w": 0.662
+  },
+  {
+   "a": "pendidikan",
+   "b": "pelaksanaan",
+   "w": 0.372
+  },
+  {
+   "a": "pendidikan",
+   "b": "aspirasi",
+   "w": 0.335
+  },
+  {
+   "a": "pendidikan",
+   "b": "adil",
+   "w": 0.324
+  },
+  {
+   "a": "pendidikan",
+   "b": "ketentuan",
+   "w": 0.666
+  },
+  {
+   "a": "pendidikan",
+   "b": "polisi",
+   "w": 0.589
+  },
+  {
+   "a": "pendidikan",
+   "b": "kesempatan",
+   "w": 0.372
+  },
+  {
+   "a": "pendidikan",
+   "b": "memfasilitasi",
+   "w": 0.537
+  },
+  {
+   "a": "keseharian",
+   "b": "akuntabel",
+   "w": 0.709
+  },
+  {
+   "a": "keseharian",
+   "b": "kebersamaan",
+   "w": 0.625
+  },
+  {
+   "a": "keseharian",
+   "b": "kehormatan",
+   "w": 0.875
+  },
+  {
+   "a": "keseharian",
+   "b": "mandat",
+   "w": 0.625
+  },
+  {
+   "a": "keseharian",
+   "b": "profesional",
+   "w": 0.709
+  },
+  {
+   "a": "didengar",
+   "b": "aspirasi",
+   "w": 0.41
+  },
+  {
+   "a": "didengar",
+   "b": "ketentuan",
+   "w": 0.563
+  },
+  {
+   "a": "didengar",
+   "b": "adil",
+   "w": 0.497
+  },
+  {
+   "a": "didengar",
+   "b": "rasa aman",
+   "w": 0.709
+  },
+  {
+   "a": "pendampingan",
+   "b": "ketentuan",
+   "w": 0.728
+  },
+  {
+   "a": "pendampingan",
+   "b": "kontribusi",
+   "w": 0.636
+  },
+  {
+   "a": "pendampingan",
+   "b": "terlibat",
+   "w": 1.0
+  },
+  {
+   "a": "digital",
+   "b": "mentoring",
+   "w": 0.677
+  },
+  {
+   "a": "digital",
+   "b": "mewadahi",
+   "w": 0.701
+  },
+  {
+   "a": "kegiatan",
+   "b": "pembagian tugas",
+   "w": 0.9
+  },
+  {
+   "a": "kegiatan",
+   "b": "adil",
+   "w": 0.497
+  },
+  {
+   "a": "kegiatan",
+   "b": "dana",
+   "w": 0.835
+  },
+  {
+   "a": "kegiatan",
+   "b": "kebersihan",
+   "w": 0.835
+  },
+  {
+   "a": "kegiatan",
+   "b": "kebutuhan",
+   "w": 0.459
+  },
+  {
+   "a": "kegiatan",
+   "b": "tertib",
+   "w": 0.709
+  },
+  {
+   "a": "kopdes",
+   "b": "zulu",
+   "w": 0.477
+  },
+  {
+   "a": "kopdes",
+   "b": "sosial",
+   "w": 0.421
+  },
+  {
+   "a": "kopdes",
+   "b": "potensi",
+   "w": 0.567
+  },
+  {
+   "a": "mandat",
+   "b": "akuntabel",
+   "w": 0.709
+  },
+  {
+   "a": "mandat",
+   "b": "kebersamaan",
+   "w": 0.499
+  },
+  {
+   "a": "mandat",
+   "b": "kehormatan",
+   "w": 0.75
+  },
+  {
+   "a": "mandat",
+   "b": "profesional",
+   "w": 0.709
+  },
+  {
+   "a": "mandat",
+   "b": "pimpinan",
+   "w": 0.595
+  },
+  {
+   "a": "mandat",
+   "b": "berani",
+   "w": 0.584
+  },
+  {
+   "a": "tertib",
+   "b": "adil",
+   "w": 0.537
+  },
+  {
+   "a": "tertib",
+   "b": "dana",
+   "w": 0.875
+  },
+  {
+   "a": "tertib",
+   "b": "kebersihan",
+   "w": 0.875
+  },
+  {
+   "a": "tertib",
+   "b": "kebutuhan",
+   "w": 0.499
+  },
+  {
+   "a": "tertib",
+   "b": "pembagian tugas",
+   "w": 0.802
+  },
+  {
+   "a": "kepercayaan",
+   "b": "arah",
+   "w": 0.709
+  },
+  {
+   "a": "buddy",
+   "b": "dukungan fisik",
+   "w": 0.927
+  },
+  {
+   "a": "buddy",
+   "b": "mental",
+   "w": 0.774
+  },
+  {
+   "a": "eksklusif",
+   "b": "kebersamaan",
+   "w": 0.75
+  },
+  {
+   "a": "eksklusif",
+   "b": "kelompok",
+   "w": 0.728
+  },
+  {
+   "a": "eksklusif",
+   "b": "rasa aman",
+   "w": 0.875
+  },
+  {
+   "a": "mewadahi",
+   "b": "aspirasi",
+   "w": 0.349
+  },
+  {
+   "a": "mewadahi",
+   "b": "pimpinan",
+   "w": 0.502
+  },
+  {
+   "a": "mewadahi",
+   "b": "inovasi",
+   "w": 0.423
+  },
+  {
+   "a": "mewadahi",
+   "b": "mentoring",
+   "w": 0.524
+  },
+  {
+   "a": "kesempatan",
+   "b": "adil",
+   "w": 0.372
+  },
+  {
+   "a": "kesempatan",
+   "b": "aspirasi",
+   "w": 0.285
+  },
+  {
+   "a": "kesempatan",
+   "b": "kontribusi",
+   "w": 0.538
+  },
+  {
+   "a": "kesempatan",
+   "b": "peran",
+   "w": 0.495
+  },
+  {
+   "a": "kesempatan",
+   "b": "pembelajaran",
+   "w": 0.544
+  },
+  {
+   "a": "kesempatan",
+   "b": "mendengar",
+   "w": 0.438
+  },
+  {
+   "a": "kesempatan",
+   "b": "belajar",
+   "w": 0.438
+  },
+  {
+   "a": "kesempatan",
+   "b": "memfasilitasi",
+   "w": 0.709
+  },
+  {
+   "a": "kesempatan",
+   "b": "ketentuan",
+   "w": 0.438
+  },
+  {
+   "a": "kesempatan",
+   "b": "ide",
+   "w": 0.372
+  },
+  {
+   "a": "pembagian tugas",
+   "b": "adil",
+   "w": 0.589
+  },
+  {
+   "a": "pembagian tugas",
+   "b": "dana",
+   "w": 0.927
+  },
+  {
+   "a": "pembagian tugas",
+   "b": "kebersihan",
+   "w": 0.927
+  },
+  {
+   "a": "pembagian tugas",
+   "b": "kebutuhan",
+   "w": 0.551
+  },
+  {
+   "a": "keberlanjutan",
+   "b": "kelompok",
+   "w": 0.478
+  },
+  {
+   "a": "keberlanjutan",
+   "b": "kepengurusan",
+   "w": 0.584
+  },
+  {
+   "a": "berani",
+   "b": "mendengar",
+   "w": 0.563
+  },
+  {
+   "a": "dukungan",
+   "b": "adil",
+   "w": 0.5
+  },
+  {
+   "a": "dukungan",
+   "b": "akses",
+   "w": 0.651
+  },
+  {
+   "a": "dukungan",
+   "b": "belajar",
+   "w": 0.665
+  },
+  {
+   "a": "dukungan",
+   "b": "kontribusi",
+   "w": 0.473
+  },
+  {
+   "a": "akuntabel",
+   "b": "kebersamaan",
+   "w": 0.584
+  },
+  {
+   "a": "akuntabel",
+   "b": "kehormatan",
+   "w": 0.835
+  },
+  {
+   "a": "akuntabel",
+   "b": "profesional",
+   "w": 1.0
+  },
+  {
+   "a": "akuntabel",
+   "b": "kontribusi",
+   "w": 0.471
+  },
+  {
+   "a": "adil",
+   "b": "aspirasi",
+   "w": 0.335
+  },
+  {
+   "a": "adil",
+   "b": "kontribusi",
+   "w": 0.484
+  },
+  {
+   "a": "adil",
+   "b": "kebutuhan",
+   "w": 0.388
+  },
+  {
+   "a": "adil",
+   "b": "pengurus",
+   "w": 0.579
+  },
+  {
+   "a": "adil",
+   "b": "akses",
+   "w": 0.579
+  },
+  {
+   "a": "adil",
+   "b": "belajar",
+   "w": 0.5
+  },
+  {
+   "a": "adil",
+   "b": "polisi",
+   "w": 0.589
+  },
+  {
+   "a": "adil",
+   "b": "santun",
+   "w": 0.662
+  },
+  {
+   "a": "adil",
+   "b": "dana",
+   "w": 0.662
+  },
+  {
+   "a": "adil",
+   "b": "kebersihan",
+   "w": 0.662
+  },
+  {
+   "a": "adil",
+   "b": "ketentuan",
+   "w": 0.391
+  },
+  {
+   "a": "mengembangkan",
+   "b": "inovasi",
+   "w": 0.649
+  },
+  {
+   "a": "pengurus",
+   "b": "polisi",
+   "w": 0.728
+  },
+  {
+   "a": "pengurus",
+   "b": "santun",
+   "w": 0.802
+  },
+  {
+   "a": "nilai",
+   "b": "keberhasilan",
+   "w": 0.728
+  },
+  {
+   "a": "whistleblower",
+   "b": "aspirasi",
+   "w": 0.45
+  },
+  {
+   "a": "kerja",
+   "b": "kepemimpinan",
+   "w": 0.45
+  },
+  {
+   "a": "kerja",
+   "b": "bumn",
+   "w": 0.677
+  },
+  {
+   "a": "kepemimpinan",
+   "b": "prinsip",
+   "w": 0.608
+  },
+  {
+   "a": "kepemimpinan",
+   "b": "arah",
+   "w": 0.483
+  },
+  {
+   "a": "zulu",
+   "b": "mentoring",
+   "w": 0.426
+  },
+  {
+   "a": "bidang",
+   "b": "koordinasi",
+   "w": 0.595
+  },
+  {
+   "a": "bidang",
+   "b": "pic",
+   "w": 0.478
+  },
+  {
+   "a": "bidang",
+   "b": "tenggat",
+   "w": 0.728
+  },
+  {
+   "a": "bidang",
+   "b": "tanggung",
+   "w": 0.391
+  },
+  {
+   "a": "bidang",
+   "b": "kolaborasi",
+   "w": 0.438
+  },
+  {
+   "a": "bidang",
+   "b": "pelaksanaan",
+   "w": 0.438
+  },
+  {
+   "a": "kebersamaan",
+   "b": "kehormatan",
+   "w": 0.75
+  },
+  {
+   "a": "kebersamaan",
+   "b": "profesional",
+   "w": 0.584
+  },
+  {
+   "a": "kebersamaan",
+   "b": "rasa aman",
+   "w": 0.753
+  },
+  {
+   "a": "kebersamaan",
+   "b": "kelompok",
+   "w": 0.478
+  },
+  {
+   "a": "tantangan",
+   "b": "vuca",
+   "w": 0.551
+  },
+  {
+   "a": "tantangan",
+   "b": "belajar",
+   "w": 0.603
+  },
+  {
+   "a": "tantangan",
+   "b": "kemampuan",
+   "w": 0.75
+  },
+  {
+   "a": "tantangan",
+   "b": "pembelajaran",
+   "w": 0.709
+  },
+  {
+   "a": "profesional",
+   "b": "kehormatan",
+   "w": 0.835
+  },
+  {
+   "a": "profesional",
+   "b": "kontribusi",
+   "w": 0.471
+  },
+  {
+   "a": "wadah",
+   "b": "inisiatif",
+   "w": 0.709
+  },
+  {
+   "a": "wadah",
+   "b": "inovasi",
+   "w": 0.483
+  },
+  {
+   "a": "wadah",
+   "b": "kreativitas",
+   "w": 0.761
+  },
+  {
+   "a": "silo",
+   "b": "kelompok",
+   "w": 0.53
+  },
+  {
+   "a": "rohani",
+   "b": "dukungan fisik",
+   "w": 0.927
+  },
+  {
+   "a": "rohani",
+   "b": "mental",
+   "w": 0.774
+  },
+  {
+   "a": "dana",
+   "b": "kebersihan",
+   "w": 1.0
+  },
+  {
+   "a": "dana",
+   "b": "kebutuhan",
+   "w": 0.625
+  },
+  {
+   "a": "arah",
+   "b": "aspirasi",
+   "w": 0.285
+  },
+  {
+   "a": "arah",
+   "b": "vuca",
+   "w": 0.386
+  },
+  {
+   "a": "arah",
+   "b": "tujuan pendidikan",
+   "w": 0.459
+  },
+  {
+   "a": "kontribusi",
+   "b": "aspirasi",
+   "w": 0.212
+  },
+  {
+   "a": "kontribusi",
+   "b": "peran",
+   "w": 0.416
+  },
+  {
+   "a": "kontribusi",
+   "b": "akses",
+   "w": 0.551
+  },
+  {
+   "a": "kontribusi",
+   "b": "belajar",
+   "w": 0.473
+  },
+  {
+   "a": "kontribusi",
+   "b": "ketentuan",
+   "w": 0.365
+  },
+  {
+   "a": "kontribusi",
+   "b": "terlibat",
+   "w": 0.636
+  },
+  {
+   "a": "kontribusi",
+   "b": "memfasilitasi",
+   "w": 0.511
+  },
+  {
+   "a": "materi",
+   "b": "jadwal",
+   "w": 0.927
+  },
+  {
+   "a": "materi",
+   "b": "kebutuhan",
+   "w": 0.625
+  },
+  {
+   "a": "materi",
+   "b": "kelas",
+   "w": 0.677
+  },
+  {
+   "a": "materi",
+   "b": "mentoring",
+   "w": 0.75
+  },
+  {
+   "a": "materi",
+   "b": "sebaya",
+   "w": 1.0
+  },
+  {
+   "a": "menyelaraskan",
+   "b": "kebutuhan",
+   "w": 0.625
+  },
+  {
+   "a": "resmi",
+   "b": "mekanisme",
+   "w": 0.774
+  },
+  {
+   "a": "bantuan",
+   "b": "aspirasi",
+   "w": 0.41
+  },
+  {
+   "a": "bantuan",
+   "b": "kelas",
+   "w": 0.511
+  },
+  {
+   "a": "bantuan",
+   "b": "promosi",
+   "w": 0.835
+  },
+  {
+   "a": "mentoring",
+   "b": "memfasilitasi",
+   "w": 0.625
+  },
+  {
+   "a": "mentoring",
+   "b": "jadwal",
+   "w": 0.677
+  },
+  {
+   "a": "mentoring",
+   "b": "kebutuhan",
+   "w": 0.374
+  },
+  {
+   "a": "mentoring",
+   "b": "kelas",
+   "w": 0.426
+  },
+  {
+   "a": "mentoring",
+   "b": "sebaya",
+   "w": 0.75
+  },
+  {
+   "a": "perlindungan",
+   "b": "mekanisme",
+   "w": 0.774
+  },
+  {
+   "a": "kesehatan",
+   "b": "mental",
+   "w": 0.701
+  },
+  {
+   "a": "berwenang",
+   "b": "aspirasi",
+   "w": 0.576
+  },
+  {
+   "a": "ide",
+   "b": "kolaborasi",
+   "w": 0.48
+  },
+  {
+   "a": "kolaborasi",
+   "b": "pelaksanaan",
+   "w": 0.419
+  },
+  {
+   "a": "kompetisi",
+   "b": "inovasi",
+   "w": 0.644
+  },
+  {
+   "a": "asuhan",
+   "b": "sosial",
+   "w": 0.728
+  },
+  {
+   "a": "promosi",
+   "b": "kelas",
+   "w": 0.677
+  },
+  {
+   "a": "kebutuhan",
+   "b": "aspirasi",
+   "w": 0.372
+  },
+  {
+   "a": "kebutuhan",
+   "b": "pimpinan",
+   "w": 0.353
+  },
+  {
+   "a": "kebutuhan",
+   "b": "jadwal",
+   "w": 0.551
+  },
+  {
+   "a": "kebutuhan",
+   "b": "kelas",
+   "w": 0.404
+  },
+  {
+   "a": "kebutuhan",
+   "b": "sebaya",
+   "w": 0.625
+  },
+  {
+   "a": "kebutuhan",
+   "b": "ketentuan",
+   "w": 0.46
+  },
+  {
+   "a": "kebutuhan",
+   "b": "kebersihan",
+   "w": 0.625
+  },
+  {
+   "a": "kebutuhan",
+   "b": "tujuan pendidikan",
+   "w": 0.483
+  },
+  {
+   "a": "polisi",
+   "b": "santun",
+   "w": 0.927
+  },
+  {
+   "a": "gagasan",
+   "b": "inovasi",
+   "w": 0.45
+  },
+  {
+   "a": "kelas",
+   "b": "jadwal",
+   "w": 0.603
+  },
+  {
+   "a": "kelas",
+   "b": "sebaya",
+   "w": 0.677
+  },
+  {
+   "a": "inovasi",
+   "b": "kreativitas",
+   "w": 0.576
+  },
+  {
+   "a": "memfasilitasi",
+   "b": "belajar",
+   "w": 0.603
+  },
+  {
+   "a": "memfasilitasi",
+   "b": "ketentuan",
+   "w": 0.603
+  },
+  {
+   "a": "aspirasi",
+   "b": "tujuan pendidikan",
+   "w": 0.588
+  },
+  {
+   "a": "aspirasi",
+   "b": "merangkul",
+   "w": 0.45
+  },
+  {
+   "a": "aspirasi",
+   "b": "pimpinan",
+   "w": 0.49
+  },
+  {
+   "a": "aspirasi",
+   "b": "sistem",
+   "w": 0.377
+  },
+  {
+   "a": "aspirasi",
+   "b": "kejelasan",
+   "w": 0.502
+  },
+  {
+   "a": "aspirasi",
+   "b": "ketentuan",
+   "w": 0.407
+  },
+  {
+   "a": "aspirasi",
+   "b": "mendengar",
+   "w": 0.304
+  },
+  {
+   "a": "ketentuan",
+   "b": "terlibat",
+   "w": 0.728
+  },
+  {
+   "a": "ketentuan",
+   "b": "mekanisme",
+   "w": 0.502
+  },
+  {
+   "a": "kelompok",
+   "b": "kepengurusan",
+   "w": 0.687
+  },
+  {
+   "a": "kelompok",
+   "b": "tanggung",
+   "w": 0.391
+  },
+  {
+   "a": "kelompok",
+   "b": "koordinasi",
+   "w": 0.478
+  },
+  {
+   "a": "kelompok",
+   "b": "rasa aman",
+   "w": 0.603
+  },
+  {
+   "a": "kelompok",
+   "b": "lingkungan",
+   "w": 0.603
+  },
+  {
+   "a": "akses",
+   "b": "belajar",
+   "w": 0.651
+  },
+  {
+   "a": "akses",
+   "b": "tanggung",
+   "w": 0.464
+  },
+  {
+   "a": "mental",
+   "b": "dukungan fisik",
+   "w": 0.835
+  },
+  {
+   "a": "belajar",
+   "b": "pembelajaran",
+   "w": 0.687
+  },
+  {
+   "a": "belajar",
+   "b": "kemampuan",
+   "w": 0.603
+  },
+  {
+   "a": "pembelajaran",
+   "b": "kemampuan",
+   "w": 0.709
+  },
+  {
+   "a": "mendengar",
+   "b": "merangkul",
+   "w": 0.603
+  },
+  {
+   "a": "jadwal",
+   "b": "sebaya",
+   "w": 0.927
+  },
+  {
+   "a": "pelaksanaan",
+   "b": "tanggung",
+   "w": 0.48
+  },
+  {
+   "a": "pelaksanaan",
+   "b": "mekanisme",
+   "w": 0.483
+  },
+  {
+   "a": "tenggat",
+   "b": "koordinasi",
+   "w": 0.75
+  },
+  {
+   "a": "tenggat",
+   "b": "pic",
+   "w": 0.75
+  },
+  {
+   "a": "tujuan pendidikan",
+   "b": "pimpinan",
+   "w": 0.478
+  },
+  {
+   "a": "tujuan pendidikan",
+   "b": "sistem",
+   "w": 0.551
+  },
+  {
+   "a": "koordinasi",
+   "b": "kepengurusan",
+   "w": 0.584
+  },
+  {
+   "a": "koordinasi",
+   "b": "pic",
+   "w": 0.499
+  },
+  {
+   "a": "koordinasi",
+   "b": "tanggung",
+   "w": 0.412
+  },
+  {
+   "a": "kepengurusan",
+   "b": "tanggung",
+   "w": 0.615
+  },
+  {
+   "a": "bpi",
+   "b": "portal terintegrasi",
+   "w": 0.728
+  },
+  {
+   "a": "dinamika",
+   "b": "kondisi",
+   "w": 0.603
+  },
+  {
+   "a": "disiplin",
+   "b": "kepedulian",
+   "w": 0.709
+  },
+  {
+   "a": "disiplin",
+   "b": "integritas",
+   "w": 0.75
+  },
+  {
+   "a": "disiplin",
+   "b": "keteladanan",
+   "w": 0.802
+  },
+  {
+   "a": "disiplin",
+   "b": "keberanian moral",
+   "w": 0.802
+  },
+  {
+   "a": "identitas",
+   "b": "kendala",
+   "w": 0.854
+  },
+  {
+   "a": "identitas",
+   "b": "perbaikan",
+   "w": 0.854
+  },
+  {
+   "a": "integritas",
+   "b": "kepedulian",
+   "w": 0.844
+  },
+  {
+   "a": "integritas",
+   "b": "keteladanan",
+   "w": 0.802
+  },
+  {
+   "a": "integritas",
+   "b": "keberanian moral",
+   "w": 0.802
+  },
+  {
+   "a": "karakter",
+   "b": "pembentukan",
+   "w": 1.0
+  },
+  {
+   "a": "karakter",
+   "b": "proses pembelajaran",
+   "w": 0.875
+  },
+  {
+   "a": "keberanian moral",
+   "b": "kepedulian",
+   "w": 0.9
+  },
+  {
+   "a": "keberanian moral",
+   "b": "keteladanan",
+   "w": 0.854
+  },
+  {
+   "a": "keberanian moral",
+   "b": "sikap",
+   "w": 0.854
+  },
+  {
+   "a": "kendala",
+   "b": "perbaikan",
+   "w": 0.854
+  },
+  {
+   "a": "kepedulian",
+   "b": "keteladanan",
+   "w": 0.761
+  },
+  {
+   "a": "kepedulian",
+   "b": "sikap",
+   "w": 0.761
+  },
+  {
+   "a": "pembentukan",
+   "b": "proses pembelajaran",
+   "w": 0.875
+  }
+ ],
+ "problems": [
+  {
+   "id": "risiko_zulu",
+   "label": "Risiko Zulu",
+   "plan": [
+    "aman"
+   ],
+   "main": "belajar",
+   "support": [],
+   "share": {
+    "aman": 0.0347,
+    "bersama": 0.1617,
+    "belajar": 0.5239,
+    "inovasi": 0.1677,
+    "masa": 0.112
+   },
+   "verdict": "tidak",
+   "lines": 19,
+   "sources": 6,
+   "stab": "cukup",
+   "p_main": 0.669,
+   "present": 0.453,
+   "var_same": 6,
+   "n_var": 6,
+   "one_person": true,
+   "vs": "berbeda",
+   "reasons": [
+    {
+     "r": "belajar",
+     "kind": "langsung",
+     "chain": [
+      "zulu",
+      "mentoring"
+     ],
+     "lines": 2,
+     "people": 2
+    },
+    {
+     "r": "belajar",
+     "kind": "jalur",
+     "chain": [
+      "objektif",
+      "pimpinan",
+      "mewadahi",
+      "mentoring"
+     ],
+     "lines": 2,
+     "people": 1
+    }
+   ]
+  },
+  {
+   "id": "kopdes",
+   "label": "Kejadian KDKMP / Kopdes",
+   "plan": [
+    "masa",
+    "belajar",
+    "aman"
+   ],
+   "main": "belajar",
+   "support": [],
+   "share": {
+    "aman": 0.0175,
+    "bersama": 0.044,
+    "belajar": 0.7826,
+    "inovasi": 0.14,
+    "masa": 0.0159
+   },
+   "verdict": "sebagian",
+   "lines": 11,
+   "sources": 4,
+   "stab": "cukup",
+   "p_main": 0.787,
+   "present": 0.2,
+   "var_same": 6,
+   "n_var": 6,
+   "one_person": true,
+   "vs": "sebagian",
+   "reasons": [
+    {
+     "r": "belajar",
+     "kind": "jalur",
+     "chain": [
+      "kopdes",
+      "zulu",
+      "mentoring"
+     ],
+     "lines": 2,
+     "people": 2
+    }
+   ]
+  },
+  {
+   "id": "silo",
+   "label": "Silo / sirkel",
+   "plan": [
+    "bersama",
+    "aman"
+   ],
+   "main": "bersama",
+   "support": [
+    "aman"
+   ],
+   "share": {
+    "aman": 0.3472,
+    "bersama": 0.3998,
+    "belajar": 0.0546,
+    "inovasi": 0.0137,
+    "masa": 0.1847
+   },
+   "verdict": "kurang",
+   "lines": 13,
+   "sources": 4,
+   "stab": "rapuh",
+   "p_main": 0.498,
+   "present": 0.662,
+   "var_same": 5,
+   "n_var": 6,
+   "one_person": true,
+   "vs": "sebagian",
+   "reasons": [
+    {
+     "r": "bersama",
+     "kind": "langsung",
+     "chain": [
+      "kelompok",
+      "kebersamaan"
+     ],
+     "lines": 2,
+     "people": 1
+    },
+    {
+     "r": "bersama",
+     "kind": "langsung",
+     "chain": [
+      "kelompok",
+      "lintas"
+     ],
+     "lines": 2,
+     "people": 2
+    },
+    {
+     "r": "aman",
+     "kind": "langsung",
+     "chain": [
+      "silo",
+      "aman"
+     ],
+     "lines": 2,
+     "people": 2
+    },
+    {
+     "r": "aman",
+     "kind": "jalur",
+     "chain": [
+      "kelompok",
+      "individu",
+      "mengawal aspirasi",
+      "dukungan"
+     ],
+     "lines": 2,
+     "people": 2
+    }
+   ]
+  },
+  {
+   "id": "ruang_gerak",
+   "label": "Ruang gerak terbatas",
+   "plan": [
+    "aman"
+   ],
+   "main": "bersama",
+   "support": [],
+   "share": {
+    "aman": 0.0269,
+    "bersama": 0.755,
+    "belajar": 0.0861,
+    "inovasi": 0.0342,
+    "masa": 0.0978
+   },
+   "verdict": "kurang",
+   "lines": 4,
+   "sources": 1,
+   "stab": "cukup",
+   "p_main": 0.795,
+   "present": 0.427,
+   "var_same": 5,
+   "n_var": 6,
+   "one_person": true,
+   "vs": "berbeda",
+   "reasons": [
+    {
+     "r": "bersama",
+     "kind": "langsung",
+     "chain": [
+      "whistleblower",
+      "apresiasi"
+     ],
+     "lines": 2,
+     "people": 1
+    },
+    {
+     "r": "bersama",
+     "kind": "jalur",
+     "chain": [
+      "whistleblower",
+      "aspirasi",
+      "apresiasi"
+     ],
+     "lines": 2,
+     "people": 1
+    }
+   ]
+  },
+  {
+   "id": "akademis",
+   "label": "Isu akademis di kelas",
+   "plan": [
+    "belajar"
+   ],
+   "main": "belajar",
+   "support": [],
+   "share": {
+    "aman": 0.1098,
+    "bersama": 0.1402,
+    "belajar": 0.651,
+    "inovasi": 0.0554,
+    "masa": 0.0436
+   },
+   "verdict": "didukung",
+   "lines": 20,
+   "sources": 5,
+   "stab": "rapuh",
+   "p_main": 0.583,
+   "present": 0.892,
+   "var_same": 6,
+   "n_var": 6,
+   "one_person": true,
+   "vs": "sesuai",
+   "reasons": [
+    {
+     "r": "belajar",
+     "kind": "langsung",
+     "chain": [
+      "akademis",
+      "belajar"
+     ],
+     "lines": 2,
+     "people": 2
+    },
+    {
+     "r": "belajar",
+     "kind": "langsung",
+     "chain": [
+      "kelas",
+      "mentoring"
+     ],
+     "lines": 2,
+     "people": 2
+    }
+   ]
+  },
+  {
+   "id": "zulu_alpha",
+   "label": "Journey Zulu to Alpha",
+   "plan": [
+    "bersama"
+   ],
+   "main": "belajar",
+   "support": [],
+   "share": {
+    "aman": 0.0746,
+    "bersama": 0.0841,
+    "belajar": 0.6943,
+    "inovasi": 0.1196,
+    "masa": 0.0274
+   },
+   "verdict": "tidak",
+   "lines": 14,
+   "sources": 6,
+   "stab": "cukup",
+   "p_main": 0.611,
+   "present": 0.618,
+   "var_same": 6,
+   "n_var": 6,
+   "one_person": false,
+   "vs": "berbeda",
+   "reasons": [
+    {
+     "r": "belajar",
+     "kind": "langsung",
+     "chain": [
+      "zulu",
+      "mentoring"
+     ],
+     "lines": 2,
+     "people": 2
+    },
+    {
+     "r": "belajar",
+     "kind": "jalur",
+     "chain": [
+      "rekan zulu",
+      "kontribusi",
+      "belajar"
+     ],
+     "lines": 2,
+     "people": 2
+    }
+   ]
+  },
+  {
+   "id": "mental",
+   "label": "Kondisi mental",
+   "plan": [
+    "aman"
+   ],
+   "main": "aman",
+   "support": [],
+   "share": {
+    "aman": 0.9292,
+    "bersama": 0.0148,
+    "belajar": 0.0119,
+    "inovasi": 0.0011,
+    "masa": 0.043
+   },
+   "verdict": "didukung",
+   "lines": 8,
+   "sources": 4,
+   "stab": "cukup",
+   "p_main": 1.0,
+   "present": 0.45,
+   "var_same": 6,
+   "n_var": 6,
+   "one_person": true,
+   "vs": "sesuai",
+   "reasons": [
+    {
+     "r": "aman",
+     "kind": "langsung",
+     "chain": [
+      "mental",
+      "aman"
+     ],
+     "lines": 3,
+     "people": 3
+    },
+    {
+     "r": "aman",
+     "kind": "langsung",
+     "chain": [
+      "mental",
+      "dukungan fisik"
+     ],
+     "lines": 3,
+     "people": 2
+    }
+   ]
+  },
+  {
+   "id": "inovasi",
+   "label": "Mewadahi segala bentuk inovasi",
+   "plan": [
+    "inovasi"
+   ],
+   "main": "inovasi",
+   "support": [],
+   "share": {
+    "aman": 0.0043,
+    "bersama": 0.0181,
+    "belajar": 0.1003,
+    "inovasi": 0.8665,
+    "masa": 0.0107
+   },
+   "verdict": "didukung",
+   "lines": 23,
+   "sources": 4,
+   "stab": "cukup",
+   "p_main": 0.678,
+   "present": 0.535,
+   "var_same": 6,
+   "n_var": 6,
+   "one_person": true,
+   "vs": "sesuai",
+   "reasons": [
+    {
+     "r": "inovasi",
+     "kind": "langsung",
+     "chain": [
+      "inovasi",
+      "gagasan"
+     ],
+     "lines": 2,
+     "people": 1
+    },
+    {
+     "r": "inovasi",
+     "kind": "langsung",
+     "chain": [
+      "inovasi",
+      "kreativitas"
+     ],
+     "lines": 2,
+     "people": 1
+    }
+   ]
+  },
+  {
+   "id": "karier",
+   "label": "Career planning setelah P3MD",
+   "plan": [
+    "masa"
+   ],
+   "main": "masa",
+   "support": [],
+   "share": {
+    "aman": 0.0187,
+    "bersama": 0.0091,
+    "belajar": 0.0115,
+    "inovasi": 0.0024,
+    "masa": 0.9583
+   },
+   "verdict": "kurang",
+   "lines": 2,
+   "sources": 1,
+   "stab": "cukup",
+   "p_main": 1.0,
+   "present": 0.052,
+   "var_same": 6,
+   "n_var": 6,
+   "one_person": true,
+   "vs": "sesuai",
+   "reasons": [
+    {
+     "r": "masa",
+     "kind": "jalur",
+     "chain": [
+      "bumn",
+      "kerja",
+      "kedepan"
+     ],
+     "lines": 2,
+     "people": 1
+    },
+    {
+     "r": "masa",
+     "kind": "jalur",
+     "chain": [
+      "bumn",
+      "kerja",
+      "kepemimpinan",
+      "arah"
+     ],
+     "lines": 2,
+     "people": 1
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "a": "risiko_zulu",
+   "b": "zulu_alpha",
+   "p": 0.385,
+   "one_person": false
+  },
+  {
+   "a": "kopdes",
+   "b": "zulu_alpha",
+   "p": 0.188,
+   "one_person": true
+  }
+ ],
+ "load": {
+  "aman": {
+   "data_main": [
+    "mental"
+   ],
+   "data_support": [
+    "silo"
+   ],
+   "claimed": [
+    "risiko_zulu",
+    "kopdes",
+    "silo",
+    "ruang_gerak",
+    "mental"
+   ],
+   "expected_members": 2.88
+  },
+  "bersama": {
+   "data_main": [
+    "silo",
+    "ruang_gerak"
+   ],
+   "data_support": [],
+   "claimed": [
+    "silo",
+    "zulu_alpha"
+   ],
+   "expected_members": 2.73
+  },
+  "belajar": {
+   "data_main": [
+    "risiko_zulu",
+    "kopdes",
+    "akademis",
+    "zulu_alpha"
+   ],
+   "data_support": [],
+   "claimed": [
+    "kopdes",
+    "akademis"
+   ],
+   "expected_members": 4.47
+  },
+  "inovasi": {
+   "data_main": [
+    "inovasi"
+   ],
+   "data_support": [],
+   "claimed": [
+    "inovasi"
+   ],
+   "expected_members": 2.39
+  },
+  "masa": {
+   "data_main": [
+    "karier"
+   ],
+   "data_support": [],
+   "claimed": [
+    "kopdes",
+    "karier"
+   ],
+   "expected_members": 2.09
+  }
+ },
+ "clusters": [
+  [
+   "risiko_zulu",
+   "kopdes",
+   "zulu_alpha"
+  ],
+  [
+   "silo"
+  ],
+  [
+   "ruang_gerak"
+  ],
+  [
+   "akademis"
+  ],
+  [
+   "mental"
+  ],
+  [
+   "inovasi"
+  ],
+  [
+   "karier"
+  ]
+ ],
+ "relall": [
+  {
+   "a": "risiko_zulu",
+   "b": "kopdes",
+   "lines": 3,
+   "people": 2,
+   "lift": 6.07,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "sedang"
+  },
+  {
+   "a": "risiko_zulu",
+   "b": "silo",
+   "lines": 2,
+   "people": 2,
+   "lift": 0.1,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "sedang"
+  },
+  {
+   "a": "risiko_zulu",
+   "b": "ruang_gerak",
+   "lines": 2,
+   "people": 2,
+   "lift": 0.53,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "sedang"
+  },
+  {
+   "a": "risiko_zulu",
+   "b": "akademis",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.37,
+   "shared": [],
+   "bridges": [
+    "mentoring"
+   ],
+   "nb": 1,
+   "level": "lemah"
+  },
+  {
+   "a": "risiko_zulu",
+   "b": "zulu_alpha",
+   "lines": 12,
+   "people": 6,
+   "lift": 1.79,
+   "shared": [
+    "zulu"
+   ],
+   "bridges": [
+    "kopdes",
+    "mentoring"
+   ],
+   "nb": 2,
+   "level": "kuat"
+  },
+  {
+   "a": "risiko_zulu",
+   "b": "mental",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.01,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "lemah"
+  },
+  {
+   "a": "risiko_zulu",
+   "b": "inovasi",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.62,
+   "shared": [],
+   "bridges": [
+    "pimpinan",
+    "mentoring"
+   ],
+   "nb": 2,
+   "level": "lemah"
+  },
+  {
+   "a": "risiko_zulu",
+   "b": "karier",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.05,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "kopdes",
+   "b": "silo",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.03,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "kopdes",
+   "b": "ruang_gerak",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.05,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "kopdes",
+   "b": "akademis",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.24,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "kopdes",
+   "b": "zulu_alpha",
+   "lines": 3,
+   "people": 2,
+   "lift": 8.63,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "kuat"
+  },
+  {
+   "a": "kopdes",
+   "b": "mental",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.0,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "lemah"
+  },
+  {
+   "a": "kopdes",
+   "b": "inovasi",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.22,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "kopdes",
+   "b": "karier",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.0,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "lemah"
+  },
+  {
+   "a": "silo",
+   "b": "ruang_gerak",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.17,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "lemah"
+  },
+  {
+   "a": "silo",
+   "b": "akademis",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.25,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "silo",
+   "b": "zulu_alpha",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.15,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "lemah"
+  },
+  {
+   "a": "silo",
+   "b": "mental",
+   "lines": 1,
+   "people": 1,
+   "lift": 1.45,
+   "shared": [],
+   "bridges": [
+    "aman"
+   ],
+   "nb": 1,
+   "level": "lemah"
+  },
+  {
+   "a": "silo",
+   "b": "inovasi",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.06,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "silo",
+   "b": "karier",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.06,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "ruang_gerak",
+   "b": "akademis",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.43,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "ruang_gerak",
+   "b": "zulu_alpha",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.2,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "ruang_gerak",
+   "b": "mental",
+   "lines": 2,
+   "people": 2,
+   "lift": 0.03,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "sedang"
+  },
+  {
+   "a": "ruang_gerak",
+   "b": "inovasi",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.38,
+   "shared": [],
+   "bridges": [
+    "aspirasi"
+   ],
+   "nb": 1,
+   "level": "lemah"
+  },
+  {
+   "a": "ruang_gerak",
+   "b": "karier",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.13,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "akademis",
+   "b": "zulu_alpha",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.51,
+   "shared": [],
+   "bridges": [
+    "mentoring"
+   ],
+   "nb": 1,
+   "level": "lemah"
+  },
+  {
+   "a": "akademis",
+   "b": "mental",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.04,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "lemah"
+  },
+  {
+   "a": "akademis",
+   "b": "inovasi",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.3,
+   "shared": [],
+   "bridges": [
+    "mentoring"
+   ],
+   "nb": 1,
+   "level": "lemah"
+  },
+  {
+   "a": "akademis",
+   "b": "karier",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.04,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "zulu_alpha",
+   "b": "mental",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.02,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "zulu_alpha",
+   "b": "inovasi",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.35,
+   "shared": [],
+   "bridges": [
+    "mentoring"
+   ],
+   "nb": 1,
+   "level": "lemah"
+  },
+  {
+   "a": "zulu_alpha",
+   "b": "karier",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.02,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "mental",
+   "b": "inovasi",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.01,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  },
+  {
+   "a": "mental",
+   "b": "karier",
+   "lines": 1,
+   "people": 1,
+   "lift": 0.09,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "lemah"
+  },
+  {
+   "a": "inovasi",
+   "b": "karier",
+   "lines": 0,
+   "people": 0,
+   "lift": 0.03,
+   "shared": [],
+   "bridges": [],
+   "nb": 0,
+   "level": "tidak"
+  }
+ ],
+ "method": {
+  "units": 506,
+  "phrases": 18,
+  "phr_ex": [
+   "tindak lanjut",
+   "tujuan pendidikan",
+   "agen nilai",
+   "arahan pimpinan"
+  ],
+  "neg": 19,
+  "types": {
+   "solusi": 124,
+   "persepsi": 40,
+   "hipotesis": 32,
+   "masalah": 45
+  },
+  "cand": 124,
+  "isolated": 33,
+  "outside": 16,
+  "nodes": 75,
+  "edges": 174,
+  "q": 0.57,
+  "k": 9,
+  "ari_ll": 0.87,
+  "mix": 0.28,
+  "sbm_ari": 0.82,
+  "nz": {
+   "Erdős–Rényi": 11.0,
+   "Barabási–Albert": 9.0,
+   "Rewiring (derajat tetap)": 18.4
+  },
+  "cons_real": 0.81,
+  "gamma": 1.0,
+  "runs": 499,
+  "mc": {
+   "ari": 0.61,
+   "rho": 0.8,
+   "top10": 0.67,
+   "map": 0.72,
+   "q": 0.57
+  },
+  "sens_top": "coverage",
+  "sens_rho": 48,
+  "rw_rho": 0.92,
+  "boot": 369,
+  "boot_q": [
+   0.55,
+   0.32,
+   0.69
+  ],
+  "boot_k": 5.2,
+  "abl_worst": [
+   "Tanpa deduplikasi",
+   0.38
+  ],
+  "abl_2": [
+   "Filter node ketat (≥6)",
+   0.57
+  ],
+  "vruns": 300,
+  "vnodes": 128,
+  "vedges": 329,
+  "verdicts": {
+   "tidak": 2,
+   "sebagian": 1,
+   "kurang": 3,
+   "didukung": 3
+  }
+ }
+}

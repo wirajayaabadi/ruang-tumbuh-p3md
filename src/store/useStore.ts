@@ -1,0 +1,163 @@
+import { create } from 'zustand'
+import { STEPS, STEP_LAST, stepAt, type HouseTab, type Theme } from '../config/presentation'
+import type { RuangKey } from '../data/types'
+import { computeLayout, type Layout } from '../utils/layout'
+
+export type Phase = 'idle' | 'traveling' | 'arrived'
+
+export interface Highlight {
+  problems: string[]
+  ruang: RuangKey[]
+}
+
+interface State {
+  started: boolean
+  /** indeks ke STEPS */
+  step: number
+  phase: Phase
+  panelVisible: boolean
+  explore: boolean
+  introDone: boolean
+  reducedMotion: boolean
+  layout: Layout
+  theme: Theme
+  tab: HouseTab
+  /** masalah yang disorot (langkah aliran/keyakinan/terkait/penutup) */
+  selectedProblem: string | null
+  /** sorotan dari takeaway di penutup */
+  highlight: Highlight | null
+  appendixOpen: boolean
+  travelId: number
+  pulseId: number
+  moveReplayId: number
+
+  start: () => void
+  goTo: (step: number) => void
+  next: () => void
+  prev: () => void
+  toMap: () => void
+  setArrived: () => void
+  setExplore: (on: boolean) => void
+  setLayout: (l: Layout) => void
+  setIntroDone: () => void
+  setReducedMotion: (v: boolean) => void
+  setTab: (tab: HouseTab) => void
+  selectProblem: (id: string | null) => void
+  setHighlight: (h: Highlight | null) => void
+  setTheme: (t: Theme) => void
+  toggleTheme: () => void
+  setAppendix: (open: boolean) => void
+  replayMove: () => void
+}
+
+export const isHouseStep = (s: number) => stepAt(s).kind === 'house'
+export const stepKind = (s: number) => stepAt(s).kind
+/** Semua langkah punya panel materi kecuali saat eksplorasi. */
+export const stepHasPanel = (s: number) => s >= 0 && s < STEPS.length
+
+const initialLayout =
+  typeof window !== 'undefined' ? computeLayout(window.innerWidth, window.innerHeight) : computeLayout(1280, 800)
+
+function readTheme(): Theme {
+  try {
+    const t = localStorage.getItem('rt-theme')
+    if (t === 'dark' || t === 'light') return t
+  } catch {
+    /* abaikan */
+  }
+  // default: tema gelap bernuansa alam semesta
+  return 'dark'
+}
+
+function applyTheme(t: Theme) {
+  document.documentElement.setAttribute('data-theme', t)
+  try {
+    localStorage.setItem('rt-theme', t)
+  } catch {
+    /* abaikan */
+  }
+}
+
+const initialTheme = readTheme()
+if (typeof document !== 'undefined') document.documentElement.setAttribute('data-theme', initialTheme)
+
+export const useStore = create<State>((set, get) => ({
+  started: false,
+  step: 0,
+  phase: 'idle',
+  panelVisible: false,
+  explore: false,
+  introDone: false,
+  reducedMotion: false,
+  layout: initialLayout,
+  theme: initialTheme,
+  tab: 'ringkasan',
+  selectedProblem: null,
+  highlight: null,
+  appendixOpen: false,
+  travelId: 0,
+  pulseId: 0,
+  moveReplayId: 0,
+
+  start: () => {
+    const s = get()
+    // Memulai = menampilkan panel pembuka tanpa perjalanan kamera.
+    set({ started: true, phase: 'arrived', panelVisible: stepHasPanel(s.step) })
+  },
+
+  goTo: (step) => {
+    const s = get()
+    const clamped = Math.max(0, Math.min(STEP_LAST, step))
+    if (clamped === s.step && s.phase !== 'idle' && !s.explore) return
+    set({
+      step: clamped,
+      started: true,
+      phase: 'traveling',
+      panelVisible: false,
+      explore: false,
+      tab: 'ringkasan',
+      selectedProblem: null,
+      highlight: null,
+      appendixOpen: false,
+      travelId: s.travelId + 1,
+      pulseId: s.pulseId + 1,
+      moveReplayId: stepAt(clamped).kind === 'move' ? s.moveReplayId + 1 : s.moveReplayId,
+    })
+  },
+
+  next: () => {
+    const s = get()
+    if (s.step < STEP_LAST) s.goTo(s.step + 1)
+  },
+  prev: () => {
+    const s = get()
+    if (s.step > 0) s.goTo(s.step - 1)
+  },
+  toMap: () => get().goTo(0),
+
+  setArrived: () => {
+    const s = get()
+    set({ phase: 'arrived', panelVisible: stepHasPanel(s.step) && !s.explore })
+  },
+
+  setExplore: (on) => {
+    const s = get()
+    if (on === s.explore) return
+    if (on) set({ explore: true, panelVisible: false })
+    else set({ explore: false, phase: 'traveling', panelVisible: false, travelId: s.travelId + 1 })
+  },
+
+  setLayout: (layout) => set({ layout }),
+  setIntroDone: () => set({ introDone: true }),
+  setReducedMotion: (reducedMotion) => set({ reducedMotion }),
+  setTab: (tab) => set({ tab }),
+  selectProblem: (id) => set((s) => ({ selectedProblem: s.selectedProblem === id ? null : id, highlight: null })),
+  setHighlight: (highlight) => set({ highlight, selectedProblem: null }),
+  setTheme: (theme) => {
+    applyTheme(theme)
+    set({ theme })
+  },
+  toggleTheme: () => get().setTheme(get().theme === 'light' ? 'dark' : 'light'),
+  setAppendix: (appendixOpen) => set({ appendixOpen }),
+  replayMove: () => set((s) => ({ moveReplayId: s.moveReplayId + 1 })),
+}))
