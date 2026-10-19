@@ -63,6 +63,10 @@ scripts/       gen-network.mjs — tata letak jaringan dari data
 docs/          PLAN.md — rencana pengembangan
 ```
 
+## Pratinjau tautan
+
+Meta Open Graph dan Twitter Card ada di `index.html` dengan URL absolut ke `https://ruang-tumbuh-p3md-swart.vercel.app/`; gambar pratinjau 1200×630 di `public/og-image.jpg` (dibuat dari logo + latar galaksi). Jika domain berubah, perbarui URL di `index.html`. WhatsApp menyimpan cache pratinjau; kirim tautan dengan parameter baru (misalnya `?v=2`) untuk memaksa pratinjau baru.
+
 ## Catatan teknis
 
 - Satu pengendali kamera; perjalanan diinterpolasi polar mengelilingi pusat dengan kenaikan ketinggian sehingga kamera tidak menembus rumah, jaringan, atau cincin orbit. Durasi 900–1400 ms berbasis waktu.
