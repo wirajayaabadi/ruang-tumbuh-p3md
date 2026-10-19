@@ -43,7 +43,10 @@ export function computeView(stepIndex: number, aspect: number, layout: Layout, f
   // Mundur untuk viewport sempit, dan bila area bebas berkurang karena panel.
   // Total faktor dibatasi supaya dunia tidak menjadi terlalu kecil di layar ponsel.
   let f = clamp(1.45 / aspect, 1, 2.0)
-  if (step.kind !== 'house') {
+  if (step.kind === 'flow') {
+    // fokus inti: cukup geser ke area bebas panel, mundur sedikit saja
+    f *= 1 / Math.max(0.5, 1 - right * 0.5)
+  } else if (step.kind !== 'house') {
     f *= 1 / Math.max(0.35, 1 - right)
     f *= Math.pow(1 / Math.max(0.35, 1 - top - bottom), layout.panelSide === 'bottom' ? 0.45 : 1) * 0.92
   }

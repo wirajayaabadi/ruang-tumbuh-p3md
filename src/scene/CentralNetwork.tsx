@@ -23,7 +23,7 @@ const E_TOTAL = E_WORD + PROBLEM_WORD_EDGES.length
 /** Opacity jaringan kata per jenis langkah (inti masalah mendapat panggung pada keyakinan/terkait). */
 const WORD_ALPHA: Record<StepKind, number> = {
   intro: 0.9,
-  flow: 0.45,
+  flow: 0.3,
   house: 0.7,
 }
 

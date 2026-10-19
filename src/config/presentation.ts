@@ -186,7 +186,8 @@ export const CAMERA_VIEWS: Record<Exclude<StepKind, 'house'>, OverviewView> & {
   durationReduced: number
 } = {
   intro: { angle: 90, radius: 29, height: 23, lookAt: [0, 2.4, 0] },
-  flow: { angle: 90, radius: 29.5, height: 18, lookAt: [0, 3.0, 0] },
+  // zoom ke inti sembilan masalah (cincin keyakinan & garis keterkaitan terbaca)
+  flow: { angle: 90, radius: 13.5, height: 11, lookAt: [0, 4.2, 0] },
   fov: 40,
   durationMin: 900,
   durationMax: 1400,
