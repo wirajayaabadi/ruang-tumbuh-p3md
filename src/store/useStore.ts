@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { STEPS, STEP_LAST, stepAt, type HouseTab, type Theme } from '../config/presentation'
+import { spaceAmbience } from '../audio/spaceAmbience'
 import { computeLayout, type Layout } from '../utils/layout'
 
 export type Phase = 'idle' | 'traveling' | 'arrived'
@@ -17,6 +18,8 @@ interface State {
   reducedMotion: boolean
   layout: Layout
   theme: Theme
+  /** musik latar ambien */
+  musicOn: boolean
   tab: HouseTab
   /** masalah yang disorot di inti */
   selectedProblem: string | null
@@ -38,6 +41,7 @@ interface State {
   selectProblem: (id: string | null) => void
   setTheme: (t: Theme) => void
   toggleTheme: () => void
+  toggleMusic: () => void
 }
 
 export const isHouseStep = (s: number) => stepAt(s).kind === 'house'
@@ -68,6 +72,14 @@ function applyTheme(t: Theme) {
   }
 }
 
+function readMusic(): boolean {
+  try {
+    return localStorage.getItem('rt-music') !== 'off'
+  } catch {
+    return true
+  }
+}
+
 const initialTheme = readTheme()
 if (typeof document !== 'undefined') document.documentElement.setAttribute('data-theme', initialTheme)
 
@@ -82,6 +94,7 @@ export const useStore = create<State>((set, get) => ({
   reducedMotion: false,
   layout: initialLayout,
   theme: initialTheme,
+  musicOn: readMusic(),
   tab: 'ringkasan',
   selectedProblem: null,
   travelId: 0,
@@ -90,6 +103,8 @@ export const useStore = create<State>((set, get) => ({
   start: () => {
     // Memulai = layar pemuatan dulu; panel pembuka tampil setelah pemuatan selesai.
     set({ started: true, loading: true, phase: 'arrived', panelVisible: false })
+    // Musik dimulai di sini karena dipanggil dari gestur pengguna (klik tombol).
+    if (get().musicOn) spaceAmbience.start()
   },
   finishLoading: () => {
     const s = get()
@@ -145,6 +160,19 @@ export const useStore = create<State>((set, get) => ({
     set({ theme })
   },
   toggleTheme: () => get().setTheme(get().theme === 'light' ? 'dark' : 'light'),
+  toggleMusic: () => {
+    const on = !get().musicOn
+    set({ musicOn: on })
+    try {
+      localStorage.setItem('rt-music', on ? 'on' : 'off')
+    } catch {
+      /* abaikan */
+    }
+    if (on) {
+      if (get().started) spaceAmbience.start()
+      spaceAmbience.setMuted(false)
+    } else spaceAmbience.setMuted(true)
+  },
 }))
 
 // Hanya saat pengembangan: memudahkan pengujian otomatis membaca state.

@@ -1,6 +1,6 @@
 import type { RuangKey } from '../data/types'
 
-export type IconName = RuangKey | 'network' | 'flow' | 'move' | 'load' | 'confidence' | 'relations' | 'closing' | 'sun' | 'moon' | 'book'
+export type IconName = RuangKey | 'network' | 'flow' | 'move' | 'load' | 'confidence' | 'relations' | 'closing' | 'sun' | 'moon' | 'book' | 'sound' | 'mute'
 
 interface Props {
   name: IconName
@@ -116,6 +116,20 @@ export function Icon({ name, color = 'currentColor', size = 40 }: Props) {
       return (
         <svg {...common}>
           <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" />
+        </svg>
+      )
+    case 'sound':
+      return (
+        <svg {...common}>
+          <path d="M4 10v4h3l4 3.5v-11L7 10z" />
+          <path d="M15 9.5a3.5 3.5 0 0 1 0 5M17.5 7a7 7 0 0 1 0 10" />
+        </svg>
+      )
+    case 'mute':
+      return (
+        <svg {...common}>
+          <path d="M4 10v4h3l4 3.5v-11L7 10z" />
+          <path d="M15.5 9.5l5 5M20.5 9.5l-5 5" />
         </svg>
       )
     case 'network':

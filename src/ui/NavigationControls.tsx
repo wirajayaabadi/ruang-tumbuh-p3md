@@ -45,6 +45,8 @@ export function NavigationControls({ fallback = false }: Props) {
   const goTo = useStore((s) => s.goTo)
   const setExplore = useStore((s) => s.setExplore)
   const toggleTheme = useStore((s) => s.toggleTheme)
+  const musicOn = useStore((s) => s.musicOn)
+  const toggleMusic = useStore((s) => s.toggleMusic)
   const start = useStore((s) => s.start)
   const { isFs, toggle, supported } = useFullscreen()
   const hidden = !started || loading
@@ -77,6 +79,9 @@ export function NavigationControls({ fallback = false }: Props) {
               <span className="label-short">{explore ? 'Lanjutkan' : 'Orbit'}</span>
             </button>
           )}
+          <button type="button" className="btn btn--ghost btn--icon" onClick={toggleMusic} title={musicOn ? 'Matikan musik' : 'Nyalakan musik'} aria-label="Musik latar" aria-pressed={musicOn}>
+            <Icon name={musicOn ? 'sound' : 'mute'} size={16} />
+          </button>
           <button type="button" className="btn btn--ghost btn--icon" onClick={toggleTheme} title={theme === 'light' ? 'Tema gelap' : 'Tema terang'} aria-label="Ganti tema">
             <Icon name={theme === 'light' ? 'moon' : 'sun'} size={16} />
           </button>

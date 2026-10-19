@@ -35,6 +35,7 @@ Inti selalu menampilkan dua animasi sejak awal: **cincin keyakinan** pada tiap b
 | Kembali ke peta | **Peta**, `Home`; `Escape` melepas sorotan lalu kembali ke peta |
 | Lompat langkah | chip langkah di bar bawah, atau klik rumah 3D |
 | Pilih masalah | chip masalah di panel, atau klik berlian masalah di 3D; `Escape` melepas pilihan |
+| Musik latar | tombol speaker di bar atas atau pojok layar pembuka; musik ambien ruang angkasa disintesis dengan Web Audio (tanpa berkas audio), mulai saat Let's Explore ditekan, preferensi tersimpan |
 | Tema gelap (default) / terang | tombol matahari/bulan (tersimpan di `localStorage`) |
 | Kamera bebas | **Eksplorasi** (orang pertama): seret kiri = menoleh di tempat mengikuti pandangan kamera, klik kanan seret / Shift+seret / dua jari = geser, gulir / cubit = maju-mundur ke arah kursor, `W` `A` `S` `D` / panah = bergerak, `Q`/`E` = turun/naik, `Shift` = cepat, `Esc` atau **Lanjutkan Presentasi** = kembali |
 | Layar penuh | **Fullscreen** |

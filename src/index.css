@@ -284,6 +284,9 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 .intro:has(.loading__content.is-closing) { opacity: 0; pointer-events: none; }
 .loading__content { position: absolute; inset: 0; pointer-events: none; animation: fadein 0.5s var(--ease) both; }
 .intro .welcome { position: absolute; inset: 0; z-index: 2; background: transparent; }
+.intro__music { position: absolute; top: 16px; right: 16px; z-index: 3; background: rgba(10, 16, 34, 0.7); color: #eef2ff; border-color: rgba(200, 215, 255, 0.2); }
+.intro__music:hover:not(:disabled) { background: rgba(20, 30, 60, 0.9); }
+.intro__music-label { font-size: 12px; font-weight: 600; margin-left: 2px; }
 .loading__canvas { position: absolute !important; inset: 0; }
 .loading__nebula {
   position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: 0.9;

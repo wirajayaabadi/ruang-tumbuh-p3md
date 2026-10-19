@@ -8,6 +8,7 @@ import { Universe } from '../scene/Universe'
 import { paintVertices, smoothstep } from '../scene/procgeo'
 import { getSoftDotTexture } from '../scene/textures'
 import { useStore } from '../store/useStore'
+import { Icon } from './Icons'
 
 const DURATION_MS = 8000
 const TIP_MS = 2300
@@ -229,10 +230,16 @@ export function IntroOverlay() {
   const started = useStore((s) => s.started)
   const loading = useStore((s) => s.loading)
   const start = useStore((s) => s.start)
+  const musicOn = useStore((s) => s.musicOn)
+  const toggleMusic = useStore((s) => s.toggleMusic)
   if (started && !loading) return null
   return (
     <div className={`intro${loading ? ' is-loading' : ''}`}>
       <GalaxyBackdrop>{loading && <Logo3D />}</GalaxyBackdrop>
+      <button type="button" className="btn btn--ghost btn--icon intro__music" onClick={toggleMusic} title={musicOn ? 'Matikan musik' : 'Nyalakan musik'} aria-label="Musik latar" aria-pressed={musicOn}>
+        <Icon name={musicOn ? 'sound' : 'mute'} size={16} />
+        <span className="intro__music-label">{musicOn ? 'Musik: on' : 'Musik: off'}</span>
+      </button>
       {!started && (
         <div className="welcome welcome--galaxy" role="dialog" aria-labelledby="welcome-title">
           <div className="welcome__card">
