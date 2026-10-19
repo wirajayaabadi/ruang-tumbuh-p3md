@@ -153,7 +153,7 @@ export interface Step {
 }
 
 export const STEPS: Step[] = [
-  { kind: 'intro', id: 'peta', code: '02', title: 'Peta isu' },
+  { kind: 'intro', id: 'peta', code: '00', title: 'Peta 5 Ruang' },
   { kind: 'flow', id: 'aliran', code: '01', title: 'Sembilan masalah & alirannya' },
   ...HOUSES.map((h, i) => ({ kind: 'house' as const, id: h.id, code: '04', title: h.name, houseIndex: i })),
 ]
@@ -166,8 +166,7 @@ export const stepAt = (i: number) => STEPS[Math.max(0, Math.min(STEP_LAST, i))]
 export const HOUSE_TABS = [
   { id: 'ringkasan', label: 'Ringkasan' },
   { id: 'masalah', label: 'Masalah' },
-  { id: 'kata', label: 'Kata' },
-  { id: 'beban', label: 'Beban & keyakinan' },
+  { id: 'solusi', label: 'Solusi' },
 ] as const
 export type HouseTab = (typeof HOUSE_TABS)[number]['id']
 
@@ -232,4 +231,4 @@ export function houseLoadColumnWorld(index: number, out = new THREE.Vector3()) {
 /** Arah matahari hias (dinormalkan saat dipakai); juga arah cahaya tepi hangat. */
 export const SUN_DIRECTION: [number, number, number] = [-0.25, -0.02, -0.97]
 
-export const APP_TITLE = 'Peta Masalah Angkatan'
+export const APP_TITLE = 'Peta 5 Ruang Tumbuh'

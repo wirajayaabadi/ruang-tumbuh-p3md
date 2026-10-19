@@ -1,5 +1,5 @@
 import { HOUSES, stepAt } from '../config/presentation'
-import { PROBLEMS, pct, ruangLoad, shortName } from '../data/derive'
+import { PROBLEMS, pct, shortName } from '../data/derive'
 import { registerLabelElement } from '../scene/Labels'
 import { useStore } from '../store/useStore'
 
@@ -42,17 +42,6 @@ export function LabelsOverlay() {
           Semangat!
         </div>
       ))}
-      {HOUSES.map((h) => {
-        const l = ruangLoad(h.id)
-        const delta = l.delta > 0 ? `+${l.delta}` : l.delta < 0 ? `−${-l.delta}` : '±0'
-        return (
-          <div key={`load-${h.id}`} ref={registerLabelElement(`load:${h.id}`)} className={`load-label${l.delta > 0 ? ' is-up' : l.delta < 0 ? ' is-down' : ''}`} style={{ ['--accent' as string]: h.accent }}>
-            <span className="load-label__name"><i className="house-label__dot" />{h.short}</span>
-            <b>{delta}</b>
-            <span>rencana {l.plan} → data {l.data}</span>
-          </div>
-        )
-      })}
     </div>
   )
 }

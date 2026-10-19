@@ -246,6 +246,36 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 .plain { margin: 0; padding: 0 0 0 18px; font-size: 13.5px; color: var(--ink-soft); display: grid; gap: 4px; }
 .plain--num { padding-left: 20px; }
 
+/* kartu lima ruang (pembuka) */
+.panel__motto { margin: 0 0 8px; font-size: 14px; font-style: italic; color: var(--muted); }
+.ruang-cards { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+.ruang-card {
+  appearance: none; width: 100%; text-align: left; display: flex; align-items: center; gap: 12px;
+  background: var(--track); border: 1px solid transparent; border-radius: 14px; padding: 10px 12px;
+  font: inherit; color: var(--ink); cursor: pointer; transition: border-color 0.15s, transform 0.15s var(--ease);
+}
+.ruang-card:hover { border-color: var(--accent); transform: translateX(2px); }
+.ruang-card__icon { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); flex: none; }
+.ruang-card__body { display: grid; gap: 1px; min-width: 0; }
+.ruang-card__body b { font-size: 14.5px; }
+.ruang-card__body span { font-size: 12.5px; color: var(--muted); }
+.ruang-card__num { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--accent); }
+
+/* poin masalah/solusi dengan detail yang bisa dibuka */
+.quote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--accent); background: var(--track); border-radius: 0 10px 10px 0; font-size: 14.5px; font-style: italic; color: var(--ink); }
+.points { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.point__btn {
+  appearance: none; width: 100%; text-align: left; display: flex; align-items: flex-start; gap: 10px;
+  background: var(--track); border: 1px solid transparent; border-radius: 12px; padding: 9px 12px;
+  font: inherit; color: var(--ink); cursor: pointer; transition: border-color 0.15s;
+}
+.point__btn:hover, .point.is-open .point__btn { border-color: var(--accent); }
+.point__num { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 11.5px; font-weight: 700; color: #fff; background: var(--accent); flex: none; margin-top: 1px; }
+.point__title { font-size: 14px; font-weight: 600; line-height: 1.4; }
+.point__chev { margin-left: auto; color: var(--muted); font-weight: 700; }
+.point__detail { margin: 6px 0 2px 44px; font-size: 13.5px; color: var(--ink-soft); animation: fadein 0.25s var(--ease) both; }
+.welcome__title--vuca { font-size: 56px; letter-spacing: 0.18em; }
+
 /* ---------- label 3D (overlay DOM) ---------- */
 .labels { position: absolute; inset: 0; z-index: 40; pointer-events: none; overflow: hidden; }
 .house-label, .prob-label, .load-label, .fairy-bubble {
@@ -292,20 +322,6 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 
 .hint { position: absolute; left: 50%; bottom: calc(var(--bottom-bar) + 10px); transform: translateX(-50%); z-index: 50; margin: 0; font-size: 13px; color: var(--ink-soft); background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; animation: rise 0.5s var(--ease) both; }
 kbd { font: inherit; font-weight: 700; padding: 0 4px; border: 1px solid var(--line); border-radius: 4px; background: var(--kbd); }
-
-.modal { position: fixed; inset: 0; z-index: 90; background: rgba(0, 0, 0, 0.35); display: grid; place-items: center; padding: 20px; }
-.modal__card { width: min(860px, 100%); max-height: 100%; display: flex; flex-direction: column; background: var(--card-solid); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); animation: rise 0.3s var(--ease) both; }
-.modal__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px 12px; border-bottom: 1px solid var(--line); }
-.modal__body { overflow: auto; padding: 16px 24px 24px; }
-.stages { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-.stage { display: grid; grid-template-columns: 34px 1fr; gap: 12px; }
-.stage__code { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--track); font-weight: 700; }
-.stage__title { margin: 4px 0 4px; font-size: 15px; }
-.stage__body { margin: 0; font-size: 13.5px; color: var(--ink-soft); }
-.stage__refs { margin-top: 6px; font-size: 12.5px; color: var(--muted); }
-.stage__refs summary { cursor: pointer; }
-.stage__refs ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 3px; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 10px; }
 
 /* ---------- tampilan cadangan (tanpa WebGL) ---------- */
 .fallback { position: fixed; inset: 0; overflow: auto; }

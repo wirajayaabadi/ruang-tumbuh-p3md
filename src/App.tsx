@@ -3,7 +3,6 @@ import { HOUSE_TABS, stepAt, type HouseTab } from './config/presentation'
 import { useLayout } from './hooks/useLayout'
 import { Scene } from './scene/Scene'
 import { useStore } from './store/useStore'
-import { Appendix } from './ui/Appendix'
 import { FallbackView } from './ui/FallbackView'
 import { NavigationControls } from './ui/NavigationControls'
 import { LabelsOverlay } from './ui/Overlay'
@@ -16,7 +15,6 @@ function useKeyboard() {
       const target = e.target as HTMLElement | null
       if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) return
       const s = useStore.getState()
-      if (s.appendixOpen) return
       const isHouse = stepAt(s.step).kind === 'house'
       const tabIds = HOUSE_TABS.map((t) => t.id) as HouseTab[]
       switch (e.key) {
@@ -74,7 +72,6 @@ export default function App() {
       <LabelsOverlay />
       <PresentationPanel />
       <NavigationControls />
-      <Appendix />
     </div>
   )
 }

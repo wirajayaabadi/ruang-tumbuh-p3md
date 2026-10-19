@@ -1,6 +1,5 @@
 import { STEPS } from '../config/presentation'
 import { useStore } from '../store/useStore'
-import { Appendix } from './Appendix'
 import { NavigationControls } from './NavigationControls'
 import { StepContent, stepAccent } from './StepContent'
 
@@ -10,7 +9,6 @@ export function FallbackView() {
   return (
     <div className="fallback">
       <NavigationControls fallback />
-      <Appendix />
       <main className="fallback__main">
         <p className="fallback__notice">
           Perangkat ini tidak mendukung WebGL, sehingga dunia 3D tidak dapat ditampilkan. Materi tetap dapat diikuti di sini.

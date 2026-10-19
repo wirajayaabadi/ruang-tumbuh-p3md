@@ -11,7 +11,6 @@ import { ConnectionPaths } from './ConnectionPaths'
 import { HouseNode } from './HouseNode'
 import { LabelProjector } from './Labels'
 import { Lighting } from './Lighting'
-import { LoadColumns } from './LoadColumns'
 import { ProblemTokens } from './ProblemTokens'
 import { Decorations } from './Decorations'
 import { Fairies } from './Fairies'
@@ -69,7 +68,6 @@ export function Scene() {
         <CentralNetwork />
         <ProblemTokens />
         <ConnectionPaths />
-        <LoadColumns />
         {HOUSES.map((house, i) => (
           <HouseNode key={house.id} house={house} index={i} />
         ))}

@@ -18,7 +18,6 @@ interface State {
   tab: HouseTab
   /** masalah yang disorot di inti */
   selectedProblem: string | null
-  appendixOpen: boolean
   travelId: number
   pulseId: number
 
@@ -36,7 +35,6 @@ interface State {
   selectProblem: (id: string | null) => void
   setTheme: (t: Theme) => void
   toggleTheme: () => void
-  setAppendix: (open: boolean) => void
 }
 
 export const isHouseStep = (s: number) => stepAt(s).kind === 'house'
@@ -82,7 +80,6 @@ export const useStore = create<State>((set, get) => ({
   theme: initialTheme,
   tab: 'ringkasan',
   selectedProblem: null,
-  appendixOpen: false,
   travelId: 0,
   pulseId: 0,
 
@@ -104,8 +101,7 @@ export const useStore = create<State>((set, get) => ({
       explore: false,
       tab: 'ringkasan',
       selectedProblem: null,
-      appendixOpen: false,
-      travelId: s.travelId + 1,
+          travelId: s.travelId + 1,
       pulseId: s.pulseId + 1,
     })
   },
@@ -142,5 +138,4 @@ export const useStore = create<State>((set, get) => ({
     set({ theme })
   },
   toggleTheme: () => get().setTheme(get().theme === 'light' ? 'dark' : 'light'),
-  setAppendix: (appendixOpen) => set({ appendixOpen }),
 }))

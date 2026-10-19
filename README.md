@@ -1,4 +1,4 @@
-# Peta Masalah Angkatan — Presentasi Interaktif 3D
+# Peta 5 Ruang Tumbuh — Presentasi Interaktif 3D
 
 Presentasi 3D hasil *Problem Network Analysis* Ruang Tumbuh P3MD dengan komposisi seperti sistem planet: inti sembilan masalah yang mengorbit perlahan di tengah (dengan bola kaca dan cincin orbit), lima rumah ruang yang masing-masing berdiri di pulau melayangnya sendiri, dan garis aliran yang mengikuti inti secara langsung. Kamera berpindah halus dari langkah ke langkah; materi tampil di panel HTML yang tajam.
 
@@ -14,14 +14,13 @@ npm run preview
 node scripts/gen-network.mjs   # regenerasi tata letak jaringan dari data
 ```
 
-## Alur presentasi (7 langkah + lampiran)
+## Alur presentasi (7 langkah)
 
 | # | Langkah | Mode situs sumber | Yang terjadi di dunia 3D |
 | --- | --- | --- | --- |
-| 1 | Peta isu | 02 | Overview; 50 kata teratas (instanced) terbentuk bertahap di sekitar inti; stat tile 751 / 24 / 128 / 9 / 5 |
+| 1 | Peta 5 Ruang | — | Overview; kartu lima ruang (klik = kunjungi); jaringan kata terbentuk bertahap di sekitar inti |
 | 2 | Sembilan masalah & alirannya | 01 + 07 + 08 | Garis aliran tiap masalah dari inti ke rumah ruang terdekat (solid) dan pendukung (putus-putus); pilih masalah untuk menyorot aliran, cincin keyakinan, dan keterkaitannya |
-| 3–7 | Ruang Aman, Bersama, Belajar, Inovasi, Masa Depan | 04 + 06 | Kamera mendekat ke rumah; panel bertab: Ringkasan · Masalah · Kata · Beban & keyakinan (`↑`/`↓`); tab Beban menampilkan kolom balok di samping rumah |
-| — | Metodologi | 03 | Lampiran modal: tahap A–I, referensi, cara menghitung, batasan |
+| 3–7 | Ruang Aman, Bersama, Belajar, Inovasi, Masa Depan | docs/5 Ruang.pdf | Kamera mendekat ke rumah; panel bertab (`↑`/`↓`): Ringkasan (ringkasan, hasil yang ingin dirasakan, jembatan ke ruang berikutnya) · Masalah (poin; klik untuk detail) · Solusi (poin; klik untuk detail) |
 
 Hiasan dunia: matahari hias dengan halo berdenyut dan cahaya tepi hangat (arah di `SUN_DIRECTION`), rumput dan bunga prosedural di tepi tiap pulau (instanced), serta satu peri per rumah yang terbang mengitari rumah dengan jejak kilau dan gelembung penyemangat (`FAIRY_PHRASES` di narrative.ts).
 
@@ -43,7 +42,8 @@ Inti selalu menampilkan dua animasi sejak awal: **cincin keyakinan** pada tiap b
 ## Mengganti data dan teks
 
 - `src/data/ruang-tumbuh-p3md.json` — data analisis (objek `P` dari situs sumber). Setelah mengganti, jalankan `node scripts/gen-network.mjs`.
-- `src/data/narrative.ts` — semua teks naratif: definisi & pesan tiap ruang, teks tiap langkah, metodologi, referensi.
+- `src/data/ruang.ts` — konten lima ruang dari `docs/5 Ruang.pdf`: tagline, ringkasan, hasil yang ingin dirasakan, jembatan, masalah & solusi (judul + detail).
+- `src/data/narrative.ts` — teks merek (judul, motto), sambutan VUCA, teks langkah, ucapan peri.
 - `src/data/derive.ts` — fungsi turunan (beban ruang, slot masalah per rumah, ringkasan verdict, nama pendek masalah).
 - `src/config/presentation.ts` — rumah (urutan, sudut, varian, warna aksen situs), jarak pulau dari inti (`STAGE.houseRadius`), langkah presentasi, target kamera, palet tema. Sudut rumah harus sama dengan `ANGLE` di `scripts/gen-network.mjs`.
 
@@ -56,7 +56,7 @@ src/
   store/       useStore.ts — state presentasi (zustand)
   scene/       Scene, Lighting, Stage, CentralNetwork, ProblemTokens, ConnectionPaths,
                LoadColumns, HouseNode, Universe, Sun, Decorations, Fairies, CameraController, Labels, theme, geometry
-  ui/          StepContent, PresentationPanel, NavigationControls, Appendix, Overlay, FallbackView, Icons
+  ui/          StepContent, PresentationPanel, NavigationControls, Overlay, FallbackView, Icons
   hooks/ utils/  layout viewport, matematika kamera, deteksi WebGL
 scripts/       gen-network.mjs — tata letak jaringan dari data
 docs/          PLAN.md — rencana pengembangan

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { HOUSES, STEPS, STEP_FIRST_HOUSE, STEP_LAST, stepAt } from '../config/presentation'
-import { BRAND } from '../data/narrative'
+import { BRAND, WELCOME } from '../data/narrative'
 import { useStore } from '../store/useStore'
 import { Icon } from './Icons'
 
@@ -44,7 +44,6 @@ export function NavigationControls({ fallback = false }: Props) {
   const goTo = useStore((s) => s.goTo)
   const setExplore = useStore((s) => s.setExplore)
   const toggleTheme = useStore((s) => s.toggleTheme)
-  const setAppendix = useStore((s) => s.setAppendix)
   const start = useStore((s) => s.start)
   const { isFs, toggle, supported } = useFullscreen()
   const hidden = !started
@@ -70,10 +69,6 @@ export function NavigationControls({ fallback = false }: Props) {
         <div className="topbar__actions">
           <button type="button" className="btn btn--ghost" onClick={toMap} disabled={step === 0 && !explore} title="Kembali ke peta (Home)">
             Peta
-          </button>
-          <button type="button" className="btn btn--ghost" onClick={() => setAppendix(true)} title="Lampiran metodologi">
-            <span className="label-long">Metodologi</span>
-            <span className="label-short"><Icon name="book" size={16} /></span>
           </button>
           {!fallback && (
             <button type="button" className={`btn btn--ghost${explore ? ' is-on' : ''}`} onClick={() => setExplore(!explore)} aria-pressed={explore} title="Orbit kamera secara manual">
@@ -127,11 +122,11 @@ export function NavigationControls({ fallback = false }: Props) {
       {!started && (
         <div className="welcome" role="dialog" aria-labelledby="welcome-title">
           <div className="welcome__card">
-            <p className="welcome__eyebrow">{BRAND.eyebrow}</p>
-            <h1 id="welcome-title" className="welcome__title">{BRAND.title}</h1>
-            <p className="welcome__text">{BRAND.subtitle}</p>
+            <p className="welcome__eyebrow">{WELCOME.eyebrow}</p>
+            <h1 id="welcome-title" className="welcome__title welcome__title--vuca">{WELCOME.title}</h1>
+            <p className="welcome__text">{WELCOME.caption}</p>
             <button type="button" className="btn btn--primary btn--lg" onClick={start} autoFocus>
-              Mulai Presentasi
+              {WELCOME.cta}
             </button>
             <p className="welcome__hint">
               Gunakan tombol → / ← untuk berpindah, ↑ / ↓ untuk tab di tiap rumah, atau klik rumah pada peta.

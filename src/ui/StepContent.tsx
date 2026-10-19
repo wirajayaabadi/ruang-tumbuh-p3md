@@ -1,6 +1,6 @@
-import { HOUSES, HOUSE_INDEX, HOUSE_TABS, RUANG_ACCENT, STEPS, stepAt, type HouseTab, type Step } from '../config/presentation'
+import { useState } from 'react'
+import { HOUSES, HOUSE_INDEX, HOUSE_TABS, RUANG_ACCENT, STEPS, STEP_FIRST_HOUSE, stepAt, type HouseTab, type Step } from '../config/presentation'
 import {
-  DATA,
   PROBLEMS,
   PROBLEMS_BY_STABILITY,
   PROBLEM_ORDER,
@@ -9,14 +9,11 @@ import {
   RUANG_KEYS,
   RUANG_SHORT,
   VERDICT_LABEL,
-  WORD_COUNT,
-  houseSlots,
   pct,
-  ruangLoad,
   shortName,
-  topWords,
 } from '../data/derive'
-import { BRAND, RUANG_NARRATIVE, STEP_TEXT } from '../data/narrative'
+import { BRAND, STEP_TEXT } from '../data/narrative'
+import { RUANG_CONTENT, type RuangPoint } from '../data/ruang'
 import type { Problem, RuangKey } from '../data/types'
 import { useStore } from '../store/useStore'
 import { Icon, type IconName } from './Icons'
@@ -115,29 +112,31 @@ function ProblemDetail({ p }: { p: Problem }) {
 /* ---------- konten per langkah ---------- */
 
 function IntroContent() {
-  const m = DATA.meta
+  const goTo = useStore((st) => st.goTo)
   return (
     <>
       <p className="panel__eyebrow">{BRAND.eyebrow}</p>
       <h2 className="panel__title panel__title--lg">{BRAND.title}</h2>
+      <p className="panel__motto">{BRAND.motto}</p>
       <p className="panel__message">{BRAND.subtitle}</p>
-      <div className="stats">
-        <Stat value={m.lines} label="aspirasi" />
-        <Stat value={m.people} label="agent" />
-        <Stat value={m.words} label="isu" />
-        <Stat value={PROBLEMS.length} label="masalah" />
-        <Stat value={RUANG_KEYS.length} label="ruang" />
-      </div>
       <h3 className="section__title">{STEP_TEXT.intro.heading}</h3>
       {STEP_TEXT.intro.body.map((t) => (
         <p key={t} className="panel__text">{t}</p>
       ))}
-      <div className="bars">
-        {RUANG_KEYS.map((r) => (
-          <Bar key={r} value={WORD_COUNT[r] / 63} color={RUANG_ACCENT[r]} label={RUANG_SHORT[r]} right={String(WORD_COUNT[r])} />
+      <ol className="ruang-cards">
+        {HOUSES.map((h, i) => (
+          <li key={h.id}>
+            <button type="button" className="ruang-card" style={{ ['--accent' as string]: h.accent }} onClick={() => goTo(STEP_FIRST_HOUSE + i)}>
+              <span className="ruang-card__icon"><Icon name={h.id} size={22} /></span>
+              <span className="ruang-card__body">
+                <b>{h.name}</b>
+                <span>{RUANG_CONTENT[h.id].tagline}</span>
+              </span>
+              <span className="ruang-card__num">{i + 1}</span>
+            </button>
+          </li>
         ))}
-      </div>
-      <p className="muted small">{DATA.nodes.length} isu dalam jaringan; {topWords('belajar', 1)[0] ? '50 kata teratas ditampilkan di panggung.' : ''}</p>
+      </ol>
     </>
   )
 }
@@ -199,20 +198,40 @@ function FlowContent() {
   )
 }
 
+/** Daftar poin; klik sebuah poin untuk membuka detail (pegangan bila ditanya). */
+function PointList({ points, accent, kind }: { points: RuangPoint[]; accent: string; kind: 'masalah' | 'solusi' }) {
+  const [open, setOpen] = useState<number | null>(null)
+  return (
+    <ol className={`points points--${kind}`}>
+      {points.map((p, i) => {
+        const isOpen = open === i
+        return (
+          <li key={p.title} className={`point${isOpen ? ' is-open' : ''}`}>
+            <button type="button" className="point__btn" onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen} style={{ ['--accent' as string]: accent }}>
+              <span className="point__num">{i + 1}</span>
+              <span className="point__title">{p.title}</span>
+              <span className="point__chev" aria-hidden>{isOpen ? '−' : '+'}</span>
+            </button>
+            {isOpen && <p className="point__detail">{p.detail}</p>}
+          </li>
+        )
+      })}
+    </ol>
+  )
+}
+
 function HouseContent({ step }: { step: Step }) {
   const house = HOUSES[step.houseIndex!]
   const r = house.id
   const tab = useStore((s) => s.tab)
   const setTab = useStore((s) => s.setTab)
-  const nar = RUANG_NARRATIVE[r]
-  const load = ruangLoad(r)
-  const slots = houseSlots(r)
-  const words = topWords(r, 10)
+  const c = RUANG_CONTENT[r]
   const num = step.houseIndex! + 1
 
   return (
     <>
       <Head eyebrow={`Ruang ${num} dari ${HOUSES.length}`} title={house.name} icon={r} accent={house.accent} />
+      <p className="panel__def">{c.tagline}</p>
       <div className="tabs" role="tablist" aria-label="Bagian materi">
         {HOUSE_TABS.map((t) => (
           <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} className={`tab${tab === t.id ? ' is-active' : ''}`} style={{ ['--accent' as string]: house.accent }} onClick={() => setTab(t.id as HouseTab)}>
@@ -223,71 +242,28 @@ function HouseContent({ step }: { step: Step }) {
 
       {tab === 'ringkasan' && (
         <>
-          <p className="panel__def">{nar.definition}</p>
-          <p className="panel__message">{nar.message}</p>
-          <ul className="panel__points">
-            {nar.points.slice(0, 3).map((t) => (
-              <li key={t}><span className="panel__bullet" style={{ background: house.accent }} />{t}</li>
-            ))}
-          </ul>
+          <h3 className="section__title">Ringkasan</h3>
+          {c.ringkasan.map((t) => (
+            <p key={t} className="panel__text">{t}</p>
+          ))}
+          <h3 className="section__title">Hasil yang ingin dirasakan</h3>
+          <blockquote className="quote" style={{ ['--accent' as string]: house.accent }}>“{c.hasil}”</blockquote>
+          <h3 className="section__title">{c.jembatanTitle}</h3>
+          <p className="panel__text">{c.jembatan}</p>
         </>
       )}
 
       {tab === 'masalah' && (
         <>
-          <p className="panel__text">Masalah yang bersandar pada ruang ini menurut aspirasi (utama, pendukung) dan menurut rencana tim.</p>
-          <ul className="slots">
-            {slots.map((s) => (
-              <li key={`${s.problem.id}-${s.kind}`} className={`slot slot--${s.kind}${s.thin ? ' is-thin' : ''}`}>
-                <span className="slot__diamond" style={{ ['--accent' as string]: house.accent }} />
-                <div>
-                  <b>{shortName(s.problem.id)}</b>
-                  <span className="slot__meta">
-                    {s.kind === 'main' ? `ruang utama · ${pct(s.problem.share[r])}` : s.kind === 'support' ? `ruang pendukung · ${pct(s.problem.share[r])}` : `hanya rencana tim · data: ${RUANG_SHORT[s.problem.main]}`}
-                    {' · '}<span className={`verdict verdict--${s.problem.verdict}`}>{VERDICT_LABEL[s.problem.verdict]}</span>
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <p className="muted small">◆ berisi = mengalir ke sini menurut aspirasi · ◇ kosong = hanya direncanakan tim.</p>
+          <p className="muted small" style={{ marginTop: 0 }}>Masalah yang dijawab ruang ini. Klik poin untuk membuka penjelasan.</p>
+          <PointList points={c.masalah} accent={house.accent} kind="masalah" />
         </>
       )}
 
-      {tab === 'kata' && (
+      {tab === 'solusi' && (
         <>
-          <h3 className="section__title">Kata solusi</h3>
-          <div className="kws">
-            {DATA.anchors[r].map((w) => (
-              <span key={w} className="kw kw--accent" style={{ ['--accent' as string]: house.accent }}>{w}</span>
-            ))}
-          </div>
-          <h3 className="section__title">Isu teratas ({WORD_COUNT[r]} isu dekat ruang ini)</h3>
-          <div className="bars">
-            {words.map((w) => (
-              <Bar key={w.id} value={w.f / words[0].f} color={house.accent} label={w.id} right={`${w.f}`} />
-            ))}
-          </div>
-        </>
-      )}
-
-      {tab === 'beban' && (
-        <>
-          <div className="stats stats--3">
-            <Stat value={load.plan} label="rencana tim" />
-            <Stat value={load.data} label="menurut aspirasi" />
-            <Stat value={load.delta > 0 ? `+${load.delta}` : load.delta < 0 ? `−${-load.delta}` : '±0'} label="selisih" />
-          </div>
-          <p className="panel__text">
-            {load.data} masalah utama{load.thin ? ` (+${load.thin} berdata tipis)` : ''}, {load.support} pendukung, {load.planOnly} hanya rencana.
-          </p>
-          <h3 className="section__title">Keyakinan masalah terkait</h3>
-          <div className="bars">
-            {slots.filter((s) => s.kind !== 'plan').map((s) => (
-              <Bar key={s.problem.id} value={s.problem.p_main} color={house.accent} label={shortName(s.problem.id)} right={`${pct(s.problem.p_main)} · ${s.problem.var_same}/${s.problem.n_var}`} />
-            ))}
-          </div>
-          <p className="muted small">Persen = seberapa sering ruang terdekat tetap sama saat aspirasi diacak ulang; n/6 = definisi kata solusi yang sepakat.</p>
+          <p className="muted small" style={{ marginTop: 0 }}>Langkah yang dijalankan di ruang ini. Klik poin untuk membuka penjelasan.</p>
+          <PointList points={c.solusi} accent={house.accent} kind="solusi" />
         </>
       )}
     </>
