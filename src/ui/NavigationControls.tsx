@@ -35,6 +35,7 @@ interface Props {
 /** Kontrol HTML yang selalu berada di layar: Prev/Next/Peta/Fullscreen/tema/Metodologi, indikator, daftar rumah. */
 export function NavigationControls({ fallback = false }: Props) {
   const started = useStore((s) => s.started)
+  const loading = useStore((s) => s.loading)
   const step = useStore((s) => s.step)
   const explore = useStore((s) => s.explore)
   const theme = useStore((s) => s.theme)
@@ -46,7 +47,7 @@ export function NavigationControls({ fallback = false }: Props) {
   const toggleTheme = useStore((s) => s.toggleTheme)
   const start = useStore((s) => s.start)
   const { isFs, toggle, supported } = useFullscreen()
-  const hidden = !started
+  const hidden = !started || loading
   const current = stepAt(step)
   const listRef = useRef<HTMLDivElement>(null)
 
@@ -119,7 +120,7 @@ export function NavigationControls({ fallback = false }: Props) {
         </button>
       </nav>
 
-      {!started && (
+      {!started && fallback && (
         <div className="welcome" role="dialog" aria-labelledby="welcome-title">
           <div className="welcome__card">
             <p className="welcome__eyebrow">{WELCOME.eyebrow}</p>

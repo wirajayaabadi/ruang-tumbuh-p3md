@@ -56,7 +56,7 @@ src/
   store/       useStore.ts — state presentasi (zustand)
   scene/       Scene, Lighting, Stage, CentralNetwork, ProblemTokens, ConnectionPaths,
                HouseNode, Universe, Sun, Decorations, Bats, CameraController, ExploreControls, Labels, theme, geometry
-  ui/          StepContent, PresentationPanel, NavigationControls, Overlay, FallbackView, Icons
+  ui/          StepContent, PresentationPanel, NavigationControls, LoadingScreen, Overlay, FallbackView, Icons
   hooks/ utils/  layout viewport, matematika kamera, deteksi WebGL
 scripts/       gen-network.mjs — tata letak jaringan dari data
 docs/          PLAN.md — rencana pengembangan

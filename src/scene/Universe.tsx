@@ -68,8 +68,8 @@ const SKY_FRAGMENT = /* glsl */ `
 `
 
 /** Langit malam: bola latar dengan nebula lembut + dua lapis bintang yang berputar sangat perlahan. Hanya tampil pada tema gelap. */
-export function Universe() {
-  const dark = useStore((s) => s.theme === 'dark')
+export function Universe({ force = false }: { force?: boolean }) {
+  const dark = useStore((s) => s.theme === 'dark') || force
   const group = useRef<THREE.Group>(null)
   const brightMat = useRef<THREE.PointsMaterial>(null)
   const texture = useMemo(() => getSoftDotTexture(), [])

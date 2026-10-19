@@ -23,8 +23,8 @@ interface Meteor {
 }
 
 /** Meteor biru yang sesekali melintas di langit (hanya tema gelap; dilewati saat prefers-reduced-motion). */
-export function Meteors() {
-  const dark = useStore((s) => s.theme === 'dark')
+export function Meteors({ force = false }: { force?: boolean }) {
+  const dark = useStore((s) => s.theme === 'dark') || force
   const tex = useMemo(() => getSoftDotTexture(), [])
   const mats = useMemo(
     () => ({

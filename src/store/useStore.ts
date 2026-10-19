@@ -6,6 +6,8 @@ export type Phase = 'idle' | 'traveling' | 'arrived'
 
 interface State {
   started: boolean
+  /** layar pemuatan setelah 'Mulai Presentasi' */
+  loading: boolean
   /** indeks ke STEPS */
   step: number
   phase: Phase
@@ -22,6 +24,7 @@ interface State {
   pulseId: number
 
   start: () => void
+  finishLoading: () => void
   goTo: (step: number) => void
   next: () => void
   prev: () => void
@@ -70,6 +73,7 @@ if (typeof document !== 'undefined') document.documentElement.setAttribute('data
 
 export const useStore = create<State>((set, get) => ({
   started: false,
+  loading: false,
   step: 0,
   phase: 'idle',
   panelVisible: false,
@@ -84,9 +88,12 @@ export const useStore = create<State>((set, get) => ({
   pulseId: 0,
 
   start: () => {
+    // Memulai = layar pemuatan dulu; panel pembuka tampil setelah pemuatan selesai.
+    set({ started: true, loading: true, phase: 'arrived', panelVisible: false })
+  },
+  finishLoading: () => {
     const s = get()
-    // Memulai = menampilkan panel pembuka tanpa perjalanan kamera.
-    set({ started: true, phase: 'arrived', panelVisible: stepHasPanel(s.step) })
+    set({ loading: false, panelVisible: stepHasPanel(s.step) && !s.explore })
   },
 
   goTo: (step) => {

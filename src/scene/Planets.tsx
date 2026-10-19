@@ -54,8 +54,8 @@ function planetGeometry(def: PlanetDef) {
 }
 
 /** Tujuh planet hias yang mengorbit perlahan mengitari sumbu tegak dunia pada sabuk di sekitar cakrawala (terlihat dari overview di belakang pulau). */
-export function Planets() {
-  const dark = useStore((s) => s.theme === 'dark')
+export function Planets({ force = false }: { force?: boolean }) {
+  const dark = useStore((s) => s.theme === 'dark') || force
   const tex = useMemo(() => getSoftDotTexture(), [])
   const geoms = useMemo(() => PLANETS.map(planetGeometry), [])
   const mats = useMemo(
