@@ -9,7 +9,7 @@ import { paintVertices, smoothstep } from '../scene/procgeo'
 import { getSoftDotTexture } from '../scene/textures'
 import { useStore } from '../store/useStore'
 
-const DURATION_MS = 4600
+const DURATION_MS = 8000
 const TIP_MS = 2300
 const LOGO_URL = `${import.meta.env.BASE_URL}p3md-logo.png`
 
@@ -212,19 +212,7 @@ function LoadingInner() {
   }, [loading, reduce, finishLoading])
 
   return (
-    <div className={`loading${closing ? ' is-closing' : ''}`} role="status" aria-live="polite" aria-label="Memuat presentasi">
-      <div className="loading__nebula" aria-hidden />
-      <Canvas className="loading__canvas" dpr={[1, 1.5]} camera={{ fov: 42, position: [0, 0, 7.5], near: 0.1, far: 600 }} gl={{ antialias: true, alpha: true }}>
-        <ambientLight intensity={0.8} color="#cfe0ff" />
-        <directionalLight position={[3, 4, 6]} intensity={1.6} color="#fff2d8" />
-        <directionalLight position={[-4, -2, 3]} intensity={0.5} color="#9fb8ff" />
-        <Suspense fallback={null}>
-          <Universe force />
-          <SidePlanets />
-          <Meteors force />
-          <Logo3D />
-        </Suspense>
-      </Canvas>
+    <div className={`loading__content${closing ? ' is-closing' : ''}`} role="status" aria-live="polite" aria-label="Memuat presentasi">
       <div className="loading__text">
         <p className="loading__tip" key={tip}>{LOADING_TIPS[tip]}</p>
         <div className="loading__bar" aria-hidden>
@@ -248,6 +236,10 @@ export function IntroOverlay() {
       {!started && (
         <div className="welcome welcome--galaxy" role="dialog" aria-labelledby="welcome-title">
           <div className="welcome__card">
+            <figure className="welcome__person">
+              <img src={`${import.meta.env.BASE_URL}${WELCOME.person.photo}`} alt={WELCOME.person.name} width={120} height={120} />
+              <figcaption>{WELCOME.person.name}</figcaption>
+            </figure>
             <p className="welcome__eyebrow">{WELCOME.eyebrow}</p>
             <h1 id="welcome-title" className="welcome__title welcome__title--vuca">{WELCOME.title}</h1>
             <p className="welcome__text">{WELCOME.caption}</p>

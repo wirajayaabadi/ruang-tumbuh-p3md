@@ -16,7 +16,12 @@ export const WELCOME = {
   title: 'VUCA',
   caption:
     'Volatility, Uncertainty, Complexity, Ambiguity. Dunia yang bergejolak, tidak pasti, rumit, dan ambigu. Lima Ruang Tumbuh adalah cara kita menghadapinya: tidak sendirian, tetapi bersama.',
-  cta: 'Mulai Presentasi',
+  cta: "Let's Explore",
+  /** tokoh kampanye yang ditampilkan di halaman awal */
+  person: {
+    name: 'Ir. Muhammad Farhan Ramadhany, S.T., M.Eng., IPM.',
+    photo: 'farhan.jpg',
+  },
 }
 
 export const STEP_TEXT = {

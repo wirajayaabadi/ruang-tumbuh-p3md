@@ -6,7 +6,7 @@ export type Phase = 'idle' | 'traveling' | 'arrived'
 
 interface State {
   started: boolean
-  /** layar pemuatan setelah 'Mulai Presentasi' */
+  /** layar pemuatan setelah tombol Let's Explore */
   loading: boolean
   /** indeks ke STEPS */
   step: number
@@ -146,3 +146,6 @@ export const useStore = create<State>((set, get) => ({
   },
   toggleTheme: () => get().setTheme(get().theme === 'light' ? 'dark' : 'light'),
 }))
+
+// Hanya saat pengembangan: memudahkan pengujian otomatis membaca state.
+if (import.meta.env.DEV) (window as unknown as { __store?: unknown }).__store = useStore

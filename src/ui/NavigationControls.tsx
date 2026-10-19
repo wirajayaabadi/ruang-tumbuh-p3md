@@ -123,6 +123,10 @@ export function NavigationControls({ fallback = false }: Props) {
       {!started && fallback && (
         <div className="welcome" role="dialog" aria-labelledby="welcome-title">
           <div className="welcome__card">
+            <figure className="welcome__person">
+              <img src={`${import.meta.env.BASE_URL}${WELCOME.person.photo}`} alt={WELCOME.person.name} width={120} height={120} />
+              <figcaption>{WELCOME.person.name}</figcaption>
+            </figure>
             <p className="welcome__eyebrow">{WELCOME.eyebrow}</p>
             <h1 id="welcome-title" className="welcome__title welcome__title--vuca">{WELCOME.title}</h1>
             <p className="welcome__text">{WELCOME.caption}</p>
