@@ -140,6 +140,15 @@ export function NavigationControls({ fallback = false }: Props) {
           <kbd>↑</kbd>/<kbd>↓</kbd> untuk berpindah tab.
         </p>
       )}
+
+      {explore && (
+        <p className="hint hint--explore" aria-live="polite">
+          <span className="label-long">
+            Seret: menoleh · Klik kanan seret: geser · Gulir: maju/mundur · <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>/panah: bergerak · <kbd>Q</kbd>/<kbd>E</kbd>: turun/naik · <kbd>Shift</kbd>: cepat · <kbd>Esc</kbd>: kembali
+          </span>
+          <span className="label-short">1 jari menoleh · 2 jari geser/cubit</span>
+        </p>
+      )}
     </>
   )
 }

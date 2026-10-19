@@ -56,30 +56,35 @@ function Box({ m, s, p, r }: { m: THREE.Material; s: [number, number, number]; p
   return <mesh geometry={UNIT_BOX} material={m} scale={s} position={p} rotation={r} castShadow receiveShadow />
 }
 
+/**
+ * Jendela. `items` = [x, y, z, rotasiY] pada PERMUKAAN dinding; bingkai dan kaca ditempatkan
+ * sedikit di luar permukaan sepanjang normal (local +z) agar tidak berimpit dengan dinding (z-fighting).
+ */
 function Windows({ m, frame, items }: { m: THREE.Material; frame: THREE.Material; items: Array<[number, number, number, number?]> }) {
   return (
     <>
       {items.map(([x, y, z, ry = 0], i) => (
         <group key={i} position={[x, y, z]} rotation-y={ry}>
-          <mesh geometry={UNIT_BOX} material={frame} scale={[0.74, 0.74, 0.08]} />
-          <mesh geometry={UNIT_BOX} material={m} scale={[0.58, 0.58, 0.1]} position-z={0.01} />
+          <mesh geometry={UNIT_BOX} material={frame} scale={[0.74, 0.74, 0.06]} position-z={0.04} />
+          <mesh geometry={UNIT_BOX} material={m} scale={[0.58, 0.58, 0.06]} position-z={0.06} />
         </group>
       ))}
     </>
   )
 }
 
+/** Pintu pada permukaan dinding (p = titik permukaan); daun pintu menonjol 0.02–0.12 di luar dinding. */
 function Door({ m, knob, p, w = 0.8, h = 1.35 }: { m: THREE.Material; knob: THREE.Material; p: [number, number, number]; w?: number; h?: number }) {
   return (
     <group position={p}>
-      <mesh geometry={UNIT_BOX} material={m} scale={[w, h, 0.1]} position-y={h / 2} castShadow />
-      <mesh geometry={UNIT_SPHERE} material={knob} scale={0.05} position={[w * 0.3, h * 0.5, 0.07]} />
+      <mesh geometry={UNIT_BOX} material={m} scale={[w, h, 0.1]} position={[0, h / 2, 0.07]} castShadow />
+      <mesh geometry={UNIT_SPHERE} material={knob} scale={0.05} position={[w * 0.3, h * 0.5, 0.14]} />
     </group>
   )
 }
 
 function buildVariant(house: HouseConfig, m: Mats): ReactNode {
-  const sideWin = (x: number, y: number) => [x, y, 0, Math.PI / 2] as [number, number, number, number]
+  const sideWin = (x: number, y: number) => [x, y, 0, x < 0 ? -Math.PI / 2 : Math.PI / 2] as [number, number, number, number]
   switch (house.variant) {
     case 'twin': {
       // Dua blok berdampingan dengan teras kecil: simbol kebersamaan.
@@ -90,8 +95,8 @@ function buildVariant(house: HouseConfig, m: Mats): ReactNode {
           <group position-x={-0.7}>
             <Box m={m.wall} s={[3.0, 2.3, 2.9]} p={[0, 1.15, 0]} />
             <mesh geometry={main} material={m.roof} position-y={2.3} castShadow receiveShadow />
-            <Door m={m.trim} knob={m.accent} p={[0, 0, 1.5]} />
-            <Windows m={m.window} frame={m.accent} items={[[-0.95, 1.35, 1.47], [0.95, 1.35, 1.47], sideWin(-1.52, 1.3)]} />
+            <Door m={m.trim} knob={m.accent} p={[0, 0, 1.45]} />
+            <Windows m={m.window} frame={m.accent} items={[[-0.95, 1.35, 1.45], [0.95, 1.35, 1.45], sideWin(-1.5, 1.3)]} />
             {/* teras */}
             <Box m={m.accent} s={[1.7, 0.08, 0.9]} p={[0, 1.7, 1.9]} />
             <mesh geometry={UNIT_CYLINDER} material={m.trim} scale={[0.05, 1.7, 0.05]} position={[-0.75, 0.85, 2.25]} castShadow />
@@ -100,8 +105,8 @@ function buildVariant(house: HouseConfig, m: Mats): ReactNode {
           <group position-x={1.75}>
             <Box m={m.wall} s={[1.9, 1.7, 2.3]} p={[0, 0.85, 0]} />
             <mesh geometry={annex} material={m.roof} position-y={1.7} castShadow receiveShadow />
-            <Door m={m.trim} knob={m.accent} p={[0, 0, 1.2]} w={0.6} h={1.1} />
-            <Windows m={m.window} frame={m.accent} items={[sideWin(0.98, 1.0)]} />
+            <Door m={m.trim} knob={m.accent} p={[0, 0, 1.15]} w={0.6} h={1.1} />
+            <Windows m={m.window} frame={m.accent} items={[sideWin(0.95, 1.0)]} />
           </group>
         </>
       )
@@ -112,11 +117,11 @@ function buildVariant(house: HouseConfig, m: Mats): ReactNode {
         <>
           <Box m={m.wall} s={[4.2, 2.5, 2.9]} p={[0, 1.25, 0]} />
           <mesh geometry={roof} material={m.roof} position-y={2.5} castShadow receiveShadow />
-          <Door m={m.trim} knob={m.accent} p={[0, 0, 1.5]} />
-          <Windows m={m.window} frame={m.accent} items={[[-1.4, 1.35, 1.47], [1.4, 1.35, 1.47], sideWin(-2.12, 1.3), sideWin(2.12, 1.3)]} />
+          <Door m={m.trim} knob={m.accent} p={[0, 0, 1.45]} />
+          <Windows m={m.window} frame={m.accent} items={[[-1.4, 1.35, 1.45], [1.4, 1.35, 1.45], sideWin(-2.1, 1.3), sideWin(2.1, 1.3)]} />
           {/* jam di gevel */}
-          <mesh geometry={UNIT_CYLINDER} material={m.accent} scale={[0.36, 0.08, 0.36]} rotation-x={Math.PI / 2} position={[0, 3.15, 1.6]} />
-          <mesh geometry={UNIT_CYLINDER} material={m.wall} scale={[0.26, 0.1, 0.26]} rotation-x={Math.PI / 2} position={[0, 3.15, 1.62]} />
+          <mesh geometry={UNIT_CYLINDER} material={m.accent} scale={[0.36, 0.08, 0.36]} rotation-x={Math.PI / 2} position={[0, 3.15, 1.8]} />
+          <mesh geometry={UNIT_CYLINDER} material={m.wall} scale={[0.26, 0.06, 0.26]} rotation-x={Math.PI / 2} position={[0, 3.15, 1.85]} />
           {/* menara lonceng kecil */}
           <Box m={m.wall} s={[0.7, 0.9, 0.7]} p={[1.3, 3.45, -0.3]} />
           <mesh geometry={UNIT_PYRAMID} material={m.roof} scale={[0.6, 0.55, 0.6]} rotation-y={Math.PI / 4} position={[1.3, 4.17, -0.3]} castShadow />
@@ -132,8 +137,8 @@ function buildVariant(house: HouseConfig, m: Mats): ReactNode {
           <Box m={m.wall} s={[3.4, 2.6, 2.9]} p={[0, 1.3, 0]} />
           {/* atap datar + parapet */}
           <Box m={m.roof} s={[3.8, 0.22, 3.3]} p={[0, 2.71, 0]} />
-          <Door m={m.trim} knob={m.accent} p={[0, 0, 1.5]} />
-          <Windows m={m.window} frame={m.accent} items={[[-1.05, 1.45, 1.47], [1.05, 1.45, 1.47], sideWin(-1.72, 1.4), sideWin(1.72, 1.4)]} />
+          <Door m={m.trim} knob={m.accent} p={[0, 0, 1.45]} />
+          <Windows m={m.window} frame={m.accent} items={[[-1.05, 1.45, 1.45], [1.05, 1.45, 1.45], sideWin(-1.7, 1.4), sideWin(1.7, 1.4)]} />
           {/* ruang mesin di atap, panel miring, antena */}
           <Box m={m.wall} s={[1.2, 0.7, 1.2]} p={[-0.85, 3.17, -0.4]} />
           <Box m={m.accent} s={[1.5, 0.06, 1.0]} p={[0.7, 3.2, 0.5]} r={[-0.5, 0, 0]} />
@@ -148,10 +153,10 @@ function buildVariant(house: HouseConfig, m: Mats): ReactNode {
         <>
           <Box m={m.wall} s={[3.6, 2.0, 3.0]} p={[0, 1.0, 0]} />
           <mesh geometry={UNIT_PYRAMID} material={m.roof} scale={[3.0, 1.3, 2.6]} rotation-y={Math.PI / 4} position-y={2.65} castShadow receiveShadow />
-          <Door m={m.trim} knob={m.accent} p={[0, 0, 1.55]} />
-          <Windows m={m.window} frame={m.accent} items={[[-1.05, 1.2, 1.52], sideWin(-1.82, 1.1), sideWin(1.82, 1.1)]} />
-          {/* plakat perisai */}
-          <Box m={m.accent} s={[0.62, 0.72, 0.06]} p={[1.05, 1.25, 1.53]} />
+          <Door m={m.trim} knob={m.accent} p={[0, 0, 1.5]} />
+          <Windows m={m.window} frame={m.accent} items={[[-1.05, 1.2, 1.5], sideWin(-1.8, 1.1), sideWin(1.8, 1.1)]} />
+          {/* plakat perisai (menonjol dari dinding, tidak berimpit) */}
+          <Box m={m.accent} s={[0.62, 0.72, 0.06]} p={[1.05, 1.25, 1.54]} />
           {/* tiang sudut */}
           {[[-1.85, -1.55], [1.85, -1.55], [-1.85, 1.55], [1.85, 1.55]].map(([x, z], i) => (
             <Box key={i} m={m.accent} s={[0.34, 2.35, 0.34]} p={[x, 1.17, z]} />
@@ -175,8 +180,16 @@ function buildVariant(house: HouseConfig, m: Mats): ReactNode {
             <torusGeometry args={[1.9, 0.06, 8, 40]} />
             <primitive object={m.accent} attach="material" />
           </mesh>
-          <Door m={m.trim} knob={m.accent} p={[0, 0, 1.66]} w={0.75} h={1.3} />
-          <Windows m={m.window} frame={m.accent} items={[[-1.2, 1.25, 1.2, 0.78], [1.2, 1.25, 1.2, -0.78], [-1.7, 1.25, 0.0, Math.PI / 2]]} />
+          <Door m={m.trim} knob={m.accent} p={[0, 0, 1.7]} w={0.75} h={1.3} />
+          <Windows
+            m={m.window}
+            frame={m.accent}
+            items={[
+              [-1.202, 1.25, 1.202, -Math.PI / 4],
+              [1.202, 1.25, 1.202, Math.PI / 4],
+              [-1.7, 1.25, 0.0, -Math.PI / 2],
+            ]}
+          />
           {/* panel surya miring di samping */}
           <mesh geometry={UNIT_CYLINDER} material={m.trim} scale={[0.05, 0.9, 0.05]} position={[2.35, 0.45, 0.5]} castShadow />
           <Box m={m.accent} s={[1.3, 0.06, 1.0]} p={[2.35, 0.95, 0.5]} r={[-0.6, 0, 0]} />

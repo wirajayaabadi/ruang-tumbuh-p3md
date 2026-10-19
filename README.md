@@ -22,7 +22,7 @@ node scripts/gen-network.mjs   # regenerasi tata letak jaringan dari data
 | 2 | Sembilan masalah & alirannya | 01 + 07 + 08 | Garis aliran tiap masalah dari inti ke rumah ruang terdekat (solid) dan pendukung (putus-putus); pilih masalah untuk menyorot aliran, cincin keyakinan, dan keterkaitannya |
 | 3–7 | Ruang Aman, Bersama, Belajar, Inovasi, Masa Depan | docs/5 Ruang.pdf | Kamera mendekat ke rumah; panel bertab (`↑`/`↓`): Ringkasan (ringkasan, hasil yang ingin dirasakan, jembatan ke ruang berikutnya) · Masalah (poin; klik untuk detail) · Solusi (poin; klik untuk detail) |
 
-Hiasan dunia: matahari hias dengan halo berdenyut dan cahaya tepi hangat (arah di `SUN_DIRECTION`), rumput dan bunga prosedural di tepi tiap pulau (instanced), serta satu peri per rumah yang terbang mengitari rumah dengan jejak kilau dan gelembung penyemangat (`FAIRY_PHRASES` di narrative.ts).
+Hiasan dunia: tujuh planet hias (Merkurius, Venus, Mars, Jupiter berpita, Saturnus bercincin, Uranus berporos miring, Neptunus) yang mengorbit perlahan di sabuk langit pada ketinggian berbeda, meteor biru yang sesekali melintas di langit (tema gelap, acak tiap 5–14 detik, dilewati saat reduced motion), matahari hias dengan halo berdenyut dan bulan berkawah dengan halo biru yang mengorbit perlahan mengelilingi dunia secara berseberangan (satu putaran ≈ 4 menit; arah awal di `SUN_DIRECTION`), masing-masing membawa cahaya tepi hangat dan biru, rumput dan bunga prosedural di tepi tiap pulau (instanced), serta satu kelelawar kecil per rumah (bergantian terinspirasi Zubat, Noibat, Woobat; model prosedural low-poly di `Bats.tsx`) yang terbang mengitari rumah dengan jalur mengembara, sesekali menukik atau melayang, miring saat berbelok, dan memberi semangat (`FAIRY_PHRASES` di narrative.ts).
 
 Inti selalu menampilkan dua animasi sejak awal: **cincin keyakinan** pada tiap berlian masalah (cincin luar = ruang terdekat tetap sama saat aspirasi diacak ulang; cincin dalam = definisi kata solusi yang sepakat) dan **garis keterkaitan** antar berlian (tebal = kuat, tipis = sedang, putus-putus = lemah), keduanya mengikuti berlian yang mengorbit.
 
@@ -36,7 +36,7 @@ Inti selalu menampilkan dua animasi sejak awal: **cincin keyakinan** pada tiap b
 | Lompat langkah | chip langkah di bar bawah, atau klik rumah 3D |
 | Pilih masalah | chip masalah di panel, atau klik berlian masalah di 3D; `Escape` melepas pilihan |
 | Tema gelap (default) / terang | tombol matahari/bulan (tersimpan di `localStorage`) |
-| Orbit manual | **Eksplorasi** (otomatis nonaktif saat presentasi dilanjutkan) |
+| Kamera bebas | **Eksplorasi** (orang pertama): seret kiri = menoleh di tempat mengikuti pandangan kamera, klik kanan seret / Shift+seret / dua jari = geser, gulir / cubit = maju-mundur ke arah kursor, `W` `A` `S` `D` / panah = bergerak, `Q`/`E` = turun/naik, `Shift` = cepat, `Esc` atau **Lanjutkan Presentasi** = kembali |
 | Layar penuh | **Fullscreen** |
 
 ## Mengganti data dan teks
@@ -55,7 +55,7 @@ src/
   config/      presentation.ts (konfigurasi terpusat) · network.ts (dihasilkan)
   store/       useStore.ts — state presentasi (zustand)
   scene/       Scene, Lighting, Stage, CentralNetwork, ProblemTokens, ConnectionPaths,
-               LoadColumns, HouseNode, Universe, Sun, Decorations, Fairies, CameraController, Labels, theme, geometry
+               HouseNode, Universe, Sun, Decorations, Bats, CameraController, ExploreControls, Labels, theme, geometry
   ui/          StepContent, PresentationPanel, NavigationControls, Overlay, FallbackView, Icons
   hooks/ utils/  layout viewport, matematika kamera, deteksi WebGL
 scripts/       gen-network.mjs — tata letak jaringan dari data

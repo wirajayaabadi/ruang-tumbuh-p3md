@@ -1,44 +1,26 @@
 import { Suspense, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import { CAMERA_VIEWS, HOUSES } from '../config/presentation'
 import { useStore } from '../store/useStore'
 import { DEG, fromPolar } from '../utils/math'
-import { CameraController, cameraState } from './CameraController'
+import { CameraController } from './CameraController'
+import { ExploreControls } from './ExploreControls'
 import { CentralNetwork } from './CentralNetwork'
 import { ConnectionPaths } from './ConnectionPaths'
 import { HouseNode } from './HouseNode'
 import { LabelProjector } from './Labels'
 import { Lighting } from './Lighting'
+import { Meteors } from './Meteors'
+import { Planets } from './Planets'
 import { ProblemTokens } from './ProblemTokens'
 import { Decorations } from './Decorations'
-import { Fairies } from './Fairies'
+import { Bats } from './Bats'
+import { Companions } from './Companions'
 import { Stage } from './Stage'
 import { Sun } from './Sun'
 import { Universe } from './Universe'
 import { usePalette } from './theme'
-
-function ExploreControls() {
-  const explore = useStore((s) => s.explore)
-  if (!explore) return null
-  const t = cameraState.target
-  return (
-    <OrbitControls
-      makeDefault
-      target={[t.x, t.y, t.z]}
-      enablePan={false}
-      enableDamping
-      dampingFactor={0.08}
-      minDistance={7}
-      maxDistance={70}
-      minPolarAngle={0.2}
-      maxPolarAngle={1.4}
-      zoomSpeed={0.7}
-      rotateSpeed={0.6}
-    />
-  )
-}
 
 export function Scene() {
   const isSmall = useStore((s) => s.layout.isSmall)
@@ -63,6 +45,8 @@ export function Scene() {
       <Suspense fallback={null}>
         <Universe />
         <Sun />
+        <Meteors />
+        <Planets />
         <Lighting />
         <Stage />
         <CentralNetwork />
@@ -72,7 +56,8 @@ export function Scene() {
           <HouseNode key={house.id} house={house} index={i} />
         ))}
         <Decorations />
-        <Fairies />
+        <Bats />
+        <Companions />
         <LabelProjector />
         <CameraController />
         <ExploreControls />

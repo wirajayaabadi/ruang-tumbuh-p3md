@@ -321,6 +321,8 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 .welcome__hint { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
 
 .hint { position: absolute; left: 50%; bottom: calc(var(--bottom-bar) + 10px); transform: translateX(-50%); z-index: 50; margin: 0; font-size: 13px; color: var(--ink-soft); background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; animation: rise 0.5s var(--ease) both; }
+kbd.k, .hint kbd { margin: 0 1px; }
+.hint--explore { max-width: calc(100vw - 40px); white-space: normal; text-align: center; }
 kbd { font: inherit; font-weight: 700; padding: 0 4px; border: 1px solid var(--line); border-radius: 4px; background: var(--kbd); }
 
 /* ---------- tampilan cadangan (tanpa WebGL) ---------- */

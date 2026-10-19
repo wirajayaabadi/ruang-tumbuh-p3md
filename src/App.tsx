@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { HOUSE_TABS, stepAt, type HouseTab } from './config/presentation'
 import { useLayout } from './hooks/useLayout'
+import { isExploreKey } from './scene/ExploreControls'
 import { Scene } from './scene/Scene'
 import { useStore } from './store/useStore'
 import { FallbackView } from './ui/FallbackView'
@@ -15,6 +16,11 @@ function useKeyboard() {
       const target = e.target as HTMLElement | null
       if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) return
       const s = useStore.getState()
+      // Mode eksplorasi: tombol gerak ditangani kamera bebas; Escape keluar dari eksplorasi.
+      if (s.explore) {
+        if (e.key === 'Escape' && !document.fullscreenElement) s.setExplore(false)
+        if (isExploreKey(e.key)) return
+      }
       const isHouse = stepAt(s.step).kind === 'house'
       const tabIds = HOUSE_TABS.map((t) => t.id) as HouseTab[]
       switch (e.key) {

@@ -97,6 +97,7 @@ export function CameraController() {
     const dtc = Math.min(dt, 0.05)
 
     if (st.explore) {
+      // kamera bebas menulis posisi & titik pandang (cameraState.target) sendiri
       s.pos.copy(camera.position)
       if (controls) s.target.copy(controls.target)
       s.animating = false
