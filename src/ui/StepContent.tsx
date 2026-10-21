@@ -1,10 +1,6 @@
-import { useState } from 'react'
 import { HOUSES, HOUSE_INDEX, HOUSE_TABS, RUANG_ACCENT, STEPS, STEP_FIRST_HOUSE, stepAt, type HouseTab, type Step } from '../config/presentation'
 import {
   PROBLEMS,
-  PROBLEMS_BY_STABILITY,
-  PROBLEM_ORDER,
-  RELATION_LEVEL_COUNT,
   RELATIONS_SORTED,
   RUANG_KEYS,
   RUANG_SHORT,
@@ -16,6 +12,7 @@ import { BRAND, STEP_TEXT } from '../data/narrative'
 import { RUANG_CONTENT, type RuangPoint } from '../data/ruang'
 import type { Problem, RuangKey } from '../data/types'
 import { useStore } from '../store/useStore'
+import { AspirasiForm } from './AspirasiForm'
 import { Icon, type IconName } from './Icons'
 
 /* ---------- potongan kecil ---------- */
@@ -34,47 +31,12 @@ function Head({ eyebrow, title, icon, accent }: { eyebrow: string; title: string
   )
 }
 
-function Stat({ value, label }: { value: string | number; label: string }) {
-  return (
-    <div className="stat">
-      <b className="stat__value">{value}</b>
-      <span className="stat__label">{label}</span>
-    </div>
-  )
-}
-
 function Bar({ value, color, label, right }: { value: number; color: string; label: string; right: string }) {
   return (
     <div className="bar">
       <span className="bar__label">{label}</span>
       <span className="bar__track"><i style={{ width: `${Math.max(2, value * 100)}%`, background: color }} /></span>
       <span className="bar__value">{right}</span>
-    </div>
-  )
-}
-
-function ProblemChips({ ids = PROBLEM_ORDER }: { ids?: string[] }) {
-  const selected = useStore((s) => s.selectedProblem)
-  const selectProblem = useStore((s) => s.selectProblem)
-  return (
-    <div className="chips" role="list" aria-label="Daftar masalah">
-      {ids.map((id) => {
-        const p = PROBLEMS.find((q) => q.id === id)!
-        return (
-          <button
-            key={id}
-            type="button"
-            role="listitem"
-            className={`pchip${selected === id ? ' is-active' : ''}`}
-            style={{ ['--accent' as string]: RUANG_ACCENT[p.main] }}
-            onClick={() => selectProblem(id)}
-            aria-pressed={selected === id}
-          >
-            <span className="pchip__diamond" />
-            {shortName(id)}
-          </button>
-        )
-      })}
     </div>
   )
 }
@@ -163,6 +125,7 @@ function RelationList({ id }: { id: string }) {
 
 function FlowContent() {
   const selected = useStore((s) => s.selectedProblem)
+  const selectProblem = useStore((s) => s.selectProblem)
   const p = selected ? PROBLEMS.find((q) => q.id === selected) : null
   return (
     <>
@@ -170,52 +133,51 @@ function FlowContent() {
       {STEP_TEXT.flow.body.map((t) => (
         <p key={t} className="panel__text">{t}</p>
       ))}
-      <div className="stats stats--4">
-        <Stat value={RELATION_LEVEL_COUNT.kuat} label="kuat" />
-        <Stat value={RELATION_LEVEL_COUNT.sedang} label="sedang" />
-        <Stat value={RELATION_LEVEL_COUNT.lemah} label="lemah" />
-        <Stat value={RELATION_LEVEL_COUNT.tidak} label="tidak" />
-      </div>
-      <ProblemChips />
       {p ? (
         <>
+          <button type="button" className="btn btn--ghost" onClick={() => selectProblem(null)} style={{ marginBottom: 10 }}>
+            ‹ Semua masalah
+          </button>
           <ProblemDetail p={p} />
           <h3 className="section__title">Keterkaitan dengan masalah lain</h3>
           <RelationList id={p.id} />
         </>
       ) : (
         <>
-          <h3 className="section__title">Keyakinan tiap masalah</h3>
-          <div className="bars">
-            {PROBLEMS_BY_STABILITY.map((q) => (
-              <Bar key={q.id} value={q.p_main} color={RUANG_ACCENT[q.main]} label={shortName(q.id)} right={`${pct(q.p_main)} · ${q.var_same}/${q.n_var}`} />
+          <h3 className="section__title">Sembilan masalah, satu inti</h3>
+          <ol className="ruang-cards">
+            {PROBLEMS.map((q, i) => (
+              <li key={q.id}>
+                <button type="button" className="ruang-card" style={{ ['--accent' as string]: RUANG_ACCENT[q.main] }} onClick={() => selectProblem(q.id)}>
+                  <span className="ruang-card__icon"><span className="pchip__diamond" style={{ width: 14, height: 14 }} /></span>
+                  <span className="ruang-card__body">
+                    <b>{shortName(q.id)}</b>
+                    <span>Mengalir ke {RUANG_SHORT[q.main]}{q.support.length ? ` · didukung ${q.support.map((r) => RUANG_SHORT[r]).join(', ')}` : ''}</span>
+                  </span>
+                  <span className="ruang-card__num">{i + 1}</span>
+                </button>
+              </li>
             ))}
-          </div>
-          <p className="muted small">Pilih masalah di atas, atau klik berlian di inti, untuk melihat alirannya dan keterkaitannya.</p>
+          </ol>
+          <p className="muted small">Pilih masalah, atau klik berlian di inti, untuk melihat aliran dan keterkaitannya.</p>
         </>
       )}
     </>
   )
 }
 
-/** Daftar poin; klik sebuah poin untuk membuka detail (pegangan bila ditanya). */
+/** Daftar poin masalah/solusi (judul saja; detail tetap tersimpan di src/data/ruang.ts sebagai pegangan). */
 function PointList({ points, accent, kind }: { points: RuangPoint[]; accent: string; kind: 'masalah' | 'solusi' }) {
-  const [open, setOpen] = useState<number | null>(null)
   return (
     <ol className={`points points--${kind}`}>
-      {points.map((p, i) => {
-        const isOpen = open === i
-        return (
-          <li key={p.title} className={`point${isOpen ? ' is-open' : ''}`}>
-            <button type="button" className="point__btn" onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen} style={{ ['--accent' as string]: accent }}>
-              <span className="point__num">{i + 1}</span>
-              <span className="point__title">{p.title}</span>
-              <span className="point__chev" aria-hidden>{isOpen ? '−' : '+'}</span>
-            </button>
-            {isOpen && <p className="point__detail">{p.detail}</p>}
-          </li>
-        )
-      })}
+      {points.map((p, i) => (
+        <li key={p.title} className="point">
+          <div className="point__row" style={{ ['--accent' as string]: accent }}>
+            <span className="point__num">{i + 1}</span>
+            <span className="point__title">{p.title}</span>
+          </div>
+        </li>
+      ))}
     </ol>
   )
 }
@@ -255,14 +217,14 @@ function HouseContent({ step }: { step: Step }) {
 
       {tab === 'masalah' && (
         <>
-          <p className="muted small" style={{ marginTop: 0 }}>Masalah yang dijawab ruang ini. Klik poin untuk membuka penjelasan.</p>
+          <p className="muted small" style={{ marginTop: 0 }}>Masalah yang dijawab ruang ini.</p>
           <PointList points={c.masalah} accent={house.accent} kind="masalah" />
         </>
       )}
 
       {tab === 'solusi' && (
         <>
-          <p className="muted small" style={{ marginTop: 0 }}>Langkah yang dijalankan di ruang ini. Klik poin untuk membuka penjelasan.</p>
+          <p className="muted small" style={{ marginTop: 0 }}>Langkah yang dijalankan di ruang ini.</p>
           <PointList points={c.solusi} accent={house.accent} kind="solusi" />
         </>
       )}
@@ -278,6 +240,8 @@ export function StepContent({ stepIndex }: { stepIndex: number }) {
       return <IntroContent />
     case 'flow':
       return <FlowContent />
+    case 'aspirasi':
+      return <AspirasiForm />
     case 'house':
     default:
       return <HouseContent step={step} />

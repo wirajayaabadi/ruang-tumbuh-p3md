@@ -140,7 +140,7 @@ export const PALETTES: Record<Theme, Palette> = {
 
 /* ---------- langkah presentasi ---------- */
 
-export type StepKind = 'intro' | 'flow' | 'house'
+export type StepKind = 'intro' | 'flow' | 'aspirasi' | 'house'
 
 export interface Step {
   kind: StepKind
@@ -155,6 +155,7 @@ export interface Step {
 export const STEPS: Step[] = [
   { kind: 'intro', id: 'peta', code: '00', title: 'Peta 5 Ruang' },
   { kind: 'flow', id: 'aliran', code: '01', title: 'Sembilan masalah & alirannya' },
+  { kind: 'aspirasi', id: 'aspirasi', code: '02', title: 'Aspirasimu' },
   ...HOUSES.map((h, i) => ({ kind: 'house' as const, id: h.id, code: '04', title: h.name, houseIndex: i })),
 ]
 
@@ -188,6 +189,8 @@ export const CAMERA_VIEWS: Record<Exclude<StepKind, 'house'>, OverviewView> & {
   intro: { angle: 90, radius: 29, height: 23, lookAt: [0, 2.4, 0] },
   // zoom ke inti sembilan masalah (cincin keyakinan & garis keterkaitan terbaca)
   flow: { angle: 90, radius: 13.5, height: 11, lookAt: [0, 4.2, 0] },
+  // langkah aspirasi: overview dari sudut lain, agak rendah, langit terlihat
+  aspirasi: { angle: 118, radius: 30, height: 17, lookAt: [0, 4.5, 0] },
   fov: 40,
   durationMin: 900,
   durationMax: 1400,

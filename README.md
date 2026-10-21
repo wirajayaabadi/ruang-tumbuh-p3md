@@ -14,13 +14,14 @@ npm run preview
 node scripts/gen-network.mjs   # regenerasi tata letak jaringan dari data
 ```
 
-## Alur presentasi (7 langkah)
+## Alur presentasi (8 langkah)
 
 | # | Langkah | Mode situs sumber | Yang terjadi di dunia 3D |
 | --- | --- | --- | --- |
 | 1 | Peta 5 Ruang | — | Overview; kartu lima ruang (klik = kunjungi); jaringan kata terbentuk bertahap di sekitar inti |
 | 2 | Sembilan masalah & alirannya | 01 + 07 + 08 | Garis aliran tiap masalah dari inti ke rumah ruang terdekat (solid) dan pendukung (putus-putus); pilih masalah untuk menyorot aliran, cincin keyakinan, dan keterkaitannya |
-| 3–7 | Ruang Aman, Bersama, Belajar, Inovasi, Masa Depan | docs/5 Ruang.pdf | Kamera mendekat ke rumah; panel bertab (`↑`/`↓`): Ringkasan (ringkasan, hasil yang ingin dirasakan, jembatan ke ruang berikutnya) · Masalah (poin; klik untuk detail) · Solusi (poin; klik untuk detail) |
+| 3 | Aspirasimu | — | Formulir aspirasi pengunjung (ruang tujuan, teks, nama/kontak opsional atau anonim); tiap kiriman memunculkan bintang baru yang melesat dari inti ke langit |
+| 4–8 | Ruang Aman, Bersama, Belajar, Inovasi, Masa Depan | docs/5 Ruang.pdf | Kamera mendekat ke rumah; panel bertab (`↑`/`↓`): Ringkasan (ringkasan, hasil yang ingin dirasakan, jembatan ke ruang berikutnya) · Masalah (daftar poin) · Solusi (daftar poin) |
 
 Hiasan dunia: tujuh planet hias (Merkurius, Venus, Mars, Jupiter berpita, Saturnus bercincin, Uranus berporos miring, Neptunus) yang mengorbit perlahan di sabuk langit pada ketinggian berbeda, meteor biru yang sesekali melintas di langit (tema gelap, acak tiap 5–14 detik, dilewati saat reduced motion), matahari hias dengan halo berdenyut dan bulan berkawah dengan halo biru yang mengorbit perlahan mengelilingi dunia secara berseberangan (satu putaran ≈ 4 menit; arah awal di `SUN_DIRECTION`), masing-masing membawa cahaya tepi hangat dan biru, rumput dan bunga prosedural di tepi tiap pulau (instanced), serta satu kelelawar kecil per rumah (bergantian terinspirasi Zubat, Noibat, Woobat; model prosedural low-poly di `Bats.tsx`) yang terbang mengitari rumah dengan jalur mengembara, sesekali menukik atau melayang, miring saat berbelok, dan memberi semangat (`FAIRY_PHRASES` di narrative.ts).
 
@@ -62,6 +63,22 @@ src/
 scripts/       gen-network.mjs — tata letak jaringan dari data
 docs/          PLAN.md — rencana pengembangan
 ```
+
+## Pengumpulan aspirasi
+
+Aspirasi selalu tersimpan di perangkat pengunjung (`localStorage`). Agar juga terkirim ke tim, isi `VITE_ASPIRASI_WEBHOOK` (lihat `.env.example`; di Vercel atur sebagai Environment Variable) dengan URL yang menerima POST JSON. Cara termudah tanpa server: Google Apps Script yang menulis ke Spreadsheet:
+
+```js
+// Apps Script: Deploy → New deployment → Web app (Execute as: Me, Who has access: Anyone)
+function doPost(e) {
+  const d = JSON.parse(e.postData.contents)
+  SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Aspirasi')
+    .appendRow([d.createdAt, d.ruang, d.text, d.name, d.contact, d.id, d.ua])
+  return ContentService.createTextOutput('ok')
+}
+```
+
+Buat sheet bernama `Aspirasi` di spreadsheet yang terkait, lalu tempel URL Web App-nya ke variabel di atas.
 
 ## Pratinjau tautan
 

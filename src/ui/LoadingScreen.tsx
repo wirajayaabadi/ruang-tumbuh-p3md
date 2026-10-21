@@ -9,6 +9,7 @@ import { paintVertices, smoothstep } from '../scene/procgeo'
 import { getSoftDotTexture } from '../scene/textures'
 import { useStore } from '../store/useStore'
 import { Icon } from './Icons'
+import { unlockPrologueVideo } from './prologueVideo'
 
 const DURATION_MS = 8000
 const TIP_MS = 2300
@@ -250,7 +251,16 @@ export function IntroOverlay() {
             <p className="welcome__eyebrow">{WELCOME.eyebrow}</p>
             <h1 id="welcome-title" className="welcome__title welcome__title--vuca">{WELCOME.title}</h1>
             <p className="welcome__text">{WELCOME.caption}</p>
-            <button type="button" className="btn btn--primary btn--lg" onClick={start} autoFocus>
+            <button
+              type="button"
+              className="btn btn--primary btn--lg"
+              onClick={() => {
+                // di dalam gestur klik: buka kunci audio video prolog & mulai mengunduhnya
+                unlockPrologueVideo()
+                start()
+              }}
+              autoFocus
+            >
               {WELCOME.cta}
             </button>
             <p className="welcome__hint">Gunakan tombol → / ← untuk berpindah, ↑ / ↓ untuk tab di tiap rumah, atau klik rumah pada peta.</p>

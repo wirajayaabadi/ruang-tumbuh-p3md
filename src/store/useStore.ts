@@ -9,6 +9,8 @@ interface State {
   started: boolean
   /** layar pemuatan setelah tombol Let's Explore */
   loading: boolean
+  /** video prolog setelah pemuatan, sebelum konten */
+  prologue: boolean
   /** indeks ke STEPS */
   step: number
   phase: Phase
@@ -25,9 +27,12 @@ interface State {
   selectedProblem: string | null
   travelId: number
   pulseId: number
+  /** bertambah tiap aspirasi terkirim (memicu bintang baru di langit) */
+  aspirasiId: number
 
   start: () => void
   finishLoading: () => void
+  finishPrologue: () => void
   goTo: (step: number) => void
   next: () => void
   prev: () => void
@@ -42,6 +47,7 @@ interface State {
   setTheme: (t: Theme) => void
   toggleTheme: () => void
   toggleMusic: () => void
+  notifyAspirasi: () => void
 }
 
 export const isHouseStep = (s: number) => stepAt(s).kind === 'house'
@@ -86,6 +92,7 @@ if (typeof document !== 'undefined') document.documentElement.setAttribute('data
 export const useStore = create<State>((set, get) => ({
   started: false,
   loading: false,
+  prologue: false,
   step: 0,
   phase: 'idle',
   panelVisible: false,
@@ -99,6 +106,7 @@ export const useStore = create<State>((set, get) => ({
   selectedProblem: null,
   travelId: 0,
   pulseId: 0,
+  aspirasiId: 0,
 
   start: () => {
     // Memulai = layar pemuatan dulu; panel pembuka tampil setelah pemuatan selesai.
@@ -107,8 +115,14 @@ export const useStore = create<State>((set, get) => ({
     if (get().musicOn) spaceAmbience.start()
   },
   finishLoading: () => {
+    // Setelah pemuatan: putar prolog dulu; musik latar diredam selama video.
+    set({ loading: false, prologue: true, panelVisible: false })
+    spaceAmbience.setMuted(true)
+  },
+  finishPrologue: () => {
     const s = get()
-    set({ loading: false, panelVisible: stepHasPanel(s.step) && !s.explore })
+    set({ prologue: false, panelVisible: stepHasPanel(s.step) && !s.explore })
+    spaceAmbience.setMuted(!s.musicOn)
   },
 
   goTo: (step) => {
@@ -160,6 +174,7 @@ export const useStore = create<State>((set, get) => ({
     set({ theme })
   },
   toggleTheme: () => get().setTheme(get().theme === 'light' ? 'dark' : 'light'),
+  notifyAspirasi: () => set((s) => ({ aspirasiId: s.aspirasiId + 1 })),
   toggleMusic: () => {
     const on = !get().musicOn
     set({ musicOn: on })

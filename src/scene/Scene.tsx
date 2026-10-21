@@ -15,6 +15,7 @@ import { Meteors } from './Meteors'
 import { Planets } from './Planets'
 import { ProblemTokens } from './ProblemTokens'
 import { Decorations } from './Decorations'
+import { AspirasiStars } from './AspirasiStars'
 import { Bats } from './Bats'
 import { Companions } from './Companions'
 import { Stage } from './Stage'
@@ -46,6 +47,7 @@ export function Scene() {
         <Universe />
         <Sun />
         <Meteors />
+        <AspirasiStars />
         <Planets />
         <Lighting />
         <Stage />

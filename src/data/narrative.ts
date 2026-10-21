@@ -32,6 +32,14 @@ export const STEP_TEXT = {
       'Setiap rumah adalah satu ruang tumbuh. Klik rumah di peta atau pilih di bawah untuk mengenal ringkasan, masalah yang dijawab, dan solusinya.',
     ],
   },
+  aspirasi: {
+    eyebrow: '02 · Aspirasimu',
+    heading: 'Suaramu ikut menentukan arah',
+    body: [
+      'Sembilan masalah di inti berasal dari aspirasi angkatan. Peta ini belum selesai: tambahkan suaramu agar lima ruang benar-benar menjawab yang kita rasakan.',
+      'Setiap aspirasi yang terkirim menjadi satu bintang baru di langit peta ini.',
+    ],
+  },
   flow: {
     eyebrow: '01 · Masalah ke ruang',
     heading: 'Sembilan masalah, dan ke mana mereka mengalir',

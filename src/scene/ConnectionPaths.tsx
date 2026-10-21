@@ -82,7 +82,7 @@ export function ConnectionPaths() {
     return useStore.subscribe((s, prev) => {
       if (s.pulseId !== prev.pulseId) {
         const step = stepAt(s.step)
-        if (step.kind === 'flow' || step.kind === 'intro') schedulePulses(() => true)
+        if (step.kind === 'flow' || step.kind === 'intro' || step.kind === 'aspirasi') schedulePulses(() => true)
         else if (step.kind === 'house') {
           const r = HOUSES[step.houseIndex!].id
           schedulePulses((f) => f.ruang === r)
@@ -119,6 +119,7 @@ export function ConnectionPaths() {
       const base = f.kind === 'main' ? 0.9 : 0.6
       switch (kind) {
         case 'intro':
+        case 'aspirasi':
           target = st.introDone ? (sel ? (f.problem.id === sel ? 1 : 0.08) : 0.22) : 0
           break
         case 'flow':

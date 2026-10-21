@@ -8,6 +8,7 @@ import { FallbackView } from './ui/FallbackView'
 import { NavigationControls } from './ui/NavigationControls'
 import { LabelsOverlay } from './ui/Overlay'
 import { LoadingScreen } from './ui/LoadingScreen'
+import { Prologue } from './ui/Prologue'
 import { PresentationPanel } from './ui/PresentationPanel'
 import { hasWebGL } from './utils/webgl'
 
@@ -17,7 +18,7 @@ function useKeyboard() {
       const target = e.target as HTMLElement | null
       if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) return
       const s = useStore.getState()
-      if (s.loading) return
+      if (s.loading || s.prologue) return
       // Mode eksplorasi: tombol gerak ditangani kamera bebas; Escape keluar dari eksplorasi.
       if (s.explore) {
         if (e.key === 'Escape' && !document.fullscreenElement) s.setExplore(false)
@@ -81,6 +82,7 @@ export default function App() {
       <PresentationPanel />
       <NavigationControls />
       <LoadingScreen />
+      <Prologue />
     </div>
   )
 }

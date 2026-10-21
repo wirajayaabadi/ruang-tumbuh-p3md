@@ -24,6 +24,7 @@ const E_TOTAL = E_WORD + PROBLEM_WORD_EDGES.length
 const WORD_ALPHA: Record<StepKind, number> = {
   intro: 0.9,
   flow: 0.3,
+  aspirasi: 0.85,
   house: 0.7,
 }
 
