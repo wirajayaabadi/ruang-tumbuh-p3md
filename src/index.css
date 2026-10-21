@@ -348,10 +348,22 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
   appearance: none; border: 0; background: #ffd978; color: #1a1a2e; font: inherit; font-weight: 800; font-size: 20px;
   padding: 16px 28px; border-radius: 999px; cursor: pointer; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 }
+/* layar HP / potret: tampilkan video utuh (tidak terpotong), tanpa bilah sinematik */
+@media (max-width: 900px), (max-aspect-ratio: 4/3) {
+  .prologue__video { object-fit: contain; }
+  .prologue__bar { display: none; }
+  .prologue__progress { bottom: 0; }
+}
 @media (max-width: 820px) {
   .prologue__skip { right: 16px; bottom: calc(7vh + 14px); font-size: 15px; padding: 12px 18px; }
   .prologue__skip small { display: none; }
   .prologue__sound { left: 16px; bottom: calc(7vh + 14px); font-size: 13px; padding: 9px 12px; }
+}
+/* HP landscape (layar pendek): tombol lebih ringkas agar tidak menutupi video */
+@media (max-height: 500px) {
+  .prologue__skip { right: 12px; bottom: 12px; font-size: 13px; padding: 8px 14px; border-width: 1.5px; }
+  .prologue__skip small { display: none; }
+  .prologue__sound { left: 12px; bottom: 12px; font-size: 12px; padding: 7px 11px; }
 }
 @media (prefers-reduced-motion: reduce) { .prologue__skip { animation: none; } }
 
