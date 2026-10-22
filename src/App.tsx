@@ -11,6 +11,7 @@ import { LoadingScreen } from './ui/LoadingScreen'
 import { Prologue } from './ui/Prologue'
 import { PresentationPanel } from './ui/PresentationPanel'
 import { hasWebGL } from './utils/webgl'
+import { flushPending } from './data/aspirasi'
 
 function useKeyboard() {
   useEffect(() => {
@@ -68,9 +69,23 @@ function useKeyboard() {
   }, [])
 }
 
+/** Kirim ulang aspirasi yang tertunda saat aplikasi dibuka dan saat koneksi kembali. */
+function useAspirasiRetry() {
+  useEffect(() => {
+    const t = window.setTimeout(() => void flushPending(), 2500)
+    const onOnline = () => void flushPending()
+    window.addEventListener('online', onOnline)
+    return () => {
+      window.clearTimeout(t)
+      window.removeEventListener('online', onOnline)
+    }
+  }, [])
+}
+
 export default function App() {
   useLayout()
   useKeyboard()
+  useAspirasiRetry()
   const webgl = useMemo(() => hasWebGL(), [])
 
   if (!webgl) return <FallbackView />

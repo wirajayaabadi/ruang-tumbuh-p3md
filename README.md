@@ -64,21 +64,17 @@ scripts/       gen-network.mjs — tata letak jaringan dari data
 docs/          PLAN.md — rencana pengembangan
 ```
 
-## Pengumpulan aspirasi
+## Pengumpulan aspirasi (Supabase)
 
-Aspirasi selalu tersimpan di perangkat pengunjung (`localStorage`). Agar juga terkirim ke tim, isi `VITE_ASPIRASI_WEBHOOK` (lihat `.env.example`; di Vercel atur sebagai Environment Variable) dengan URL yang menerima POST JSON. Cara termudah tanpa server: Google Apps Script yang menulis ke Spreadsheet:
+Formulir **Aspirasimu** mengirim ke `POST /api/aspirasi` (Vercel Function di `api/aspirasi.ts`), yang memvalidasi isi, membatasi spam (5 kiriman/jam per perangkat, 20/jam per IP, ditambah kolom jebakan bot), lalu menyimpan ke tabel `public.aspirasi` di Supabase. Salinan juga disimpan di perangkat pengunjung.
 
-```js
-// Apps Script: Deploy → New deployment → Web app (Execute as: Me, Who has access: Anyone)
-function doPost(e) {
-  const d = JSON.parse(e.postData.contents)
-  SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Aspirasi')
-    .appendRow([d.createdAt, d.ruang, d.text, d.name, d.contact, d.id, d.ua])
-  return ContentService.createTextOutput('ok')
-}
-```
+Pengaturan:
 
-Buat sheet bernama `Aspirasi` di spreadsheet yang terkait, lalu tempel URL Web App-nya ke variabel di atas.
+1. Jalankan `supabase/aspirasi.sql` sekali di Supabase → SQL Editor. RLS aktif tanpa policy, jadi publik tidak bisa membaca/menulis; hanya server yang bisa menyimpan.
+2. Isi `SUPABASE_URL` dan `SUPABASE_SERVICE_ROLE_KEY` (secret key) di Vercel → Settings → Environment Variables, dan di `.env.local` untuk lokal (lihat `.env.example`). Jangan diberi awalan `VITE_`.
+3. `npm run dev` ikut melayani `/api/*` secara lokal lewat plugin di `vite.config.ts`, jadi tidak perlu Vercel CLI.
+
+Tim membaca aspirasi di Supabase → Table Editor → `aspirasi` (bisa diekspor CSV), ringkasan per ruang di view `aspirasi_per_ruang`, dan menandai tindak lanjut lewat kolom `status`. IP dan ID perangkat hanya disimpan sebagai hash.
 
 ## Pratinjau tautan
 

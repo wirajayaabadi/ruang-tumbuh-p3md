@@ -379,6 +379,8 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 .asp-check { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-top: 4px; }
 .asp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .asp-field { display: grid; gap: 4px; }
+.asp-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.asp-error { margin: 2px 0 0; font-size: 13.5px; color: var(--down); }
 .asp-submit { justify-content: center; margin-top: 6px; background: #ffd978; color: #1a1a2e; border-color: #ffd978; }
 .asp-submit:hover:not(:disabled) { background: #ffe39a; opacity: 1; }
 .asp-done { margin-top: 8px; padding: 16px; border-radius: 14px; background: var(--track); border: 1px solid rgba(255, 217, 120, 0.4); display: grid; gap: 8px; }
@@ -389,6 +391,9 @@ body { background: var(--bg); color: var(--ink); overflow: hidden; overscroll-be
 .asp-item .pchip__diamond { margin-top: 6px; }
 .asp-item__ruang { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
 .asp-item p { margin: 2px 0 0; color: var(--ink-soft); }
+.asp-item__status { font-weight: 600; text-transform: none; letter-spacing: 0; color: var(--muted); }
+.asp-item__status--sent { color: var(--up); }
+.asp-item__status--local { color: #c48a12; }
 @media (max-width: 820px) { .asp-grid { grid-template-columns: 1fr; } }
 
 /* ---------- label 3D (overlay DOM) ---------- */
