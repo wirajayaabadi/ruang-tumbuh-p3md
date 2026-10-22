@@ -17,6 +17,8 @@ import { ProblemTokens } from './ProblemTokens'
 import { Decorations } from './Decorations'
 import { AspirasiStars } from './AspirasiStars'
 import { Bats } from './Bats'
+import { HouseAuras } from './HouseAuras'
+import { ProblemAtoms } from './ProblemAtoms'
 import { Companions } from './Companions'
 import { Stage } from './Stage'
 import { Sun } from './Sun'
@@ -58,6 +60,8 @@ export function Scene() {
           <HouseNode key={house.id} house={house} index={i} />
         ))}
         <Decorations />
+        <HouseAuras />
+        <ProblemAtoms />
         <Bats />
         <Companions />
         <LabelProjector />

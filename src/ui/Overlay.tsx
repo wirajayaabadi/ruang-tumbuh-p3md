@@ -1,5 +1,5 @@
 import { HOUSES, stepAt } from '../config/presentation'
-import { PROBLEMS, pct, shortName } from '../data/derive'
+import { PROBLEMS, houseSlots, pct, shortName } from '../data/derive'
 import { registerLabelElement } from '../scene/Labels'
 import { useStore } from '../store/useStore'
 
@@ -37,6 +37,20 @@ export function LabelsOverlay() {
           <span className="prob-label__sub">{pct(p.p_main)}{p.verdict === 'kurang' ? ' · ?' : ''}</span>
         </div>
       ))}
+      {HOUSES.flatMap((h) =>
+        houseSlots(h.id).map((slot) => (
+          <div
+            key={`atom-${h.id}-${slot.problem.id}-${slot.kind}`}
+            ref={registerLabelElement(`atom:${h.id}:${slot.problem.id}:${slot.kind}`)}
+            className={`atom-label atom-label--${slot.kind}`}
+            style={{ ['--accent' as string]: HOUSES.find((x) => x.id === slot.problem.main)!.accent }}
+          >
+            <span className="prob-label__diamond" />
+            <span>{shortName(slot.problem.id)}</span>
+            <span className="atom-label__kind">{slot.kind === 'main' ? (slot.thin ? 'utama · data tipis' : 'utama') : slot.kind === 'support' ? 'pendukung' : 'rencana tim'}</span>
+          </div>
+        )),
+      )}
       {HOUSES.map((h) => (
         <div key={`fairy-${h.id}`} ref={registerLabelElement(`fairy:${h.id}`)} className="fairy-bubble" style={{ ['--accent' as string]: h.accent }}>
           Semangat!
