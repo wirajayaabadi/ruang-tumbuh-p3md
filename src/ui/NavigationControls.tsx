@@ -37,6 +37,7 @@ export function NavigationControls({ fallback = false }: Props) {
   const started = useStore((s) => s.started)
   const loading = useStore((s) => s.loading)
   const prologue = useStore((s) => s.prologue)
+  const aspirasiPrompt = useStore((s) => s.aspirasiPrompt)
   const step = useStore((s) => s.step)
   const explore = useStore((s) => s.explore)
   const theme = useStore((s) => s.theme)
@@ -50,7 +51,7 @@ export function NavigationControls({ fallback = false }: Props) {
   const toggleMusic = useStore((s) => s.toggleMusic)
   const start = useStore((s) => s.start)
   const { isFs, toggle, supported } = useFullscreen()
-  const hidden = !started || loading || prologue
+  const hidden = !started || loading || prologue || aspirasiPrompt
   const current = stepAt(step)
   const listRef = useRef<HTMLDivElement>(null)
 

@@ -9,8 +9,15 @@ import { Icon } from './Icons'
 
 const MAX_LEN = 600
 
-/** Formulir aspirasi pengunjung (langkah "Aspirasimu"). */
-export function AspirasiForm() {
+interface Props {
+  /** 'step' = panel langkah Aspirasimu; 'modal' = jendela ajakan setelah prolog */
+  variant?: 'step' | 'modal'
+  /** dipanggil saat pengunjung memilih lanjut menjelajah peta (varian modal) */
+  onContinue?: () => void
+}
+
+/** Formulir aspirasi pengunjung (langkah "Aspirasimu" dan jendela ajakan setelah prolog). */
+export function AspirasiForm({ variant = 'step', onContinue }: Props) {
   const notify = useStore((s) => s.notifyAspirasi)
   const [ruang, setRuang] = useState<RuangKey | 'belum'>('belum')
   const [text, setText] = useState('')
@@ -75,8 +82,8 @@ export function AspirasiForm() {
           <Icon name="network" size={28} />
         </span>
         <div>
-          <p className="panel__eyebrow" style={{ color: '#ffd978' }}>{STEP_TEXT.aspirasi.eyebrow}</p>
-          <h2 className="panel__title">{STEP_TEXT.aspirasi.heading}</h2>
+          <p className="panel__eyebrow" style={{ color: '#ffd978' }}>{variant === 'modal' ? 'Sebelum menjelajah' : STEP_TEXT.aspirasi.eyebrow}</p>
+          <h2 className="panel__title" id={variant === 'modal' ? 'aspirasi-modal-title' : undefined}>{STEP_TEXT.aspirasi.heading}</h2>
         </div>
       </div>
       {STEP_TEXT.aspirasi.body.map((t) => (
@@ -92,7 +99,14 @@ export function AspirasiForm() {
               ? ' dan sudah diterima tim Ruang Tumbuh.'
               : ', namun belum terkirim ke tim karena koneksi bermasalah. Salinannya tersimpan di perangkat ini dan akan dikirim ulang otomatis.'}
           </p>
-          <button type="button" className="btn btn--primary" onClick={reset}>Kirim aspirasi lain</button>
+          <div className="asp-done__actions">
+            {onContinue && (
+              <button type="button" className="btn btn--primary asp-submit" onClick={onContinue}>
+                Jelajahi Peta 5 Ruang ›
+              </button>
+            )}
+            <button type="button" className={onContinue ? 'btn btn--ghost' : 'btn btn--primary'} onClick={reset}>Kirim aspirasi lain</button>
+          </div>
         </div>
       ) : (
         <form className="asp-form" onSubmit={onSubmit}>
@@ -145,11 +159,16 @@ export function AspirasiForm() {
           <button type="submit" className="btn btn--primary btn--lg asp-submit" disabled={!canSend}>
             {busy ? 'Mengirim…' : 'Kirim Aspirasi ✦'}
           </button>
+          {onContinue && (
+            <button type="button" className="asp-skip" onClick={onContinue}>
+              Lewati, jelajahi peta dulu ›
+            </button>
+          )}
           <p className="muted small">Aspirasi diteruskan ke tim Ruang Tumbuh. Salinannya disimpan di perangkat ini agar kamu bisa melihatnya kembali.</p>
         </form>
       )}
 
-      {mine.length > 0 && (
+      {variant === 'step' && mine.length > 0 && (
         <>
           <h3 className="section__title">Aspirasi yang kamu kirim</h3>
           <ul className="asp-list">

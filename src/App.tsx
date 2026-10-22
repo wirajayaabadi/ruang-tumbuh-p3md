@@ -9,6 +9,7 @@ import { NavigationControls } from './ui/NavigationControls'
 import { LabelsOverlay } from './ui/Overlay'
 import { LoadingScreen } from './ui/LoadingScreen'
 import { Prologue } from './ui/Prologue'
+import { AspirasiModal } from './ui/AspirasiModal'
 import { PresentationPanel } from './ui/PresentationPanel'
 import { hasWebGL } from './utils/webgl'
 import { flushPending } from './data/aspirasi'
@@ -20,6 +21,10 @@ function useKeyboard() {
       if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) return
       const s = useStore.getState()
       if (s.loading || s.prologue) return
+      if (s.aspirasiPrompt) {
+        if (e.key === 'Escape' && !document.fullscreenElement) s.closeAspirasiPrompt()
+        return
+      }
       // Mode eksplorasi: tombol gerak ditangani kamera bebas; Escape keluar dari eksplorasi.
       if (s.explore) {
         if (e.key === 'Escape' && !document.fullscreenElement) s.setExplore(false)
@@ -98,6 +103,7 @@ export default function App() {
       <NavigationControls />
       <LoadingScreen />
       <Prologue />
+      <AspirasiModal />
     </div>
   )
 }

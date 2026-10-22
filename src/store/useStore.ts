@@ -11,6 +11,8 @@ interface State {
   loading: boolean
   /** video prolog setelah pemuatan, sebelum konten */
   prologue: boolean
+  /** jendela ajakan menulis aspirasi, tampil tepat setelah prolog */
+  aspirasiPrompt: boolean
   /** indeks ke STEPS */
   step: number
   phase: Phase
@@ -33,6 +35,7 @@ interface State {
   start: () => void
   finishLoading: () => void
   finishPrologue: () => void
+  closeAspirasiPrompt: () => void
   goTo: (step: number) => void
   next: () => void
   prev: () => void
@@ -93,6 +96,7 @@ export const useStore = create<State>((set, get) => ({
   started: false,
   loading: false,
   prologue: false,
+  aspirasiPrompt: false,
   step: 0,
   phase: 'idle',
   panelVisible: false,
@@ -121,8 +125,13 @@ export const useStore = create<State>((set, get) => ({
   },
   finishPrologue: () => {
     const s = get()
-    set({ prologue: false, panelVisible: stepHasPanel(s.step) && !s.explore })
+    // setelah prolog: langsung ajak pengunjung menulis aspirasi
+    set({ prologue: false, aspirasiPrompt: true, panelVisible: false })
     spaceAmbience.setMuted(!s.musicOn)
+  },
+  closeAspirasiPrompt: () => {
+    const s = get()
+    set({ aspirasiPrompt: false, panelVisible: stepHasPanel(s.step) && !s.explore })
   },
 
   goTo: (step) => {
